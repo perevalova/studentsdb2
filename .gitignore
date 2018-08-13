@@ -1,0 +1,8 @@
+# Ignore pyc compilier files python
+*.pyc
+/path/to/*.pyc
+
+# Ignore modules
+# db_settings.py
+email.py
+
