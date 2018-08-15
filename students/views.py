@@ -32,4 +32,23 @@ def groups_edit(request, gid):
 def groups_delete(request):
 	return HttpResponse('<h1>Delete Groups %s</h1>' % gid)
 
-# Create your views here.
+def students_list(request):
+	students = (
+		{'id': 1,
+		'first_name': u'Анастасія',
+		'last_name': u'Перевалова',
+		'ticket': 341,
+		'image': 'img/me.jpeg'},
+		{'id': 2,
+		'first_name': u'Рудюк',
+		'last_name': u'Максим',
+		'ticket': 156,
+		'image': 'img/rud.jpg'},
+		{'id': 3,
+		'first_name': u'Краснобокий',
+		'last_name': u'Максим',
+		'ticket': 245,
+		'image': 'img/kras.jpg'},
+		)
+	return render(request, 'students/students_list.html',
+		{'students': students})
