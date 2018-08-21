@@ -21,7 +21,7 @@ def students_delete(request, sid):
 # Views for Groups
 
 def groups_list(request):
-	return HttpResponse('<h1>Groups Listing</h1>')
+	return render(request, 'students/groups.html', {})
 
 def groups_add(request):
 	return HttpResponse('<h1>Group Add Form</h1>')
@@ -52,3 +52,18 @@ def students_list(request):
 		)
 	return render(request, 'students/students_list.html',
 		{'students': students})
+
+def groups_list(request):
+	groups = (
+		{'id': 1,
+		'full_name': u'Перевалова Анастасія',
+		'group_name': u'ЗПІ-18'},
+		{'id': 2,
+		'full_name': u'Рудюк Максим',
+		'group_name': u'АТ-22-1м'},
+		{'id': 3,
+		'full_name': u'Краснобокий Максим',
+		'group_name': u'ЗПІ-15'},
+		)
+	return render(request, 'students/groups.html',
+		{'groups': groups})
