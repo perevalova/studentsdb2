@@ -24,10 +24,11 @@
 
 			<!-- Logo -->
 			<div class="col-xs-8">
-				<h1>Сервіс Обліку Студентів</h1>
+				<h1>{% block logo %}Сервіс Обліку Студентів{% endblock logo %}</h1>
 			</div>
 
 			<!-- Groups Selector -->
+			{% block menu_groups %}
 			<div class="col-xs-4" id="group-selector">
 				<strong>Група:</strong>
 				<select>
@@ -37,6 +38,7 @@
 					<option value="">ЗПІ-15, Краснобокий Максим (№245)</option>
 				</select>
 			</div>
+			{% endblock menu_groups %}
 		</div>
 		<!-- End Header -->
 
@@ -45,7 +47,7 @@
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" {% if request.path == '/' %}class="active"{% endif %}><a href="{% url 'home' %}">Студенти</a></li>
-						<li role="presentation" {% if '/journal' in request.path %}class="active"{% endif %}><a href="/journal">Відвідування</a></li>
+						<li role="presentation" {% if '/journal' in request.path %}class="active"{% endif %}><a href="{% url 'journal' %}">Відвідування</a></li>
 						<li role="presentation" {% if '/groups' in request.path %}class="active"{% endif %}><a href="{% url 'groups' %}">Групи</a></li>
 					</ul>
 				</div>
@@ -62,17 +64,20 @@
 				{% endcomment %}
 
 				<h2>{% block title %}{% endblock title %}</h2>
+				{% block title_2 %}{% endblock title_2 %}
 				{% block content %}{% endblock content %}
 			</div>
 		</div>
 		<!-- End Content Columns -->
 
 		<!-- Start Footer -->
+		{% block footer %}
 		<div class="row" id="footer">
 			<div class="col-xs-12">
 				&copy; 2018 Сервіс Обліку Студентів
 			</div>
 		</div>
+		{% endblock footer %}
 		<!-- End Footer -->
 
 	</div>
