@@ -54,3 +54,6 @@ db*
 
 # secret
 email.py
+
+#Igonre moduls
+db_settings.py
