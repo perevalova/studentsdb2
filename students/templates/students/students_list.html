@@ -12,51 +12,86 @@
 <a class="btn btn-primary" href="{%  url 'students_add' %}">Додати Студента</a>
 
 <!-- Start Students Listing -->
+{% if students %}
 <table class="table table-hover table-striped">
-	<thead>
-		<tr>
-			<th><a href="">№</a></th>
-			<th><a href="#">Фото</a></th>
-			<th><a href="">Прізвище &uarr;</a></th>
-			<th><a href="#">Ім'я</a></th>
-			<th><a href="#">№ Білету</a></th>
-			<th>Дії</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for student in students %}
-		<tr>
-			<td>{{ forloop.counter }}</td>
-			{% if student.photo %}
-			<td><img class="img-circle" height="30" width="30" src="{{ student.photo.url }}"></td>
-			{% else %}
-			<td><img class="img-circle" height="30" width="30" src="{% static "img/default_user.png" %}"></td>
-			{% endif %}
-			<td><a title="Редагувати" href="{% url 'students_edit' student.id %}">{{ student.last_name }}</a></td>
-			<td><a title="Редагувати" href="{% url 'students_edit' student.id %}">{{ student.first_name }}</a></td>
-			<td>{{ student.ticket }}</td>
-			<td>
-				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
-					<ul class="dropdown-menu" role="menu">
-						<li role="presentation">
-							<a role="menuitem" tabindex="-1" href="/visiting/{{ student.id }}">Відвідування</a>
-						</li>
-						<li role="presentation">
-							<a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}">Редагувати</a>
-						<li role="presentation">
-							<a role="menuitem" tabindex="-1" href="{% url 'students_delete' student.id %}">Видалити</a>
-						</li>
-					</ul>
-				</div>
-			</td>
-		</tr>
-		{% endfor %}
-	</tbody>
+    {% with order_by=request.GET.order_by reverse=request.GET.reverse status_number=request.GET.status_number %}
+    <thead>
+        <tr>
+            <th>
+                <a href="{% url 'home' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                №
+                {% if order_by == 'id' and reverse != '1' %}&uarr;
+                {% elif order_by == 'id' and reverse == '1' %}&darr;
+                {% endif %}</a>
+            </th>
+            <th><a href="#">Фото</a></th>
+            <th>
+                <a href="{% url 'home' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% elif order_by == '' and reverse != '1' %}&amp;reverse=1{% endif %}">
+            Прізвище 
+                {% if order_by == 'last_name' and reverse != '1' %}&uarr;
+                {% elif order_by == '' and reverse != '1' %}&uarr;
+                {% elif order_by == 'last_name' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{% url 'home' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+            Ім'я 
+                {% if order_by == 'first_name' and reverse != '1' %}&uarr;
+                {% elif order_by == 'first_name' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{% url 'home' %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&amp;reverse=1{% endif %}">
+            № Білету 
+                {% if order_by == "ticket" and reverse != '1' %}&uarr;
+                {% elif order_by == 'ticket' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+            <th>Дії</th>
+        </tr>
+    </thead>
+    {% endwith %}
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            {% if student.photo %}
+            <td><img class="img-circle" height="30" width="30" src="{{ student.photo.url }}"></td>
+            {% else %}
+            <td><img class="img-circle" height="30" width="30" src="{% static "img/default_user.png" %}"></td>
+            {% endif %}
+            <td><a title="Редагувати" href="{% url 'students_edit' student.id %}">{{ student.last_name }}</a></td>
+            <td><a title="Редагувати" href="{% url 'students_edit' student.id %}">{{ student.first_name }}</a></td>
+            <td>{{ student.ticket }}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="/visiting/{{ student.id }}">Відвідування</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}">Редагувати</a>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="{% url 'students_delete' student.id %}">Видалити</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
+{% endif %}
 <!-- End Students Listing -->
 
 <!-- Pagination -->
-{% include "students/pagination.html" %}
+
+<!--{% with object_list=students %}-->
+    {% include "students/pagination.html" %}
+<!--{% endwith %}-->
 
 {% endblock content %}

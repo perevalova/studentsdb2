@@ -3,89 +3,89 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-	<meta charset="UTF-8">
-	<title>Сервіс Обліку Студентів</title>
-	<meta name="description" value="Система Обліку Студентів Навчального Закладу">
-	<meta name=”viewport” content=”width=device-width, initial-scale=1”>
+    <meta charset="UTF-8">
+    <title>Сервіс Обліку Студентів</title>
+    <meta name="description" value="Система Обліку Студентів Навчального Закладу">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Include Styles-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{ PORTAL_URL }}{% static 'css/main.css' %}">
-	
-	{% block extra_css %}{% endblock extra_css %}
+    <!-- Include Styles-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ PORTAL_URL }}{% static 'css/main.css' %}">
+    
+    {% block extra_css %}{% endblock extra_css %}
 </head>
-<body>
-	
-	<!-- Start Container -->
-	<div class="container">
 
-		<!-- Start Header -->
-		<div class="row" id="header">
+<body>    
+    <!-- Start Container -->
+    <div class="container">
 
-			<!-- Logo -->
-			<div class="col-xs-8">
-				<h1>{% block logo %}Сервіс Обліку Студентів{% endblock logo %}</h1>
-			</div>
+        <!-- Start Header -->
+        <div class="row" id="header">
 
-			<!-- Groups Selector -->
-			{% block menu_groups %}
-			<div class="col-xs-4" id="group-selector">
-				<strong>Група:</strong>
-				<select>
-					<option value="">Усі Студенти</option>
-					<option value="">ЗПІ-18, Перевалова Анастасія (№ 341)</option>
-					<option value="">АТ-22-1м, Рудюк Максим (№156)</option>
-					<option value="">ЗПІ-15, Краснобокий Максим (№245)</option>
-				</select>
-			</div>
-			{% endblock menu_groups %}
-		</div>
-		<!-- End Header -->
+            <!-- Logo -->
+            <div class="col-xs-8">
+                <h1>{% block logo %}Сервіс Обліку Студентів{% endblock logo %}</h1>
+            </div>
 
-			<!-- Start SubHeader -->
-			<div class="row" id="sub-header">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" {% if request.path == '/' %}class="active"{% endif %}><a href="{% url 'home' %}">Студенти</a></li>
-						<li role="presentation" {% if '/journal' in request.path %}class="active"{% endif %}><a href="{% url 'journal' %}">Відвідування</a></li>
-						<li role="presentation" {% if '/groups' in request.path %}class="active"{% endif %}><a href="{% url 'groups' %}">Групи</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- End SubHeader -->
+            <!-- Groups Selector -->
+            {% block menu_groups %}
+            <div class="col-xs-4" id="group-selector">
+                <strong>Група:</strong>
+                <select>
+                    <option value="">Усі Студенти</option>
+                    <option value="">ЗПІ-18, Перевалова Анастасія (№ 341)</option>
+                    <option value="">АТ-22-1м, Рудюк Максим (№156)</option>
+                    <option value="">ЗПІ-15, Краснобокий Максим (№245)</option>
+                </select>
+            </div>
+            {% endblock menu_groups %}
+        </div>
+        <!-- End Header -->
 
-		<!-- Start Content Columns -->
-		<div class="row" id="content-columns">
-			<div class="col-xs-12" id="content-column">
-				
-				{% comment "Not used alert so far" %}
-				<!-- Status Message -->
-				<div class="alert alert-warning">Status Update!</div>
-				{% endcomment %}
+            <!-- Start SubHeader -->
+            <div class="row" id="sub-header">
+                <div class="col-xs-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" {% if request.path == '/' %}class="active"{% endif %}><a href="{% url 'home' %}">Студенти</a></li>
+                        <li role="presentation" {% if '/journal' in request.path %}class="active"{% endif %}><a href="{% url 'journal' %}">Відвідування</a></li>
+                        <li role="presentation" {% if '/groups' in request.path %}class="active"{% endif %}><a href="{% url 'groups' %}">Групи</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End SubHeader -->
 
-				<h2>{% block title %}{% endblock title %}</h2>
-				{% block title_2 %}{% endblock title_2 %}
-				{% block content %}{% endblock content %}
-			</div>
-		</div>
-		<!-- End Content Columns -->
+        <!-- Start Content Columns -->
+        <div class="row" id="content-columns">
+            <div class="col-xs-12" id="content-column">
+                
+                {% comment "Not used alert so far" %}
+                <!-- Status Message -->
+                <div class="alert alert-warning">Status Update!</div>
+                {% endcomment %}
 
-		<!-- Start Footer -->
-		{% block footer %}
-		<div class="row" id="footer">
-			<div class="col-xs-12">
-				&copy; 2018 Сервіс Обліку Студентів
-			</div>
-		</div>
-		{% endblock footer %}
-		<!-- End Footer -->
+                <h2>{% block title %}{% endblock title %}</h2>
+                {% block title_2 %}{% endblock title_2 %}
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+        <!-- End Content Columns -->
 
-	</div>
-	<!-- End Container -->
+        <!-- Start Footer -->
+        {% block footer %}
+        <div class="row" id="footer">
+            <div class="col-xs-12">
+                &copy; 2018 Сервіс Обліку Студентів
+            </div>
+        </div>
+        {% endblock footer %}
+        <!-- End Footer -->
 
-	<!-- Javascripts Section -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	{% block extra_js %}{% endblock extra_js%}
+    </div>
+    <!-- End Container -->
+
+    <!-- Javascripts Section -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    {% block extra_js %}{% endblock extra_js%}
 </body>
 </html>
