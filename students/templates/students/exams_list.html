@@ -1,0 +1,93 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Іспити{% endblock meta_title %}
+
+{% block title %}Іспити{% endblock title %}
+
+{% block content %}
+
+<!-- Add Student Button -->
+<a class="btn btn-primary" href="{%  url 'exams_add' %}">Додати Іспит</a>
+
+<!-- Start Exams Listing -->
+{% if exams %}
+<table class="table table-hover table-striped">
+    {% with order_by=request.GET.order_by reverse=request.GET.reverse status_number=request.GET.status_number %}
+    <thead>
+        <tr>
+            <th>
+                <a href="{% url 'exams' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                №
+                {% if order_by == 'id' and reverse != '1' %}&uarr;
+                {% elif order_by == 'id' and reverse == '1' %}&darr;
+                {% endif %}</a>
+            </th>
+            <th>
+                <a href="{% url 'exams' %}?order_by=subject{% if order_by == 'subject' and reverse != '1' %}&amp;reverse=1{% elif order_by == '' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                Назва предмету 
+                {% if order_by == 'subject' and reverse != '1' %}&uarr;
+                {% elif order_by == '' and reverse != '1' %}&uarr;
+                {% elif order_by == 'subject' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{% url 'exams' %}?order_by=data{% if order_by == 'data' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                Дата 
+                {% if order_by == 'data' and reverse != '1' %}&uarr;
+                {% elif order_by == 'data' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{% url 'exams' %}?order_by=teacher_last_name{% if order_by == 'teacher_last_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                Прізвище викладача
+                {% if order_by == 'teacher_last_name' and reverse != '1' %}&uarr;
+                {% elif order_by == 'teacher_last_name' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{% url 'exams' %}?order_by=teacher_first_name{% if order_by == 'teacher_first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                Ім'я викладача
+                {% if order_by == 'teacher_first_name' and reverse != '1' %}&uarr;
+                {% elif order_by == 'teacher_first_name' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{% url 'exams' %}?order_by=exam_group{% if order_by == 'exam_group' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                Група
+                {% if order_by == 'exam_group' and reverse != '1' %}&uarr;
+                {% elif order_by == 'exam_group' and reverse == '1' %}&darr;
+                {% endif %}
+                </a>
+            </th>
+        </tr>
+    </thead>
+    {% endwith %}
+    <tbody>
+        {% for exam in exams %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.subject }}</a></td>
+            <td>{{ exam.data }}</td>
+            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.teacher_last_name }}</a></td>
+            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.teacher_first_name }}</a></td>
+            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.exam_group }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<!-- End Exams Listing -->
+
+<!-- Pagination -->
+
+<!--{% with object_list=students %}-->
+{% include "students/pagination.html" %}
+<!--{% endwith %}-->
+
+{% endblock content %}

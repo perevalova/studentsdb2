@@ -1,18 +1,36 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
+from django.core import serializers
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic.base import TemplateView
+
+from students.models import Group
 
 def groups_list(request):
-    groups = (
-        {'id': 1,
-        'full_name': u'Перевалова Анастасія',
-        'group_name': u'ЗПІ-18'},
-        {'id': 2,
-        'full_name': u'Рудюк Максим',
-        'group_name': u'АТ-22-1м'},
-        {'id': 3,
-        'full_name': u'Краснобокий Максим',
-        'group_name': u'ЗПІ-15'},
-        )
+    groups = Group.objects.all()
+
+    #try to order groups list
+    order_by = request.GET.get('order_by', '')
+    if order_by in ('leader', 'title'):
+        groups = groups.order_by(order_by)
+        if request.GET.get('reverse', '') == '1':
+            groups = groups.reverse()
+
+    #paginate groups
+    paginator = Paginator(groups, 3)
+    page = request.GET.get('page')
+    try:
+        groups = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        groups = paginator.page(1)
+    except EmptyPage:
+        # If is out of range (e.g. 9999), deliver last page of results.
+        groups = paginator.page(paginator.num_pages)
+
     return render(request, 'students/groups_list.html', {'groups': groups})
 
 def groups_add(request):
@@ -23,4 +41,3 @@ def groups_edit(request, gid):
 
 def groups_delete(request):
     return HttpResponse('<h1>Delete Groups %s</h1>' % gid)
-

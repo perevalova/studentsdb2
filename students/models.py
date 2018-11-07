@@ -2,7 +2,6 @@
 
 from django.db import models
 
-# Create your models here.
 class Student(models.Model):
     """Student Model"""
 
@@ -37,6 +36,12 @@ class Student(models.Model):
         verbose_name=u"Фото",
         null=True)
 
+    student_group = models.ForeignKey('Group',
+        verbose_name=u"Група",
+        blank=False,
+        null=True,
+        on_delete=models.PROTECT)
+    
     ticket = models.CharField(
         max_length=256,
         blank=False,
@@ -61,6 +66,7 @@ class Group(models.Model):
     class Meta(object):
         verbose_name = u"Група"
         verbose_name_plural = u"Групи"
+        ordering = ['title']
 
     title = models.CharField(
         max_length=256,
@@ -82,3 +88,62 @@ class Group(models.Model):
             return u"%s (%s %s)" % (self.title, self.leader.first_name, self.leader.last_name)
         else:
             return u"%s" % (self.title)
+
+"""class Journal(models.Model):
+    Journal Model
+
+    class Meta(object):
+        verbose_name = u"Відвідування"
+        verbose_name_plural = u"Відвідування"
+        ordering = ['student']
+
+    student = models.ForeignKey('Student',
+        max_length=256,
+        blank=False,
+        verbose_name=u"Студент")
+
+    def __str__(self):
+        return u"%s %s" % (self.student.first_name, self.student.last_name)"""
+
+class Exam(models.Model):
+    """Exam Model"""
+
+    class Meta(object):
+        verbose_name = u"Іспит"
+        verbose_name_plural = u"Іспити"
+        ordering = ['subject']
+
+    subject = models.CharField(
+        max_length=256,
+        verbose_name=u"Назва предмету",
+        blank=False)
+
+    teacher_first_name = models.CharField(
+        max_length=256,
+        blank=False,
+        verbose_name=u"Ім'я")
+
+    teacher_last_name = models.CharField(
+        max_length=256,
+        blank=False,
+        verbose_name=u"Прізвище")
+
+    teacher_middle_name = models.CharField(
+        max_length=256,
+        blank=True,
+        verbose_name=u"По-батькові",
+        default='')
+
+    data = models.DateField(
+        blank=False,
+        verbose_name=u"Дата іспиту",
+        null=True)
+
+    exam_group = models.ForeignKey('Group',
+        verbose_name=u"Група",
+        blank=False,
+        null=True,
+        on_delete=models.PROTECT)
+
+    def __str__(self):
+        return u"%s" % (self.subject)

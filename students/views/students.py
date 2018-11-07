@@ -7,7 +7,7 @@ from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
 
-from ..models import Student
+from students.models import Student
 
 def students_list(request):
     students = Student.objects.all()
@@ -66,4 +66,3 @@ def students_delete(request, sid):
 
 # def students_visiting(request, sid):
     # return HttpResponse('<h1>Students Visiting %s</h1>' % sid)
-
