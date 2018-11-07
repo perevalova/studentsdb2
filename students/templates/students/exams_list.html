@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<!-- Add Student Button -->
+<!-- Add Exam Button -->
 <a class="btn btn-primary" href="{%  url 'exams_add' %}">Додати Іспит</a>
 
 <!-- Start Exams Listing -->
@@ -85,9 +85,6 @@
 <!-- End Exams Listing -->
 
 <!-- Pagination -->
-
-<!--{% with object_list=students %}-->
 {% include "students/pagination.html" %}
-<!--{% endwith %}-->
 
 {% endblock content %}
