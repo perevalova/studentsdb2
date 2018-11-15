@@ -6,32 +6,13 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
+from datetime import datetime
 
 from students.models import Student, Group
+from .validation import valid_image_mimetype, valid_image_size
 
 def students_list(request):
     students = Student.objects.all()
-
-#class StudentList(TemplateView):
-    #template_name = 'students/students_list.html'
-
-    #def get_context_data(self, **kwargs):
-        #context = super(StudentList, self).get_context_data(**kwargs)
-
-        #students = Student.objects.all()
-
-    # Order students list
-        #order_by = self.request.GET.get('order_by', '') # Витягуємо параметр order_by з GET словника
-        #reverse = self.request.GET.get('reverse', '') # Витягуємо параметр reverse з GET словника
-
-        #if order_by in ('last_name', 'first_name', 'ticket', 'id'):
-        #   students = students.order_by(order_by)
-        #   if reverse == '1':
-        #       students = students.reverse()
-
-        #context = paginate(students, 3, self.request, context, var_name='students')
-
-        #return context
 
     #try to order students list
     order_by = request.GET.get('order_by', '')
@@ -61,22 +42,68 @@ def students_add(request):
         # Was form add button clicked?
         if request.POST.get('add_button') is not None:
 
-            # TODO: validate input from user
+            # errors collection
             errors = {}
 
+            # data for student object
+            data = {'middle_name': request.POST.get('middle_name'), 'notes': request.POST.get('notes')}
+
+            # validate user input
+            first_name = request.POST.get('first_name', '').strip()
+            if not first_name:
+                errors['first_name'] = u"Ім'я є обов'язковим"
+            else:
+                data['first_name'] = first_name
+
+            last_name = request.POST.get('last_name', '').strip()
+            if not last_name:
+                errors['last_name'] = u"Прізвище є обов'язковим"
+            else:
+                data['last_name'] = last_name
+
+            birthday = request.POST.get('birthday', '').strip()
+            if not birthday:
+                errors['birthday'] = u"Дата народження є обов'язковою"
+            else:
+                try:
+                    datatime.strptime(birthday, '%Y-%m-%d')
+                except Exception:
+                    errors['birthday'] = u"Введіть коректний формат дани (напр. 1992-12-31)"
+                else:
+                    data['birthday'] = birthday
+
+            ticket = request.POST.get('ticket', '').strip()
+            if not ticket:
+                errors['ticket'] = u"Номер білета є обов'язковим"
+            else:
+                data['ticket'] = ticket
+
+            student_group = request.POST.get('student_group', '').strip()
+            if not student_group:
+                errors['student_group'] = u"Оберіть групу для студента"
+            else:
+                groups = Group.objects.get(pk=student_group)
+                if len(groups) != 1:
+                    errors['student_group'] = u"Оберіть коректну групу"
+                else:
+                    data['student_group'] = groups[0]
+
+            photo = request.FILES.get('photo')
+            if photo:
+                correct_image = valid_image_mimetype(photo)  #valid image file
+                if correct_image:
+                    correct_file_size = valid_image_size(photo) #valid image size
+                    if correct_file_size:
+                        data['photo'] = photo
+                    else:
+                        errors['photo'] = u"Файл занадто великий! Зображення має бути менше 2МБ"
+                else:
+                    errors['photo'] = u"Оберіть файл-зображення"
+
+            # save student
             if not errors:
                 # create student object
-                student = Student(
-                    first_name=request.POST['first_name'],
-                    last_name=request.POST['last_name'],
-                    middle_name=request.POST['middle_name'],
-                    birthday=request.POST['birthday'],
-                    ticket=request.POST['ticket'],
-                    student_group=Group.objects.get(pk=request.POST['student_group']),
-                    photo=request.FILES['photo'],
-                )
-
-                # save it to database
+                student = Student(**data)
                 student.save()
 
                 # redirect user to students list
