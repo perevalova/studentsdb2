@@ -3,6 +3,7 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
+from django.contrib import messages
 from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
@@ -66,9 +67,9 @@ def students_add(request):
                 errors['birthday'] = u"Дата народження є обов'язковою"
             else:
                 try:
-                    datatime.strptime(birthday, '%Y-%m-%d')
+                    datetime.strptime(birthday, '%Y-%m-%d')
                 except Exception:
-                    errors['birthday'] = u"Введіть коректний формат дани (напр. 1992-12-31)"
+                    errors['birthday'] = u"Введіть коректний формат дати (напр. 1992-12-31)"
                 else:
                     data['birthday'] = birthday
 
@@ -82,7 +83,7 @@ def students_add(request):
             if not student_group:
                 errors['student_group'] = u"Оберіть групу для студента"
             else:
-                groups = Group.objects.get(pk=student_group)
+                groups = Group.objects.filter(pk=student_group)
                 if len(groups) != 1:
                     errors['student_group'] = u"Оберіть коректну групу"
                 else:
@@ -106,7 +107,11 @@ def students_add(request):
                 student = Student(**data)
                 student.save()
 
+                #ToDo
+                #status message with full name created student
+
                 # redirect user to students list
+                messages.success(request, 'Студента успішно додано!')
                 return HttpResponseRedirect(reverse('home'))
 
             else:
@@ -114,6 +119,7 @@ def students_add(request):
                 return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title'), 'errors': errors})
         elif request.POST.get('cancel_button') is not None:
             # redirect to home page on cancel button
+            messages.warning(request, 'Додавання студента скасовано!')
             return HttpResponseRedirect(reverse('home'))
     else:
         # initial form render
