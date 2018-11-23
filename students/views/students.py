@@ -107,15 +107,13 @@ def students_add(request):
                 student = Student(**data)
                 student.save()
 
-                #ToDo
-                #status message with full name created student
-
                 # redirect user to students list
-                messages.success(request, 'Студента успішно додано!')
+                messages.success(request, 'Студента %s успішно додано!' % student)
                 return HttpResponseRedirect(reverse('home'))
 
             else:
                 #render form with errors and previous user input
+                messages.warning(request, 'Будь ласка, виправте наступні помилки')
                 return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title'), 'errors': errors})
         elif request.POST.get('cancel_button') is not None:
             # redirect to home page on cancel button
