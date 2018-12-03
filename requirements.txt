@@ -3,3 +3,4 @@ psycopg2==2.7.5
 Pillow==5.2.0
 pytz==2018.5
 python-magic==0.4.15
+django-crispy-forms==1.7.2

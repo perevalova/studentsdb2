@@ -1,22 +1,32 @@
 {% extends "students/base.html" %}
 
 {% load static from staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block meta_title %}Зв'язок із Адміністратором{% endblock meta_title %}
 
 {% block title %}Зв'язок із Адміністратором{% endblock title %}
 
-<!-- Status Message 
+<!-- Status Message -->
 {% block status_message %}
 {% if messages %}
     {% for message in messages %}
     <div class="alert alert-{{message.tags}}", "messages" role="alert">{{ message }}</div>
     {% endfor %}
 {% endif %}
-{% endblock %}-->
+
+{% endblock %}
 
 {% block content %}
 
+{% crispy form %}
 
+<!--<form action="{% url 'contact_admin' %}" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Надіслати" name="send_button">
+</form>-->
 
 {% endblock content %}
