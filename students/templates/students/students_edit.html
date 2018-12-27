@@ -1,0 +1,30 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Редагувати Студента{% endblock meta_title %}
+
+{% block title %}Редагувати Студента{% endblock title %}
+
+<!-- Status Message -->
+{% block status_message %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}", "messages" role="alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'students_edit' object.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Зберегти" name="add_button" class="btn btn-primary">
+    <button type="submit" name="cancel_button" value="Скасувати" class="btn btn-link">Скасувати</button>
+
+</form>
+
+{% endblock content %}

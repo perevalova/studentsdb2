@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
+from django.core import serializers
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.contrib import messages
-from django.core import serializers
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
+from django.views.generic import UpdateView
 from datetime import datetime
 
 from students.models import Student, Group
@@ -124,6 +125,22 @@ def students_add(request):
         return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
         
     return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    template_name = 'students/students_edit.html'
+
+    def get_success_url(self):
+        messages.success(request, 'Студента успішно збережено!')
+        return HttpResponseRedirect(reverse('home'))
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('cancel_button'):
+            messages.warning(request, 'Редагування студента відмінено!')
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            return super(StudentUpdateView, self).post(request, *args, **kwargs)
+        
 
 def students_edit(request, sid):
     return HttpResponse('<h1>Edit Student %s</h1>' % sid)
