@@ -1,6 +1,7 @@
 {% extends "students/base.html" %}
 
 {% load static from staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block meta_title %}Редагувати Студента{% endblock meta_title %}
 
@@ -16,6 +17,8 @@
 {% endblock %}
 
 {% block content %}
+
+{% crispy form %}
 
 <form action="{% url 'students_edit' object.id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}

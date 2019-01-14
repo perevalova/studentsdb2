@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.static import serve
 from students.views.contact_admin import ContactView
-from students.views.students import StudentUpdateView
+from students.views.students import StudentUpdateView, StudentAddView
 
 from .settings import MEDIA_ROOT, DEBUG
 from students.views import students, groups, journal, exams, contact_admin
@@ -26,7 +26,7 @@ urlpatterns = [
     #Students urls
     url(r'^$', students.students_list, name='home'),
     #url(r'^blog/', include('blog.urls')),
-    url(r'^students/add/$', students.students_add, name='students_add'),
+    url(r'^students/add/$', StudentAddView.as_view(), name='students_add'),
     url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
     url(r'^students/(?P<sid>\d+)/delete/$', students.students_delete, name='students_delete'),
 
