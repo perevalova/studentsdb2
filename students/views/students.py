@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.contrib import messages
 from django.views.generic.base import TemplateView
 from django.views.generic import UpdateView
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView, DeleteView
 from django.forms import ModelForm
 
 
@@ -148,8 +148,13 @@ class StudentUpdateView(UpdateView):
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
-def students_delete(request, sid):
-    return HttpResponse('<h1>Delete Student %s</h1>' % sid)
+class StudentDeleteView(DeleteView):
+    model = Student
+    template_name = 'students/student_confirm_delete.html'
+
+    def get_success_url(self):
+        messages.success(request, 'Студента успішно видалено!')
+        return HttpResponseRedirect(reverse('home'))
 
 # def students_visiting(request, sid):
     # return HttpResponse('<h1>Students Visiting %s</h1>' % sid)

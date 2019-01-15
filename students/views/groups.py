@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import DeleteView
 
 from students.models import Group
 
@@ -39,5 +40,10 @@ def groups_add(request):
 def groups_edit(request, gid):
     return HttpResponse('<h1>Edit Group %s</h1>' % gid)
 
-def groups_delete(request):
-    return HttpResponse('<h1>Delete Groups %s</h1>' % gid)
+class GroupDeleteView(DeleteView):
+    model = Group
+    template_name = 'students/group_confirm_delete.html'
+
+    def get_success_url(self):
+        messages.success(request, 'Групу успішно видалено!')
+        return HttpResponseRedirect(reverse('home'))
