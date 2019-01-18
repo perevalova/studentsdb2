@@ -6,9 +6,9 @@ def students_visiting(request):
         {'id': 1,
         'full_name': u'Перевалова Анастасія',},
         {'id': 2,
-        'full_name': u'Рудюк Максим',},
+        'full_name': u'Крученко Олег',},
         {'id': 3,
-        'full_name': u'Краснобокий Максим',},
+        'full_name': u'Дзюба Артем',},
         )
     return render(request, 'students/journal.html', {'visitings': visitings})
 
