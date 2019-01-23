@@ -134,7 +134,7 @@ class Exam(models.Model):
         verbose_name=u"По батькові",
         default='')
 
-    data = models.DateField(
+    date = models.DateField(
         blank=False,
         verbose_name=u"Дата іспиту",
         null=True)

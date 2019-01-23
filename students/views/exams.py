@@ -24,7 +24,7 @@ def exams_list(request):
     #try to order exams list
     order_by = request.GET.get('order_by', '')
     reverse = request.GET.get('reverse', '')
-    if order_by in ('subject', 'exam_group', 'data', 'teacher_first_name', 'teacher_last_name'):
+    if order_by in ('subject', 'exam_group', 'date', 'teacher_first_name', 'teacher_last_name'):
         exams = exams.order_by(order_by)
         if request.GET.get('reverse', '') == '1':
             exams = exams.reverse()
@@ -96,7 +96,7 @@ class ExamUpdateForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         # call original initializator
-        super(GroupUpdateForm, self).__init__(*args, **kwargs)
+        super(ExamUpdateForm, self).__init__(*args, **kwargs)
         
         #this helper object allows us to customize form
         self.helper = FormHelper(self)

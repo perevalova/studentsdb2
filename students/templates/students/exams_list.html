@@ -65,6 +65,7 @@
                 {% endif %}
                 </a>
             </th>
+            <th>Дії</th>
         </tr>
     </thead>
     {% endwith %}
@@ -73,10 +74,22 @@
         <tr>
             <td>{{ forloop.counter }}</td>
             <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.subject }}</a></td>
-            <td>{{ exam.data }}</td>
+            <td>{{ exam.date }}</td>
             <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.teacher_last_name }}</a></td>
             <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.teacher_first_name }}</a></td>
             <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.exam_group }}</a></td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="{% url 'groups_edit' exam.id %}">Редагувати</a>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="{% url 'groups_delete' exam.id %}">Видалити</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
