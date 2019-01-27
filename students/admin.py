@@ -53,7 +53,18 @@ class GroupAdmin(admin.ModelAdmin):
     def view_on_site(self, obj):
         return reverse('groups_edit', kwargs={'pk': obj.id})
 
+class ExamAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'date', 'teacher_first_name', 'teacher_last_name', 'exam_group']
+    list_display_links = ['subject']
+    list_editable = ['exam_group']
+    ordering = ['date']
+    list_per_page = 10
+    search_fields = ['subject', 'date', 'teacher_first_name', 'teacher_last_name', 'exam_group']
+
+    def view_on_site(self, obj):
+        return reverse('exams_edit', kwargs={'pk': obj.id})
+
 # Register your models here.
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Group, GroupAdmin)
-admin.site.register(Exam)
+admin.site.register(Exam, ExamAdmin)
