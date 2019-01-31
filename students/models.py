@@ -147,3 +147,29 @@ class Exam(models.Model):
 
     def __str__(self):
         return u"%s" % (self.subject)
+
+class ExamResults(models.Model):
+    """Exam Results Model"""
+
+    class Meta(object):
+        verbose_name = u"Результат Іспиту"
+        verbose_name_plural = u"Результати Іспитів"
+
+    subject_exam = models.ForeignKey('Exam',
+        verbose_name=u"Предмет",
+        max_length=256,
+        blank=False)
+
+    student = models.ForeignKey('Student',
+        verbose_name=u"Студент",
+        blank=True,
+        null=True)
+
+    grade = models.CharField(
+        max_length=256,
+        blank=False,
+        verbose_name=u"Оцінка",
+        null=True)
+
+    def __str__(self):
+        return u"%s (%s)" % (self.students, self.students.student_group)

@@ -16,7 +16,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 from crispy_forms.bootstrap import FormActions
 
-from students.models import Exam
+from students.models import Exam, ExamResults
 
 def exams_list(request):
     exams = Exam.objects.all()
@@ -141,3 +141,28 @@ class ExamDeleteView(DeleteView):
     def get_success_url(self):
         messages.success(request, 'Екзамен успішно видалено!')
         return HttpResponseRedirect(reverse('home'))
+
+def exams_results(request):
+    exams_results = ExamResults.objects.all()
+
+    #try to order exams list
+    order_by = request.GET.get('order_by', '')
+    reverse = request.GET.get('reverse', '')
+    if order_by in ('subject_exam', 'student', 'grade'):
+        exams_results = exams_results.order_by(order_by)
+        if request.GET.get('reverse', '') == '1':
+            exams_results = exams_results.reverse()
+
+    #paginate exams
+    paginator = Paginator(exams_results, 3)
+    page = request.GET.get('page')
+    try:
+        exams_results = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        exams_results = paginator.page(1)
+    except EmptyPage:
+        # If is out of range (e.g. 9999), deliver last page of results.
+        exams_results = paginator.page(paginator.num_pages)
+
+    return render(request, 'students/exams_results.html', {'results': results})
