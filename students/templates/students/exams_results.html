@@ -6,58 +6,37 @@
 
 {% block title %}Результати Іспитів{% endblock title %}
 
-{% block title_2 %}{{ subject_exam }}{% endblock title_2 %}
+<!-- {% block title_2 %}{{ subject_exam }}{% endblock title_2 %} -->
 
 {% block content %}
+<!-- <title>{{ exam_group }}</title> -->
 
 <!-- Start Exam Results Listing -->
-{% if exams %}
+{% if results %}
 <table class="table table-hover table-striped">
-    {% with order_by=request.GET.order_by reverse=request.GET.reverse status_number=request.GET.status_number %}
     <thead>
         <tr>
             <th>
-                <a href="{% url 'exams' subject.id %}?order_by=student{% if order_by == 'student' and reverse != '1' %}&amp;reverse=1{% elif order_by == '' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                <a>№</a>
+            </th>
+            <th>
+                <a>
                 Прізвище та Ім'я
-                {% if order_by == 'student' and reverse != '1' %}&uarr;
-                {% elif order_by == '' and reverse != '1' %}&uarr;
-                {% elif order_by == 'student' and reverse == '1' %}&darr;
-                {% endif %}
                 </a>
             </th>
             <th>
-                <a href="{% url 'exams' subject.id %}?order_by=grade{% if order_by == 'grade' and reverse != '1' %}&amp;reverse=1{% endif %}">
-                Оцінка 
-                {% if order_by == "grade" and reverse != '1' %}&uarr;
-                {% elif order_by == 'grade' and reverse == '1' %}&darr;
-                {% endif %}
+                <a>
+                Оцінка
                 </a>
             </th>
-            <th>Дії</th>
         </tr>
     </thead>
-    {% endwith %}
     <tbody>
-         {% for exam in exams_results %}
+         {% for result in results %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td><a title="Редагувати" href="{% url 'students_edit' exam.id %}">{{ exam.student }}</a></td>
-            <td>{{ exam.grade }}</td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="/visiting/{{ student.id }}">Відвідування</a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}">Редагувати</a>
-                        <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'students_delete' student.id %}">Видалити</a>
-                        </li>
-                    </ul>
-                </div>
-            </td>
+            <td>{{ result.student }}</td>
+            <td>{{ result.grade }}</td>
         </tr>
         {% endfor %}
     </tbody>

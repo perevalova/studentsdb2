@@ -47,7 +47,7 @@ urlpatterns = [
     url(r'^exams/add/$', ExamAddView.as_view(), name='exams_add'),
     url(r'^exams/(?P<pk>\d+)/edit/$', ExamUpdateView.as_view(), name='exams_edit'),
     url(r'^exams/(?P<pk>\d+)/delete/$', ExamDeleteView.as_view(), name='exams_delete'),
-    url(r'^exams/(?P<pk>\d+)/results/$', exams.exams_results, name='exams_results'),
+    url(r'^exams/results/(?P<arg1>\D+\d+)/(?P<arg2>\D+)/$', exams.exams_results, name='results'),
 
     # Contact Admin Form
     url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),

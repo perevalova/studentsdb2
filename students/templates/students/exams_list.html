@@ -83,7 +83,7 @@
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'exams_results' exam.id %}">Результати</a>
+                            <a role="menuitem" tabindex="-1" href="{% url 'results' exam.exam_group exam.subject_exam %}">Результати</a>
                         </li>
                         <li role="presentation">
                             <a role="menuitem" tabindex="-1" href="{% url 'exams_edit' exam.id %}">Редагувати</a>
