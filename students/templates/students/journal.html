@@ -2,93 +2,79 @@
 
 {% load static from staticfiles %}
 
-{% block meta_title %}Відвідування{% endblock meta_title %}
+{% block meta_title %}Облік Відвідування{% endblock meta_title %}
 
 {% block title %}Облік Відвідування{% endblock title %}
 
-{% block title_2 %}<h5 align="center">&#8656; Липень 2018 &#8658;</h5>{% endblock title_2 %}
-
 {% block content %}
 
-<!-- Start Journal -->
-<table class="table table-hover table-striped table-bordered">
-	<thead>
-		<tr>
-			<th><a href="">№</a></th>
-			<th><a href="">Студент</a></th>
-			<th>Нд 1</th>
-			<th>Пн 2</th>
-			<th>Вт 3</th>
-			<th>Ср 4</th>
-			<th>Чт 5</th>
-			<th>Пт 6</th>
-			<th>Сб 7</th>
-			<th>Нд 8</th>
-			<th>Пн 9</th>
-			<th>Вт 10</th>
-			<th>Ср 11</th>
-			<th>Чт 12</th>
-			<th>Пт 13</th>
-			<th>Сб 14</th>
-			<th>Нд 15</th>
-			<th>Пн 16</th>
-			<th>Вт 17</th>
-			<th>Ср 18</th>
-			<th>Чт 19</th>
-			<th>Пт 20</th>
-			<th>Сб 21</th>
-			<th>Нд 22</th>
-			<th>Пн 23</th>
-			<th>Вт 24</th>
-			<th>Ср 25</th>
-			<th>Чт 26</th>
-			<th>Пт 27</th>
-			<th>Сб 28</th>
-			<th>Нд 29</th>
-			<th>Пн 30</th>
-			<th>Вт 31</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for journal in visitings %}
-		<tr>
-			<td>{{ forloop.counter }}</td>
-			<td><a title="Редагувати" href="{% url 'students_edit' journal.id %}">{{ journal.full_name }}</a></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-			<td><p><input type="checkbox"></p></td>
-		</tr>
-		{% endfor %}
-	</tbody>
+{% if not students %}
+
+<div class="alert alert-warning">
+    Поки немає жодного студента в базі. Будь ласка, <a href="{% url 'students_add' %}">додайте</a> першого.
+</div>
+
+{% else %}
+
+<p id="journal-nav" class="text-center">
+    <a href="?month={{ prev_month }}" title="Попередній Місяць">&larr;</a>
+    <!-- TODO: translate month name -->
+    <strong>{{ month_verbose }} {{ year }}</strong>
+    <a href="?month={{ next_month }}" title="Наступний Місяць">&rarr;</a>
+</p>
+
+<table class="table table-hover table-striped table-bordered" id="students-journal">
+    
+    <thead>
+        <tr class="header">
+            <th class="num">#</th>
+            <th class="name">Студент</th>
+            {% for day in month_header %}
+            <th class="day-header">
+                <!-- TODO: translate day name -->
+                {{ day.verbose }}
+                <br />
+                {{ day.day }}
+            </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% csrf_token %}
+
+        {% for student in students %}
+        <tr>
+            
+            <td>
+                {% if is_paginated %}
+                    {{ page_obj.start_index|add:forloop.counter|add:"-1" }}
+                {% else %}
+                    {{ forloop.counter }}
+                {% endif %}
+            </td>
+
+            <td>
+                <a title="Редагувати" target="_blank" href="{% url 'students_edit' student.id %}">{{ student.fullname }}
+                </a>
+            </td>
+
+            {% for day in student.days %}
+            <td class="day-box">
+                <input type="checkbox" data-student-id="{{ student.id }}" data-date="{{ day.date }}" data-url="{{ student.update_url }}" value="1"{% if day.present %} checked="checked" {% endif %}>
+            </td>
+            {% endfor %}
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
 </table>
-<!-- End Journal -->
+
+{% endif %}
+
+{% with object_list=students %}
+    {% include "students/pagination.html" %}
+{% endwith %}
 
 {% endblock content %}

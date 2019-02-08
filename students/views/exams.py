@@ -143,7 +143,7 @@ class ExamDeleteView(DeleteView):
         return HttpResponseRedirect(reverse('home'))
 
 def exams_results(request, arg1, arg2):
-    results = ExamResults.objects.filter(students__student_group__title='%s' % arg1).filter(subject_exam__subject_exam='%s' % arg2)
-    results.order_by('students')
+    results = ExamResults.objects.filter(student_group__title='%s' % arg1).filter(subject_exam__subject_exam='%s' % arg2)
+    results.order_by('student')
 
     return render(request, 'students/exams_results.html', {'results': results})

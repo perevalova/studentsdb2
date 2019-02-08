@@ -89,21 +89,28 @@ class Group(models.Model):
         else:
             return u"%s" % (self.title)
 
-"""class Journal(models.Model):
-    Journal Model
+class MonthJournal(models.Model):
+    """Student Monthly Journal"""
 
-    class Meta(object):
-        verbose_name = u"Відвідування"
-        verbose_name_plural = u"Відвідування"
-        ordering = ['student']
+    class Meta:
+        verbose_name = u"Місячний Журнал"
+        verbose_name_plural = u"Місячні Журнали"
 
     student = models.ForeignKey('Student',
-        max_length=256,
+        unique_for_month='date',
         blank=False,
         verbose_name=u"Студент")
 
+    date = models.DateField(
+        verbose_name=u'Дата',
+        blank=False)
+
     def __str__(self):
-        return u"%s %s" % (self.student.first_name, self.student.last_name)"""
+        return u"%s: %d, %d" % ( self.student.last_name, self.date.month, self.date.year)
+
+local_vars = locals()
+for num in range(1, 32):
+    local_vars.update({'present_day'+str(num) : models.BooleanField(default=False)})
 
 class Exam(models.Model):
     """Exam Model"""
@@ -172,4 +179,4 @@ class ExamResults(models.Model):
         null=True)
 
     def __str__(self):
-        return u"%s (%s)" % (self.students, self.students.student_group)
+        return u"%s (%s)" % (self.student, self.student_group)
