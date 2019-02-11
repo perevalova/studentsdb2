@@ -22,8 +22,11 @@ from crispy_forms.bootstrap import FormActions
 from students.models import Student, Group
 from .validation import valid_image_mimetype, valid_image_size
 
+from students.util import paginate
+
 def students_list(request):
     students = Student.objects.all()
+    context = super(students_list, self).get_context_data(**kwargs)
 
     #try to order students list
     order_by = request.GET.get('order_by', '')
@@ -44,6 +47,9 @@ def students_list(request):
     except EmptyPage:
         # If is out of range (e.g. 9999), deliver last page of results.
         students = paginator.page(paginator.num_pages)
+
+    # apply pagination, 10 students per page
+    context = paginate(students, 10, self.request, context, var_name='students')
 
     return render(request, 'students/students_list.html', {'students': students})
 

@@ -90,8 +90,8 @@
 
 <!-- Pagination -->
 
-<!--{% with object_list=students %}-->
-{% include "students/pagination.html" %}
-<!--{% endwith %}-->
+{% with object_list=students %}
+    {% include "students/pagination.html" %}
+{% endwith %}
 
 {% endblock content %}

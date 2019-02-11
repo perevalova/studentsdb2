@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic.base import TemplateView
 
-from datatime import datatime, date
+from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 
@@ -22,7 +22,7 @@ class JournalView(TemplateView):
             month = datetime.strptime(self.request.GET['month'], '%Y-%m-%d').date()
         else:
             # otherwise just displaying current month data
-            today = datatime.today()
+            today = datetime.today()
             month = date(today.year, today.month, 1)
 
         # calculate current, previous and next month details;
