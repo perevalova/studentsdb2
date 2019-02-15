@@ -18,30 +18,30 @@ from crispy_forms.bootstrap import FormActions
 
 from students.models import Exam, ExamResults
 
-def exams_list(request):
-    exams = Exam.objects.all()
+from students.util import paginate
 
-    #try to order exams list
-    order_by = request.GET.get('order_by', '')
-    reverse = request.GET.get('reverse', '')
-    if order_by in ('subject', 'exam_group', 'date', 'teacher_first_name', 'teacher_last_name'):
-        exams = exams.order_by(order_by)
-        if request.GET.get('reverse', '') == '1':
-            exams = exams.reverse()
+class ExamList(TemplateView):
+    """docstring for ExamList"""
+    template_name = 'students/exams_list.html'
 
-    #paginate exams
-    paginator = Paginator(exams, 3)
-    page = request.GET.get('page')
-    try:
-        exams = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        exams = paginator.page(1)
-    except EmptyPage:
-        # If is out of range (e.g. 9999), deliver last page of results.
-        exams = paginator.page(paginator.num_pages)
+    def get_context_data(self, **kwargs):
+        # get context data from TemplateView class
+        context = super(ExamList, self).get_context_data(**kwargs)
 
-    return render(request, 'students/exams_list.html', {'exams': exams})
+        exams = Exam.objects.all()
+
+        #try to order exams list
+        order_by = self.request.GET.get('order_by', '')
+        reverse = self.request.GET.get('reverse', '')
+        if order_by in ('subject', 'exam_group', 'date', 'teacher_first_name', 'teacher_last_name'):
+            exams = exams.order_by(order_by)
+            if request.GET.get('reverse', '') == '1':
+                exams = exams.reverse()
+
+        # apply pagination, 10 students per page
+        context = paginate(exams, 10, self.request, context, var_name='exams')
+
+        return context
 
 class ExamAddForm(ModelForm):
     class Meta:
