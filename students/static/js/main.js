@@ -1,5 +1,6 @@
 function initJournal() {
     var indicator = $('#ajax-progress-indicator');
+    var errormessage = $('#error_message');
 
     $('.day-box input[type="checkbox"]').click(function(event){
         var box = $(this);
@@ -17,7 +18,7 @@ function initJournal() {
                 indicator.show();
             },
             'error': function(xhr, status, error){
-                alert(error);
+                errormessage.show();
                 indicator.hide();
             },
             'success': function(data, status, xhr){
