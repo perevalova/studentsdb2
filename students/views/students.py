@@ -22,7 +22,7 @@ from crispy_forms.bootstrap import FormActions
 from students.models import Student, Group
 from .validation import valid_image_mimetype, valid_image_size
 
-from students.util import paginate
+from students.util import paginate, get_current_group
 
 class StudentList(TemplateView):
     """docstring for StudentList"""
@@ -32,7 +32,12 @@ class StudentList(TemplateView):
         # get context data from TemplateView class
         context = super(StudentList, self).get_context_data(**kwargs)
         
-        students = Student.objects.all()
+        current_group = get_current_group(self.request)
+        if current_group:
+            students = Student.objects.filter(student_group=current_group)
+        else:
+            # otherwise show all students
+            students = Student.objects.all()
 
         #try to order students list
         order_by = self.request.GET.get('order_by', '')

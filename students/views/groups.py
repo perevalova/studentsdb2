@@ -18,7 +18,7 @@ from crispy_forms.bootstrap import FormActions
 
 from students.models import Group, Student
 
-from students.util import paginate
+from students.util import paginate, get_current_group
 
 class GroupList(TemplateView):
     """docstring for GroupList"""
@@ -28,7 +28,12 @@ class GroupList(TemplateView):
         # get context data from TemplateView class
         context = super(GroupList, self).get_context_data(**kwargs)
 
-        groups = Group.objects.all()
+        current_group = get_current_group(self.request)
+        if current_group:
+            groups = Group.objects.filter(title=current_group)
+        else:
+            # otherwise show all students
+            groups = Group.objects.all()
 
         #try to order groups list
         order_by = self.request.GET.get('order_by', '')

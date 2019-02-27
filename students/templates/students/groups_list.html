@@ -74,6 +74,8 @@
 <!-- End Groups Listing -->
 
 <!-- Pagination -->
-{% include "students/pagination.html" %}
+{% with object_list=students %}
+    {% include "students/pagination.html" %}
+{% endwith %}
 
 {% endblock content %}
