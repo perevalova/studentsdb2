@@ -11,7 +11,7 @@ from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 
 from students.models import MonthJournal, Student
-from students.util import paginate
+from students.util import paginate, get_current_group
 
 class JournalView(TemplateView):
     template_name = 'students/journal.html'

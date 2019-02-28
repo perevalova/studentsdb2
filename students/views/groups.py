@@ -30,7 +30,7 @@ class GroupList(TemplateView):
 
         current_group = get_current_group(self.request)
         if current_group:
-            groups = Group.objects.filter(title=current_group)
+            groups = Group.objects.filter(id=current_group.id)
         else:
             # otherwise show all students
             groups = Group.objects.all()
