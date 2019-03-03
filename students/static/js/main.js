@@ -53,7 +53,8 @@ function initJournal() {
 
 function initDateFields() {
     $('input.dateinput').datetimepicker({
-        'format': 'YYYY-MM-DD'
+        'format': 'YYYY-MM-DD',
+        'locale': 'uk'
     }).on('dp.hide', function(event){
         $(this).blur();
     });

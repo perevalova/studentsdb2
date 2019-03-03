@@ -17,7 +17,7 @@ from django.forms import ModelForm
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.bootstrap import FormActions, AppendedText
 
 from students.models import Student, Group
 from .validation import valid_image_mimetype, valid_image_size
@@ -73,13 +73,18 @@ class StudentAddForm(ModelForm):
         self.helper.help_text_inline = True
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10'
+        self.helper.field_class = 'col-sm-10 student-form-width'
+
+        self.helper.layout[3] = Layout(
+            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
+        )
 
         #add buttons
-        self.helper.layout[7] = FormActions(
+        self.helper.layout[-1] = FormActions(
             Submit('add_button', u'Додати', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
+
 
 class StudentAddView(CreateView):
     model = Student
@@ -118,7 +123,11 @@ class StudentUpdateForm(ModelForm):
         self.helper.help_text_inline = True
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10'
+        self.helper.field_class = 'col-sm-10 student-form-width'
+
+        self.helper.layout[3] = Layout(
+            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
+        )
 
         #add buttons
         self.helper.layout[-1] = FormActions(

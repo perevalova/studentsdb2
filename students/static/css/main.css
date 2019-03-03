@@ -28,6 +28,9 @@ select,
 input {
 	max-width: 300px;
 }
+.student-form-width {
+	width: 300px;
+}
 /* Journal Table Styles */
 td.day-box,
 th.day-header {
