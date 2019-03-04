@@ -9,6 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic.edit import CreateView, FormView, DeleteView
@@ -85,7 +86,6 @@ class StudentAddForm(ModelForm):
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
 
-
 class StudentAddView(CreateView):
     model = Student
     template_name = 'students/students_add.html'
@@ -140,16 +140,18 @@ class StudentUpdateForm(ModelForm):
         If yes, then ensure it`s the same as selected group."""
 
         group = Group.objects.filter(leader=self.instance)
-        if self.cleaned_data['student_group'] != group[0]:
-                raise forms.ValidationError(u'Студент є старостою іншої групи.', code='invalid')
-        
+        if len(group) > 0 and self.cleaned_data['student_group'] != groups[0]:
+            # add error to form:
+            form.add_error('student_group','Студент є старостою іншої группи, а саме %s групи' % groups[0])
+            # return error:
         return self.cleaned_data['student_group']
 
 
-class StudentUpdateView(UpdateView):
+class StudentUpdateView(SuccessMessageMixin, UpdateView):
     model = Student
     template_name = 'students/students_edit.html'
     form_class = StudentUpdateForm
+    success_url = '/'
 
     def get_success_url(self):
         messages.success(request, 'Студента успішно збережено!')
