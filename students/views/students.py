@@ -140,18 +140,16 @@ class StudentUpdateForm(ModelForm):
         If yes, then ensure it`s the same as selected group."""
 
         group = Group.objects.filter(leader=self.instance)
-        if len(group) > 0 and self.cleaned_data['student_group'] != groups[0]:
-            # add error to form:
-            form.add_error('student_group','Студент є старостою іншої группи, а саме %s групи' % groups[0])
-            # return error:
+        if self.cleaned_data['student_group'] != group[0]:
+                raise forms.ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+        
         return self.cleaned_data['student_group']
 
 
-class StudentUpdateView(SuccessMessageMixin, UpdateView):
+class StudentUpdateView(UpdateView):
     model = Student
     template_name = 'students/students_edit.html'
     form_class = StudentUpdateForm
-    success_url = '/'
 
     def get_success_url(self):
         messages.success(request, 'Студента успішно збережено!')
@@ -171,6 +169,3 @@ class StudentDeleteView(DeleteView):
     def get_success_url(self):
         messages.success(request, 'Студента успішно видалено!')
         return HttpResponseRedirect(reverse('home'))
-
-# def students_visiting(request, sid):
-    # return HttpResponse('<h1>Students Visiting %s</h1>' % sid)
