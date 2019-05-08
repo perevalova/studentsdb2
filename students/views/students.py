@@ -15,7 +15,6 @@ from django.views.generic import UpdateView
 from django.views.generic.edit import CreateView, FormView, DeleteView
 from django.forms import ModelForm
 
-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 from crispy_forms.bootstrap import FormActions, AppendedText
@@ -25,6 +24,7 @@ from .validation import valid_image_mimetype, valid_image_size
 
 from students.util import paginate, get_current_group
 
+
 class StudentList(TemplateView):
     """docstring for StudentList"""
     template_name = 'students/students_list.html'
@@ -32,7 +32,7 @@ class StudentList(TemplateView):
     def get_context_data(self, **kwargs):
         # get context data from TemplateView class
         context = super(StudentList, self).get_context_data(**kwargs)
-        
+
         current_group = get_current_group(self.request)
         if current_group:
             students = Student.objects.filter(student_group=current_group)
@@ -40,7 +40,7 @@ class StudentList(TemplateView):
             # otherwise show all students
             students = Student.objects.all()
 
-        #try to order students list
+        # try to order students list
         order_by = self.request.GET.get('order_by', '')
         reverse = self.request.GET.get('reverse', '')
         if order_by in ('last_name', 'first_name', 'ticket', 'id'):
@@ -53,6 +53,7 @@ class StudentList(TemplateView):
 
         return context
 
+
 class StudentAddForm(ModelForm):
     class Meta:
         model = Student
@@ -61,8 +62,8 @@ class StudentAddForm(ModelForm):
     def __init__(self, *args, **kwargs):
         # call original initializator
         super(StudentAddForm, self).__init__(*args, **kwargs)
-        
-        #this helper object allows us to customize form
+
+        # this helper object allows us to customize form
         self.helper = FormHelper(self)
 
         # form tag attributes
@@ -80,11 +81,12 @@ class StudentAddForm(ModelForm):
             AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
         )
 
-        #add buttons
+        # add buttons
         self.helper.layout[-1] = FormActions(
             Submit('add_button', u'Додати', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
+
 
 class StudentAddView(CreateView):
     model = Student
@@ -102,6 +104,7 @@ class StudentAddView(CreateView):
             messages.success(request, 'Студента успішно додано!')
             return super(StudentAddView, self).post(request, *args, **kwargs)
 
+
 class StudentUpdateForm(ModelForm):
     class Meta:
         model = Student
@@ -110,8 +113,8 @@ class StudentUpdateForm(ModelForm):
     def __init__(self, *args, **kwargs):
         # call original initializator
         super(StudentUpdateForm, self).__init__(*args, **kwargs)
-        
-        #this helper object allows us to customize form
+
+        # this helper object allows us to customize form
         self.helper = FormHelper(self)
 
         # form tag attributes
@@ -129,7 +132,7 @@ class StudentUpdateForm(ModelForm):
             AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
         )
 
-        #add buttons
+        # add buttons
         self.helper.layout[-1] = FormActions(
             Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
@@ -141,8 +144,8 @@ class StudentUpdateForm(ModelForm):
 
         group = Group.objects.filter(leader=self.instance)
         if self.cleaned_data['student_group'] != group[0]:
-                raise forms.ValidationError(u'Студент є старостою іншої групи.', code='invalid')
-        
+            raise forms.ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+
         return self.cleaned_data['student_group']
 
 
@@ -162,9 +165,10 @@ class StudentUpdateView(UpdateView):
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
+
 class StudentDeleteView(DeleteView):
     model = Student
-    template_name = 'students/student_confirm_delete.html'
+    template_name = 'students/students_confirm_delete.html'
 
     def get_success_url(self):
         messages.success(request, 'Студента успішно видалено!')

@@ -3,7 +3,7 @@
 from django import forms
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse, request
 from django.core import serializers
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -20,6 +20,7 @@ from students.models import Exam, ExamResults
 
 from students.util import paginate
 
+
 class ExamList(TemplateView):
     """docstring for ExamList"""
     template_name = 'students/exams_list.html'
@@ -30,7 +31,7 @@ class ExamList(TemplateView):
 
         exams = Exam.objects.all()
 
-        #try to order exams list
+        # try to order exams list
         order_by = self.request.GET.get('order_by', '')
         reverse = self.request.GET.get('reverse', '')
         if order_by in ('subject', 'exam_group', 'date', 'teacher_first_name', 'teacher_last_name'):
@@ -43,6 +44,7 @@ class ExamList(TemplateView):
 
         return context
 
+
 class ExamAddForm(ModelForm):
     class Meta:
         model = Exam
@@ -52,7 +54,7 @@ class ExamAddForm(ModelForm):
         # call original initializator
         super(ExamAddForm, self).__init__(*args, **kwargs)
         
-        #this helper object allows us to customize form
+        # this helper object allows us to customize form
         self.helper = FormHelper(self)
 
         # form tag attributes
@@ -70,11 +72,12 @@ class ExamAddForm(ModelForm):
             AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
         )
 
-        #add buttons
+        # add buttons
         self.helper.layout[-1] = FormActions(
             Submit('add_button', u'Додати', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
+
 
 class ExamAddView(CreateView):
     model = Exam
@@ -99,10 +102,10 @@ class ExamUpdateForm(ModelForm):
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
-        # call original initializator
+        # call original initializer
         super(ExamUpdateForm, self).__init__(*args, **kwargs)
         
-        #this helper object allows us to customize form
+        # this helper object allows us to customize form
         self.helper = FormHelper(self)
 
         # form tag attributes
@@ -120,11 +123,12 @@ class ExamUpdateForm(ModelForm):
             AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
         )
 
-        #add buttons
+        # add buttons
         self.helper.layout[-1] = FormActions(
             Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
+
 
 class ExamUpdateView(UpdateView):
     model = Exam
@@ -141,6 +145,7 @@ class ExamUpdateView(UpdateView):
             return HttpResponseRedirect(reverse('home'))
         else:
             return super(ExamUpdateView, self).post(request, *args, **kwargs)
+
 
 class ExamDeleteView(DeleteView):
     model = Exam

@@ -55,5 +55,7 @@ db*
 # secret
 email.py
 
-#Igonre moduls
+#Ignore modules
 db_settings.py
+
+.idea/

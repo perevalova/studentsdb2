@@ -13,6 +13,28 @@ from calendar import monthrange, weekday, day_abbr
 from students.models import MonthJournal, Student
 from students.util import paginate, get_current_group
 
+
+def post(request, *args, **kwargs):
+    data = request.POST
+
+    # prepare student, dates and presence data
+    current_date = datetime.strptime(data['date'], '%Y-%m-%d').date()
+    month = date(current_date.year, current_date.month, 1)
+    present = data['present'] and True or False
+    student = Student.objects.get(pk=data['pk'])
+
+    # get or create journal object for given student and month
+    journal = MonthJournal.objects.get_or_create(student=student, date=month)[0]
+
+    # set new presence on journal for given student and save result
+
+    setattr(journal, 'present_day%d' % current_date.day, present)
+    journal.save()
+
+    # return success status
+    return JsonResponse({'status': 'success'})
+
+
 class JournalView(TemplateView):
     template_name = 'students/journal.html'
 
@@ -45,7 +67,7 @@ class JournalView(TemplateView):
         myear, mmonth = month.year, month.month
         number_of_days = monthrange(myear, mmonth)[1]
         context['month_header'] = [{'day': d, 'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
-            for d in range(1, number_of_days+1)]
+                                   for d in range(1, number_of_days + 1)]
 
         # get all students from database, or just one if we need to display journal for one student
         if kwargs.get('pk'):
@@ -69,7 +91,7 @@ class JournalView(TemplateView):
 
             # fill in days presence list for current student
             days = []
-            for day in range(1, number_of_days+1):
+            for day in range(1, number_of_days + 1):
                 days.append({
                     'day': day,
                     'present': journal and getattr(journal, 'present_day%d' % day, False) or False,
@@ -90,23 +112,3 @@ class JournalView(TemplateView):
         # finally return updated context
         # with paginated students
         return context
-
-    def post(self, request, *args, **kwargs):
-        data = request.POST
-
-        # prepare student, dates and presence data
-        current_date = datetime.strptime(data['date'], '%Y-%m-%d').date()
-        month = date(current_date.year, current_date.month, 1)
-        present = data['present'] and True or False
-        student = Student.objects.get(pk=data['pk'])
-
-        # get or create journal object for given student and month
-        journal = MonthJournal.objects.get_or_create(student=student, date=month)[0]
-
-        # set new presence on journal for given student and save result
-
-        setattr(journal, 'present_day%d' % current_date.day, present)
-        journal.save()
-
-        # return success status
-        return JsonResponse({'status': 'success'})

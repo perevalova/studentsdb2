@@ -36,7 +36,7 @@
     
     <thead>
         <tr class="header">
-            <th class="num">#</th>
+            <th class="num">№</th>
             <th class="name">Студент</th>
             {% for day in month_header %}
             <th class="day-header">
@@ -70,7 +70,9 @@
 
             {% for day in student.days %}
             <td class="day-box">
-                <input type="checkbox" data-student-id="{{ student.id }}" data-date="{{ day.date }}" data-url="{{ student.update_url }}" value="1"{% if day.present %} checked="checked" {% endif %}>
+                <label>
+                    <input type="checkbox" data-student-id="{{ student.id }}" data-date="{{ day.date }}" data-url="{{ student.update_url }}" value="1"{% if day.present %} checked="checked" {% endif %}>
+                </label>
             </td>
             {% endfor %}
 

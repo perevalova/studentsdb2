@@ -2,6 +2,7 @@
 
 from django.db import models
 
+
 class Student(models.Model):
     """Student Model"""
 
@@ -41,7 +42,7 @@ class Student(models.Model):
         blank=False,
         null=True,
         on_delete=models.PROTECT)
-    
+
     ticket = models.CharField(
         max_length=256,
         blank=False,
@@ -59,6 +60,7 @@ class Student(models.Model):
 
     def __str__(self):
         return u"%s %s" % (self.first_name, self.last_name)
+
 
 class Group(models.Model):
     """Group Model"""
@@ -87,7 +89,8 @@ class Group(models.Model):
         if self.leader:
             return u"%s (%s %s)" % (self.title, self.leader.first_name, self.leader.last_name)
         else:
-            return u"%s" % (self.title)
+            return u"%s" % self.title
+
 
 class MonthJournal(models.Model):
     """Student Monthly Journal"""
@@ -106,11 +109,13 @@ class MonthJournal(models.Model):
         blank=False)
 
     def __str__(self):
-        return u"%s: %d, %d" % ( self.student.last_name, self.date.month, self.date.year)
+        return u"%s: %d, %d" % (self.student.last_name, self.date.month, self.date.year)
+
 
 local_vars = locals()
 for num in range(1, 32):
-    local_vars.update({'present_day'+str(num) : models.BooleanField(default=False)})
+    local_vars.update({'present_day'+str(num): models.BooleanField(default=False)})
+
 
 class Exam(models.Model):
     """Exam Model"""
@@ -153,7 +158,8 @@ class Exam(models.Model):
         on_delete=models.PROTECT)
 
     def __str__(self):
-        return u"%s" % (self.subject)
+        return u"%s" % self.subject
+
 
 class ExamResults(models.Model):
     """Exam Results Model"""
@@ -179,4 +185,4 @@ class ExamResults(models.Model):
         null=True)
 
     def __str__(self):
-        return u"%s (%s)" % (self.student, self.student_group)
+        return u"%s (%s)" % (self.student, self.student.student_group)

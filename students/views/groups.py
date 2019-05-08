@@ -20,6 +20,7 @@ from students.models import Group, Student
 
 from students.util import paginate, get_current_group
 
+
 class GroupList(TemplateView):
     """docstring for GroupList"""
     template_name = 'students/groups_list.html'
@@ -35,7 +36,7 @@ class GroupList(TemplateView):
             # otherwise show all students
             groups = Group.objects.all()
 
-        #try to order groups list
+        # try to order groups list
         order_by = self.request.GET.get('order_by', '')
         reverse = self.request.GET.get('reverse', '')
         if order_by in ('leader', 'title'):
@@ -48,6 +49,7 @@ class GroupList(TemplateView):
 
         return context
 
+
 class GroupAddForm(ModelForm):
     class Meta:
         model = Group
@@ -57,7 +59,7 @@ class GroupAddForm(ModelForm):
         # call original initializator
         super(GroupAddForm, self).__init__(*args, **kwargs)
         
-        #this helper object allows us to customize form
+        # this helper object allows us to customize form
         self.helper = FormHelper(self)
 
         # form tag attributes
@@ -71,11 +73,12 @@ class GroupAddForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
 
-        #add buttons
+        # add buttons
         self.helper.layout[-1] = FormActions(
             Submit('add_button', u'Додати', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
+
 
 class GroupAddView(CreateView):
     model = Group
@@ -103,7 +106,7 @@ class GroupUpdateForm(ModelForm):
         # call original initializator
         super(GroupUpdateForm, self).__init__(*args, **kwargs)
         
-        #this helper object allows us to customize form
+        # this helper object allows us to customize form
         self.helper = FormHelper(self)
 
         # form tag attributes
@@ -117,7 +120,7 @@ class GroupUpdateForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
 
-        #add buttons
+        # add buttons
         self.helper.layout[-1] = FormActions(
             Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
@@ -126,7 +129,7 @@ class GroupUpdateForm(ModelForm):
     def clean_leader(self):
         """Check if student is leader in any group.
         If yes, then ensure it's the same as selected group."""
-        #get group where current student is a leader
+        # get group where current student is a leader
         leaders = Student.objects.filter(student_group=self.instance)
         if len(leaders) > 0 and self.cleaned_data['leader'] != leaders[0]:
             raise ValidationError(u'Студент не належить до поточної групи.', code='invalid')
@@ -149,6 +152,7 @@ class GroupUpdateView(UpdateView):
             return HttpResponseRedirect(reverse('home'))
         else:
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
+
 
 class GroupDeleteView(DeleteView):
     model = Group

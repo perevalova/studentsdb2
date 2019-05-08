@@ -26,9 +26,9 @@ from .settings import MEDIA_ROOT, DEBUG
 from students.views import students, groups, journal, exams, contact_admin
 
 urlpatterns = [
-    #Students urls
+    # Students urls
     url(r'^$', StudentList.as_view(), name='home'),
-    #url(r'^blog/', include('blog.urls')),
+    # url(r'^blog/', include('blog.urls')),
     url(r'^students/add/$', StudentAddView.as_view(), name='students_add'),
     url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
     url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
