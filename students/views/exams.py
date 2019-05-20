@@ -18,7 +18,7 @@ from crispy_forms.bootstrap import FormActions, AppendedText
 
 from students.models import Exam, ExamResults
 
-from students.util import paginate
+from students.util import paginate, get_current_group
 
 
 class ExamList(TemplateView):
@@ -29,7 +29,13 @@ class ExamList(TemplateView):
         # get context data from TemplateView class
         context = super(ExamList, self).get_context_data(**kwargs)
 
-        exams = Exam.objects.all()
+        current_group = get_current_group(self.request)
+
+        if current_group:
+            exams = Exam.objects.filter(exam_group=current_group)
+        else:
+            # otherwise show all students
+            exams = Exam.objects.all()
 
         # try to order exams list
         order_by = self.request.GET.get('order_by', '')

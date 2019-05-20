@@ -24,7 +24,7 @@ function initJournal() {
     var indicator = $('#ajax-progress-indicator');
     var errormessage = $('#error_message');
 
-    $('.day-box input[type="checkbox"]').click(function(event){
+    $('.day-box input:checkbox').click(function(event){
         var box = $(this);
         $.ajax(box.data('url'), {
             'type': 'POST',
@@ -41,11 +41,11 @@ function initJournal() {
             },
             'error': function(xhr, status, error){
                 errormessage.show();
+                alert(data.status);
                 indicator.hide();
             },
             'success': function(data, status, xhr){
                 indicator.hide();
-                // alert(data['status']);
             }
         });
     });
@@ -111,7 +111,7 @@ function initEditStudentForm(form, modal) {
     form.ajaxForm({
         'dataType': 'html',
         'error': function() {
-            alert('Помилка на сервері. Спробуйте, будь ласка, пізніше.')
+            alert('Помилка на сервері. Спробуйте, будь ласка, пізніше.');
             return false;
         },
         'success': function(data, status, xhr) {
@@ -140,4 +140,5 @@ $(document).ready(function(){
     initGroupSelector();
     initDateFields();
     initEditStudentPage();
+    initEditStudentForm();
 });

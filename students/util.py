@@ -38,7 +38,7 @@ def paginate(objects, size, request, context, var_name='object_list'):
 
 def get_groups(request):
     """Returns list of existing groups"""
-    # deferres import of Group model to avoid cycled imports
+    # deferred import of Group model to avoid cycled imports
     from students.models import Group
 
     # get currently selected group

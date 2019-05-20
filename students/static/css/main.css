@@ -42,3 +42,6 @@ th.day-header {
 #ajax-progress-indicator {
 	display: none;
 }
+#error_message {
+	display: none;
+}

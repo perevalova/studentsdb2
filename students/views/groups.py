@@ -30,8 +30,9 @@ class GroupList(TemplateView):
         context = super(GroupList, self).get_context_data(**kwargs)
 
         current_group = get_current_group(self.request)
+
         if current_group:
-            groups = Group.objects.filter(id=current_group.id)
+            groups = Group.objects.filter(pk=current_group.pk)
         else:
             # otherwise show all students
             groups = Group.objects.all()
