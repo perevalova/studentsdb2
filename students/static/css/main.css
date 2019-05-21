@@ -31,6 +31,9 @@ input {
 .student-form-width {
 	width: 300px;
 }
+.exam-form-width {
+	width: 300px;
+}
 /* Journal Table Styles */
 td.day-box,
 th.day-header {

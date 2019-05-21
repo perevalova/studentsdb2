@@ -72,16 +72,18 @@ class ExamAddForm(ModelForm):
         self.helper.help_text_inline = True
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10 student-form-width'
+        self.helper.field_class = 'col-sm-10 exam-form-width'
 
-        self.helper.layout[3] = Layout(
-            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
+        self.helper.layout = Layout(
+            'subject', 'teacher_first_name', 'teacher_last_name', 'teacher_middle_name', 'date', 'exam_group',
+            FormActions(
+                Submit('add_button', u'Додати', css_class="btn btn-primary"),
+                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            )
         )
 
-        # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Додати', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+        self.helper.layout[4] = Layout(
+            AppendedText('date', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
         )
 
 
@@ -123,16 +125,18 @@ class ExamUpdateForm(ModelForm):
         self.helper.help_text_inline = True
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10 student-form-width'
+        self.helper.field_class = 'col-sm-10 exam-form-width'
 
-        self.helper.layout[3] = Layout(
-            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
+        self.helper.layout = Layout(
+            'subject', 'teacher_first_name', 'teacher_last_name', 'teacher_middle_name', 'date', 'exam_group',
+            FormActions(
+                Submit('add_button', u'Додати', css_class="btn btn-primary"),
+                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            )
         )
 
-        # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+        self.helper.layout[4] = Layout(
+            AppendedText('date', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
         )
 
 

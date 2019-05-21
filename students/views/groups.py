@@ -74,10 +74,12 @@ class GroupAddForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
 
-        # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Додати', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+        self.helper.layout = Layout(
+            'title', 'leader', 'notes',
+            FormActions(
+                Submit('add_button', u'Додати', css_class="btn btn-primary"),
+                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            )
         )
 
 
@@ -121,10 +123,12 @@ class GroupUpdateForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
 
-        # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+        self.helper.layout = Layout(
+            'title', 'leader', 'notes',
+            FormActions(
+                Submit('add_button', u'Додати', css_class="btn btn-primary"),
+                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            )
         )
 
     def clean_leader(self):

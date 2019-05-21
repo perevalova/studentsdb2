@@ -77,16 +77,16 @@ class StudentAddForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10 student-form-width'
 
+        self.helper.layout = Layout(
+            'first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'student_group', 'ticket', 'notes',
+            FormActions(
+                Submit('add_button', u'Додати', css_class="btn btn-primary"),
+                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            )
+        )
         self.helper.layout[3] = Layout(
-            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
+            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True),
         )
-
-        # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Додати', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
-        )
-
 
 class StudentAddView(CreateView):
     model = Student
@@ -128,14 +128,15 @@ class StudentUpdateForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10 student-form-width'
 
-        self.helper.layout[3] = Layout(
-            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
+        self.helper.layout = Layout(
+            'first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'student_group', 'ticket', 'notes',
+            FormActions(
+                Submit('add_button', u'Додати', css_class="btn btn-primary"),
+                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            )
         )
-
-        # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+        self.helper.layout[3] = Layout(
+            AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True),
         )
 
     def clean_student_group(self):
