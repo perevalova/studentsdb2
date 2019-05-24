@@ -156,7 +156,8 @@ class StudentUpdateView(UpdateView):
     form_class = StudentUpdateForm
 
     def get_success_url(self):
-        messages.success(request, 'Студента успішно збережено!')
+        # TODO: fix a bug
+        # messages.success('Студента успішно збережено!')
         return HttpResponseRedirect(reverse('home'))
 
     def post(self, request, *args, **kwargs):
@@ -171,6 +172,6 @@ class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'students/students_confirm_delete.html'
 
-    def get_success_url(self):
+    def get_success_url(self, request):
         messages.success(request, 'Студента успішно видалено!')
         return HttpResponseRedirect(reverse('home'))
