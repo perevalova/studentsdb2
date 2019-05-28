@@ -11,6 +11,21 @@
 <!-- Add Group Button -->
 <a class="btn btn-primary" href="{% url 'groups_add' %}">Додати Групу</a>
 
+    <div class="sk-fading-circle" id="progress-spinner">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+    </div>
+
 <!-- Start Groups Listing -->
 {% if groups %}
 <table class="table table-hover table-striped">
@@ -49,8 +64,8 @@
         {% for group in groups %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td><a title="Редагувати" href="{% url 'groups_edit' group.id %}">{{ group.title }}</a></td>
-            <td><a title="Редагувати" href="{% url 'groups_edit' group.id %}">{{ group.leader }}</a></td>
+            <td><a title="Редагувати" href="{% url 'groups_edit' group.id %}" class="group-edit-form-link">{{ group.title }}</a></td>
+            <td><a title="Редагувати" href="{% url 'groups_edit' group.id %}" class="group-edit-form-link">{{ group.leader }}</a></td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
@@ -59,7 +74,7 @@
                             <a role="menuitem" tabindex="-1" href="/visiting/{{ group.id }}">Відвідування</a>
                         </li>
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'groups_edit' group.id %}">Редагувати</a>
+                            <a role="menuitem" tabindex="-1" href="{% url 'groups_edit' group.id %}" class="group-edit-form-link">Редагувати</a>
                         <li role="presentation">
                             <a role="menuitem" tabindex="-1" href="{% url 'groups_delete' group.id %}">Видалити</a>
                         </li>

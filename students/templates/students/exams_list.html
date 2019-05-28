@@ -11,6 +11,22 @@
 <!-- Add Exam Button -->
 <a class="btn btn-primary" href="{%  url 'exams_add' %}">Додати Іспит</a>
 
+
+    <div class="sk-fading-circle" id="progress-spinner">
+        <div class="sk-circle1 sk-circle"></div>
+        <div class="sk-circle2 sk-circle"></div>
+        <div class="sk-circle3 sk-circle"></div>
+        <div class="sk-circle4 sk-circle"></div>
+        <div class="sk-circle5 sk-circle"></div>
+        <div class="sk-circle6 sk-circle"></div>
+        <div class="sk-circle7 sk-circle"></div>
+        <div class="sk-circle8 sk-circle"></div>
+        <div class="sk-circle9 sk-circle"></div>
+        <div class="sk-circle10 sk-circle"></div>
+        <div class="sk-circle11 sk-circle"></div>
+        <div class="sk-circle12 sk-circle"></div>
+    </div>
+
 <!-- Start Exams Listing -->
 {% if exams %}
 <table class="table table-hover table-striped">
@@ -73,17 +89,17 @@
         {% for exam in exams %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.subject }}</a></td>
+            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}" class="exam-edit-form-link">{{ exam.subject }}</a></td>
             <td>{{ exam.date }}</td>
-            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.teacher_last_name }}</a></td>
-            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.teacher_first_name }}</a></td>
+            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}" class="exam-edit-form-link">{{ exam.teacher_last_name }}</a></td>
+            <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}" class="exam-edit-form-link">{{ exam.teacher_first_name }}</a></td>
             <td><a title="Редагувати" href="{% url 'exams_edit' exam.id %}">{{ exam.exam_group }}</a></td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'exams_edit' exam.id %}">Редагувати</a>
+                            <a role="menuitem" tabindex="-1" href="{% url 'exams_edit' exam.id %}" class="exam-edit-form-link">Редагувати</a>
                         </li>
                         <li role="presentation">
                             <a role="menuitem" tabindex="-1" href="{% url 'exams_delete' exam.id %}">Видалити</a>

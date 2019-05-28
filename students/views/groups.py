@@ -14,7 +14,7 @@ from django.forms import ModelForm, ValidationError
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.bootstrap import FormActions, AppendedText
 
 from students.models import Group, Student
 
@@ -54,7 +54,7 @@ class GroupList(TemplateView):
 class GroupAddForm(ModelForm):
     class Meta:
         model = Group
-        fields = '__all__'
+        fields = ['title', 'leader', 'notes']
 
     def __init__(self, *args, **kwargs):
         # call original initializator
@@ -103,7 +103,7 @@ class GroupAddView(CreateView):
 class GroupUpdateForm(ModelForm):
     class Meta:
         model = Group
-        fields = '__all__'
+        fields = ['title', 'leader', 'notes']
 
     def __init__(self, *args, **kwargs):
         # call original initializator
@@ -148,14 +148,14 @@ class GroupUpdateView(UpdateView):
     form_class = GroupUpdateForm
 
     def get_success_url(self):
-        messages.success(request, 'Групу успішно збережено!')
-        return HttpResponseRedirect(reverse('home'))
+        return reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(request, 'Редагування групи відмінено!')
             return HttpResponseRedirect(reverse('home'))
         else:
+            messages.success(request, 'Групу успішно збережено!')
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
 
 
@@ -164,5 +164,8 @@ class GroupDeleteView(DeleteView):
     template_name = 'students/group_confirm_delete.html'
 
     def get_success_url(self):
-        messages.success(request, 'Групу успішно видалено!')
         return HttpResponseRedirect(reverse('home'))
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, 'Групу успішно видалено!')
+        return super(GroupDeleteView, self).post(request, *args, **kwargs)

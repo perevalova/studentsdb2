@@ -156,15 +156,14 @@ class StudentUpdateView(UpdateView):
     form_class = StudentUpdateForm
 
     def get_success_url(self):
-        # TODO: fix a bug
-        # messages.success('Студента успішно збережено!')
-        return HttpResponseRedirect(reverse('home'))
+        return reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(request, 'Редагування студента відмінено!')
             return HttpResponseRedirect(reverse('home'))
         else:
+            messages.success(request, 'Студента успішно збережено!')
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
 
@@ -172,6 +171,9 @@ class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'students/students_confirm_delete.html'
 
-    def get_success_url(self, request):
+    def get_success_url(self):
+        return reverse('home')
+
+    def post(self, request, *args, **kwargs):
         messages.success(request, 'Студента успішно видалено!')
-        return HttpResponseRedirect(reverse('home'))
+        return super(StudentDeleteView, self).post(request, *args, **kwargs)

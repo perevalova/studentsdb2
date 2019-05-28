@@ -146,14 +146,14 @@ class ExamUpdateView(UpdateView):
     form_class = ExamUpdateForm
 
     def get_success_url(self):
-        messages.success(request, 'Екзамен успішно збережено!')
-        return HttpResponseRedirect(reverse('home'))
+        return reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(request, 'Редагування екзамену відмінено!')
             return HttpResponseRedirect(reverse('home'))
         else:
+            messages.success(request, 'Екзамен успішно збережено!')
             return super(ExamUpdateView, self).post(request, *args, **kwargs)
 
 
@@ -162,5 +162,8 @@ class ExamDeleteView(DeleteView):
     template_name = 'students/exam_confirm_delete.html'
 
     def get_success_url(self):
-        messages.success(request, 'Екзамен успішно видалено!')
         return HttpResponseRedirect(reverse('home'))
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, 'Екзамен успішно видалено!')
+        return super(ExamDeleteView, self).post(request, *args, **kwargs)
