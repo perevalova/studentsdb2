@@ -25,6 +25,10 @@
     Виникла помилка
         </div>
 
+        <!-- Progress spinner -->
+        {% include "students/progress_spinner.html" %}
+
+
         <p id="journal-nav" class="text-center">
             <a href="?month={{ prev_month }}" title="Попередній Місяць">&larr;</a>
             <!-- TODO: translate month name -->
@@ -65,7 +69,7 @@
 
                     <td>
                         <a title="Редагувати" target="_blank"
-                           href="{% url 'students_edit' student.id %}">{{ student.fullname }}
+                           href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.fullname }}
                         </a>
                     </td>
 

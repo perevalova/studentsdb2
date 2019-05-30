@@ -1,3 +1,21 @@
+function initTabLoad() {
+    $('.ajax-load').click(function(event) {
+        var toLoad = $(this).attr('href');
+        var content = $('#content-column');
+
+        content.hide('100', loadContent); // hide content
+        history.pushState(null, '', toLoad); //change URL
+        function loadContent() {
+            content.load(toLoad + ' #content-column', '', showNewContent);
+        }
+        function showNewContent() {
+            content.show('speed'); // show new content
+        }
+        return false;
+
+    });
+}
+
 function initGroupSelector() {
     // look up select element with groups and attach our even handler on field "change" event
     $('#group-selector select').change(function(event){
@@ -13,7 +31,19 @@ function initGroupSelector() {
             $.removeCookie('current_group', {'path': '/'});
         }
 
+        // var content = $('.table');
+        //
+        // content.hide('100', loadContent); // hide content
+        // //history.pushState(null, '', toLoad); //change URL
+        // function loadContent() {
+        //     content.load(window.location.href + ' .table');
+        // }
+        // function showNewContent() {
+        //     content.show('speed'); // show new content
+        // }
+
         // and reload a page
+        //content.load(window.location.href + ' .table');
         location.reload(true);
 
         return true;
@@ -143,8 +173,11 @@ function initEditStudentForm(form, modal) {
                 // if no form, it means success and we need to reload page to get updated students list;
                 // reload after 2 seconds, so that user can read success message
                 // TODO: ajax update info
-                setTimeout(function(){location.reload(true);}, 500);
+                //html.load('home');
+                setTimeout(function(){location.load('home .table');}, 500);
             }
+
+            // html.load("")
         },
         'beforeSand': function () {
             html.find('input, textarea').attr({readonly, disabled});
@@ -335,6 +368,7 @@ function initEditExamForm(form, modal) {
 
 
 $(document).ready(function(){
+    initTabLoad();
     initJournal();
     initGroupSelector();
     initDateFields();
