@@ -9,7 +9,7 @@
 {% block content %}
 
 <!-- Add Exam Button -->
-<a class="btn btn-primary" href="{%  url 'exams_add' %}">Додати Іспит</a>
+<a class="btn btn-primary exam-add-form-link" href="{%  url 'exams_add' %}">Додати Іспит</a>
 
 <!-- Progress spinner -->
 {% include "students/progress_spinner.html" %}
@@ -101,7 +101,9 @@
 {% endif %}
 <!-- End Exams Listing -->
 
-<!-- Pagination -->
-{% include "students/pagination.html" %}
+    <!-- Pagination -->
+    {% with object_list=exams %}
+        {% include "students/pagination.html" %}
+    {% endwith %}
 
 {% endblock content %}

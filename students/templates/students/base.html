@@ -47,7 +47,7 @@
             <!-- Start SubHeader -->
             <div class="row" id="sub-header">
                 <div class="col-xs-12">
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs" role="tablist" id="nav-tabs">
                         <li role="presentation" {% if request.path == '/' %}class="active"{% endif %}><a href="{% url 'home' %}" class="ajax-load">Студенти</a></li>
                         <li role="presentation" {% if '/journal' in request.path %}class="active"{% endif %}><a href="{% url 'journal' %}" class="ajax-load">Відвідування</a></li>
                         <li role="presentation" {% if '/groups' in request.path %}class="active"{% endif %}><a href="{% url 'groups' %}" class="ajax-load">Групи</a></li>

@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 def paginate(objects, size, request, context, var_name='object_list'):
         """Paginate objects provided by view.
 
@@ -36,6 +37,7 @@ def paginate(objects, size, request, context, var_name='object_list'):
 
         return context
 
+
 def get_groups(request):
     """Returns list of existing groups"""
     # deferred import of Group model to avoid cycled imports
@@ -53,6 +55,7 @@ def get_groups(request):
             'selected': cur_group and cur_group.id == group.id and True or False
         })
     return groups
+
 
 def get_current_group(request):
     """Returns currently selected group or None"""

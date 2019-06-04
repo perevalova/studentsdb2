@@ -45,7 +45,7 @@ class StudentList(TemplateView):
         reverse = self.request.GET.get('reverse', '')
         if order_by in ('last_name', 'first_name', 'ticket', 'id'):
             students = students.order_by(order_by)
-            if request.GET.get('reverse', '') == '1':
+            if self.request.GET.get('reverse', '') == '1':
                 students = students.reverse()
 
         # apply pagination, 10 students per page

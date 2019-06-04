@@ -9,7 +9,7 @@
 {% block content %}
 
 <!-- Add Student Button -->
-<a class="btn btn-primary" href="{%  url 'students_add' %}">Додати Студента</a>
+<a class="btn btn-primary student-add-form-link" href="{%  url 'students_add' %}">Додати Студента</a>
 
 <!-- Progress spinner -->
 {% include "students/progress_spinner.html" %}
@@ -57,7 +57,7 @@
         </tr>
     </thead>
     {% endwith %}
-    <tbody>
+    <tbody class="group-selector-ajax">
         {% for student in students %}
         <tr>
             <td>{{ forloop.counter }}</td>

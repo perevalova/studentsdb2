@@ -42,7 +42,7 @@ class GroupList(TemplateView):
         reverse = self.request.GET.get('reverse', '')
         if order_by in ('leader', 'title'):
             groups = groups.order_by(order_by)
-            if request.GET.get('reverse', '') == '1':
+            if self.request.GET.get('reverse', '') == '1':
                 groups = groups.reverse()
 
         # apply pagination, 10 students per page
