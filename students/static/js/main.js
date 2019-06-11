@@ -35,10 +35,12 @@ function initPagination() {
         pageselect.hide('100', loadContent); // hide content
         function loadContent() {
             pageselect.load(window.location.href + ' .table', '', showNewContent);
+            pageselect.append(window.location.href + ' .table', '');
+            pageselect.show('speed');
         }
-        function showNewContent() {
-            pageselect.show('speed'); // show new content
-        }
+        // function showNewContent() {
+        //     pageselect.show('speed'); // show new content
+        // }
 
         if ($('.pagination li').hasClass('active')) {
             $('.pagination li').removeClass('active');
@@ -705,4 +707,8 @@ $(document).ready(function(){
     initEditExamForm();
     initAddExamPage();
     initAddExamForm();
+});
+
+$(document).ajaxStop(function() {
+    initPagination();
 });
