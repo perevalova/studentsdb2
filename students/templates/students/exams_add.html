@@ -1,11 +1,12 @@
 {% extends "students/base.html" %}
 
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block meta_title %}Додати Екзамен{% endblock meta_title %}
+{% block meta_title %}{% trans "Add Exam" %}{% endblock meta_title %}
 
-{% block title %}Додати Екзамен{% endblock title %}
+{% block title %}{% trans "Add Exam" %}{% endblock title %}
 
 <!-- Status Message -->
 {% block status_message %}

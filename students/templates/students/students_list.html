@@ -1,15 +1,16 @@
 {% extends "students/base.html" %}
 
 {% load static from staticfiles %}
+{% load i18n %}
 
-{% block meta_title %}Студенти{% endblock meta_title %}
+{% block meta_title %}{% trans "Students" %}{% endblock meta_title %}
 
-{% block title %}База Студентів{% endblock title %}
+{% block title %}{% trans "Base of Students" %}{% endblock title %}
 
 {% block content %}
 
 <!-- Add Student Button -->
-<a class="btn btn-primary student-add-form-link" href="{%  url 'students_add' %}">Додати Студента</a>
+<a class="btn btn-primary student-add-form-link" href="{%  url 'students_add' %}">{% trans "Add Student" %}</a>
 
 <!-- Progress spinner -->
 {% include "students/progress_spinner.html" %}
@@ -27,10 +28,10 @@
                 {% elif order_by == 'id' and reverse == '1' %}&darr;
                 {% endif %}</a>
             </th>
-            <th><a href="#">Фото</a></th>
+            <th><a href="#">{% trans "Photo" %}</a></th>
             <th>
                 <a href="{% url 'home' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% elif order_by == '' and reverse != '1' %}&amp;reverse=1{% endif %}">
-                Прізвище 
+                {% trans "Last Name" %}
                 {% if order_by == 'last_name' and reverse != '1' %}&uarr;
                 {% elif order_by == '' and reverse != '1' %}&uarr;
                 {% elif order_by == 'last_name' and reverse == '1' %}&darr;
@@ -39,7 +40,7 @@
             </th>
             <th>
                 <a href="{% url 'home' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
-                Ім'я 
+                {% trans "First Name" %}
                 {% if order_by == 'first_name' and reverse != '1' %}&uarr;
                 {% elif order_by == 'first_name' and reverse == '1' %}&darr;
                 {% endif %}
@@ -47,13 +48,13 @@
             </th>
             <th>
                 <a href="{% url 'home' %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&amp;reverse=1{% endif %}">
-                № Білету 
+                {% trans "Ticket №" %}
                 {% if order_by == "ticket" and reverse != '1' %}&uarr;
                 {% elif order_by == 'ticket' and reverse == '1' %}&darr;
                 {% endif %}
                 </a>
             </th>
-            <th>Дії</th>
+            <th>{% trans "Actions" %}</th>
         </tr>
     </thead>
     {% endwith %}
@@ -66,20 +67,20 @@
             {% else %}
             <td><img class="img-circle" height="30" width="30" src="{% static "img/default_user.png" %}"></td>
             {% endif %}
-            <td><a title="Редагувати" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.last_name }}</a></td>
-            <td><a title="Редагувати" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.first_name }}</a></td>
+            <td><a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.last_name }}</a></td>
+            <td><a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.first_name }}</a></td>
             <td>{{ student.ticket }}</td>
             <td>
                 <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Дія<span class="caret"></span></button>
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{% trans "Action" %}<span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'journal' student.id %}">Відвідування</a>
+                            <a role="menuitem" tabindex="-1" href="{% url 'journal' student.id %}">{% trans "Journal" %}</a>
                         </li>
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">Редагувати</a>
+                            <a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{% trans "Edit" %}</a>
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'students_delete' student.id %}">Видалити</a>
+                            <a role="menuitem" tabindex="-1" href="{% url 'students_delete' student.id %}">{% trans "Delete" %}</a>
                         </li>
                     </ul>
                 </div>
