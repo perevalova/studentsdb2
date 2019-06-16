@@ -25,8 +25,13 @@ from students.views.journal import JournalView
 from .settings import MEDIA_ROOT, DEBUG
 from students.views import students, groups, journal, exams, contact_admin
 
-urlpatterns = [
-    # Students urls
+from django.utils.translation import ugettext_lazy as _
+from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import JavaScriptCatalog
+
+
+urlpatterns = i18n_patterns(
+    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^$', StudentList.as_view(), name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^students/add/$', StudentAddView.as_view(), name='students_add'),
@@ -52,7 +57,7 @@ urlpatterns = [
     url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),
 
     url(r'^admin/', admin.site.urls),
-]
+)
 
 
 if DEBUG:
