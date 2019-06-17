@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 11:47+0300\n"
+"POT-Creation-Date: 2019-06-17 16:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: students/admin.py:18
+#: students/admin.py:16
 msgid "Student is a leader of a different group."
-msgstr "Студент є старостою іншої групи"
+msgstr "Студент є старостою іншої групи."
 
-#: students/admin.py:46
+#: students/admin.py:44
 msgid "Student does not belong to the current group."
 msgstr "Студент не належить до поточної групи."
 
@@ -251,8 +251,8 @@ msgstr "Видалити Студента"
 msgid "Do you really want to delete student: \"%(object)s\"?"
 msgstr "Ви дійсно хочете видалити студента: \"%(object)s\"?"
 
-#: students/templates/students/students_edit.html:6
-#: students/templates/students/students_edit.html:8
+#: students/templates/students/students_edit.html:7
+#: students/templates/students/students_edit.html:9
 msgid "Edit Student"
 msgstr "Редагувати Студента"
 
@@ -275,3 +275,101 @@ msgstr "Ім'я"
 #: students/templates/students/students_list.html:51
 msgid "Ticket №"
 msgstr "№ Білету"
+
+#: students/views/contact_admin.py:41
+msgid "Your email"
+msgstr "Ваша поштова адреса"
+
+#: students/views/contact_admin.py:43
+msgid "Title message"
+msgstr "Заголовок листа"
+
+#: students/views/contact_admin.py:45
+msgid "Text message"
+msgstr "Текст повідомлення"
+
+#: students/views/contact_admin.py:57
+msgid "Message sended successfuly!"
+msgstr "Повідомлення надіслано успішно!"
+
+#: students/views/contact_admin.py:61
+msgid ""
+"There was an unexpected error while sending the letter. Try using this form "
+"later."
+msgstr "Під час відправки листа виникла непередбачувана помилка. Спробуйте скористатись даною формою пізніше."
+
+#: students/views/exams.py:80 students/views/exams.py:133
+#: students/views/groups.py:80 students/views/groups.py:129
+#: students/views/students.py:135
+msgid "Add"
+msgstr "Додати"
+
+#: students/views/exams.py:81 students/views/exams.py:134
+#: students/views/groups.py:81 students/views/groups.py:130
+#: students/views/students.py:85 students/views/students.py:136
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: students/views/exams.py:100
+msgid "Exam adding has been canceled!"
+msgstr "Додавання екзамену було відмінено!"
+
+#: students/views/exams.py:103
+msgid "Exam added successfully!"
+msgstr "Екзамен додано успішно!"
+
+#: students/views/exams.py:153
+msgid "Exam editing has been canceled!"
+msgstr "Редагування екзамену було відмінено!"
+
+#: students/views/exams.py:156
+msgid "Exam saved successfully!"
+msgstr "Екзамен збережено успішно!"
+
+#: students/views/exams.py:168
+msgid "Exam deleted successfully!"
+msgstr "Екзамен видалено успішно!"
+
+#: students/views/groups.py:96 students/views/groups.py:155
+msgid "Group adding has been canceled!"
+msgstr "Додавання групи було відмінено!"
+
+#: students/views/groups.py:99
+msgid "Group added successfully!"
+msgstr "Групу додано успішно!"
+
+#: students/views/groups.py:140 students/views/students.py:149
+msgid "Student is a leader of different group."
+msgstr "Студент є старостою іншої групи."
+
+#: students/views/groups.py:158
+msgid "Group saved successfully!"
+msgstr "Групу додано успішно!"
+
+#: students/views/groups.py:170
+msgid "Group deleted successfully!"
+msgstr "Групу видалено успішно!"
+
+#: students/views/students.py:84
+msgid "Save"
+msgstr "Зберегти"
+
+#: students/views/students.py:102
+msgid "Student adding has been canceled!"
+msgstr "Додавання студента було відмінено!"
+
+#: students/views/students.py:105
+msgid "Student added successfully!"
+msgstr "Студента додано успішно!"
+
+#: students/views/students.py:164
+msgid "Student editing has been canceled!"
+msgstr "Редагування студента було відмінено!"
+
+#: students/views/students.py:167
+msgid "Student updated successfully!"
+msgstr "Студента оновлено успішно!"
+
+#: students/views/students.py:179
+msgid "Student deleted successfully!"
+msgstr "Студента видалено успішно!"

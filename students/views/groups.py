@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from django.shortcuts import render
 from django import forms
 from django.core.urlresolvers import reverse
@@ -19,6 +17,8 @@ from crispy_forms.bootstrap import FormActions, AppendedText
 from students.models import Group, Student
 
 from students.util import paginate, get_current_group
+
+from django.utils.translation import ugettext as _
 
 
 class GroupList(TemplateView):
@@ -77,8 +77,8 @@ class GroupAddForm(ModelForm):
         self.helper.layout = Layout(
             'title', 'leader', 'notes',
             FormActions(
-                Submit('add_button', u'Додати', css_class="btn btn-primary"),
-                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )
 
@@ -93,10 +93,10 @@ class GroupAddView(CreateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            messages.warning(request, 'Додавання групи скасовано!')
+            messages.warning(request, _('Group adding has been canceled!'))
             return HttpResponseRedirect(reverse('home'))
         else:
-            messages.success(request, 'Групу успішно додано!')
+            messages.success(request, _('Group added successfully!'))
             return super(GroupAddView, self).post(request, *args, **kwargs)
 
 
@@ -126,8 +126,8 @@ class GroupUpdateForm(ModelForm):
         self.helper.layout = Layout(
             'title', 'leader', 'notes',
             FormActions(
-                Submit('add_button', u'Додати', css_class="btn btn-primary"),
-                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )
 
@@ -137,7 +137,7 @@ class GroupUpdateForm(ModelForm):
         # get group where current student is a leader
         leaders = Student.objects.filter(student_group=self.instance)
         if len(leaders) > 0 and self.cleaned_data['leader'] != leaders[0]:
-            raise ValidationError(u'Студент не належить до поточної групи.', code='invalid')
+            raise ValidationError(_('Student is a leader of different group.'), code='invalid')
 
         return self.cleaned_data['leader']
 
@@ -152,10 +152,10 @@ class GroupUpdateView(UpdateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            messages.warning(request, 'Редагування групи відмінено!')
+            messages.warning(request, _('Group adding has been canceled!'))
             return HttpResponseRedirect(reverse('home'))
         else:
-            messages.success(request, 'Групу успішно збережено!')
+            messages.success(request, _('Group saved successfully!'))
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
 
 
@@ -167,5 +167,5 @@ class GroupDeleteView(DeleteView):
         return HttpResponseRedirect(reverse('home'))
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, 'Групу успішно видалено!')
+        messages.success(request, _('Group deleted successfully!'))
         return super(GroupDeleteView, self).post(request, *args, **kwargs)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 11:47+0300\n"
+"POT-Creation-Date: 2019-06-17 16:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: students/admin.py:18
+#: students/admin.py:16
 msgid "Student is a leader of a different group."
 msgstr ""
 
-#: students/admin.py:46
+#: students/admin.py:44
 msgid "Student does not belong to the current group."
 msgstr ""
 
@@ -244,8 +244,8 @@ msgstr ""
 msgid "Do you really want to delete student: \"%(object)s\"?"
 msgstr ""
 
-#: students/templates/students/students_edit.html:6
-#: students/templates/students/students_edit.html:8
+#: students/templates/students/students_edit.html:7
+#: students/templates/students/students_edit.html:9
 msgid "Edit Student"
 msgstr ""
 
@@ -267,6 +267,104 @@ msgstr ""
 
 #: students/templates/students/students_list.html:51
 msgid "Ticket №"
+msgstr ""
+
+#: students/views/contact_admin.py:41
+msgid "Your email"
+msgstr ""
+
+#: students/views/contact_admin.py:43
+msgid "Title message"
+msgstr ""
+
+#: students/views/contact_admin.py:45
+msgid "Text message"
+msgstr ""
+
+#: students/views/contact_admin.py:57
+msgid "Message sended successfuly!"
+msgstr ""
+
+#: students/views/contact_admin.py:61
+msgid ""
+"There was an unexpected error while sending the letter. Try using this form "
+"later."
+msgstr ""
+
+#: students/views/exams.py:80 students/views/exams.py:133
+#: students/views/groups.py:80 students/views/groups.py:129
+#: students/views/students.py:135
+msgid "Add"
+msgstr ""
+
+#: students/views/exams.py:81 students/views/exams.py:134
+#: students/views/groups.py:81 students/views/groups.py:130
+#: students/views/students.py:85 students/views/students.py:136
+msgid "Cancel"
+msgstr ""
+
+#: students/views/exams.py:100
+msgid "Exam adding has been canceled!"
+msgstr ""
+
+#: students/views/exams.py:103
+msgid "Exam added successfully!"
+msgstr ""
+
+#: students/views/exams.py:153
+msgid "Exam editing has been canceled!"
+msgstr ""
+
+#: students/views/exams.py:156
+msgid "Exam saved successfully!"
+msgstr ""
+
+#: students/views/exams.py:168
+msgid "Exam deleted successfully!"
+msgstr ""
+
+#: students/views/groups.py:96 students/views/groups.py:155
+msgid "Group adding has been canceled!"
+msgstr ""
+
+#: students/views/groups.py:99
+msgid "Group added successfully!"
+msgstr ""
+
+#: students/views/groups.py:140 students/views/students.py:149
+msgid "Student is a leader of different group."
+msgstr ""
+
+#: students/views/groups.py:158
+msgid "Group saved successfully!"
+msgstr ""
+
+#: students/views/groups.py:170
+msgid "Group deleted successfully!"
+msgstr ""
+
+#: students/views/students.py:84
+msgid "Save"
+msgstr ""
+
+#: students/views/students.py:102
+msgid "Student adding has been canceled!"
+msgstr ""
+
+#: students/views/students.py:105
+msgid "Student added successfully!"
+msgstr ""
+
+#: students/views/students.py:164
+msgid "Student editing has been canceled!"
+msgstr ""
+
+#: students/views/students.py:167
+msgid "Student updated successfully!"
+msgstr ""
+
+#: students/views/students.py:179
+msgid "Student deleted successfully!"
 msgstr ""
 
 #~ msgid "Editing"

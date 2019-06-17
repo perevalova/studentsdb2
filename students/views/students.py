@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import datetime
 
 from django.shortcuts import render
@@ -13,7 +12,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView
 from django.views.generic import UpdateView
 from django.views.generic.edit import CreateView, FormView, DeleteView
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
@@ -23,6 +22,8 @@ from students.models import Student, Group
 from .validation import valid_image_mimetype, valid_image_size
 
 from students.util import paginate, get_current_group
+
+from django.utils.translation import ugettext as _
 
 
 class StudentList(TemplateView):
@@ -80,8 +81,8 @@ class StudentAddForm(ModelForm):
         self.helper.layout = Layout(
             'first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'student_group', 'ticket', 'notes',
             FormActions(
-                Submit('add_button', u'Додати', css_class="btn btn-primary"),
-                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+                Submit('add_button', _('Save'), css_class="btn btn-primary"),
+                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )
         self.helper.layout[3] = Layout(
@@ -98,10 +99,10 @@ class StudentAddView(CreateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            messages.warning(request, 'Додавання студента скасовано!')
+            messages.warning(request, _('Student adding has been canceled!'))
             return HttpResponseRedirect(reverse('home'))
         else:
-            messages.success(request, 'Студента успішно додано!')
+            messages.success(request, _('Student added successfully!'))
             return super(StudentAddView, self).post(request, *args, **kwargs)
 
 
@@ -131,8 +132,8 @@ class StudentUpdateForm(ModelForm):
         self.helper.layout = Layout(
             'first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'student_group', 'ticket', 'notes',
             FormActions(
-                Submit('add_button', u'Додати', css_class="btn btn-primary"),
-                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )
         self.helper.layout[3] = Layout(
@@ -144,8 +145,8 @@ class StudentUpdateForm(ModelForm):
         If yes, then ensure it`s the same as selected group."""
 
         group = Group.objects.filter(leader=self.instance)
-        if self.cleaned_data['student_group'] != group[0]:
-            raise forms.ValidationError(u'Студент є старостою іншої групи.', code='invalid')
+        if len(group) > 0 and self.cleaned_data['student_group'] != group[0]:
+            raise ValidationError(_('Student is a leader of different group.'), code='invalid')
 
         return self.cleaned_data['student_group']
 
@@ -160,10 +161,10 @@ class StudentUpdateView(UpdateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            messages.warning(request, 'Редагування студента відмінено!')
+            messages.warning(request, _('Student editing has been canceled!'))
             return HttpResponseRedirect(reverse('home'))
         else:
-            messages.success(request, 'Студента успішно збережено!')
+            messages.success(request, _('Student updated successfully!'))
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
 
@@ -175,5 +176,5 @@ class StudentDeleteView(DeleteView):
         return reverse('home')
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, 'Студента успішно видалено!')
+        messages.success(request, _('Student deleted successfully!'))
         return super(StudentDeleteView, self).post(request, *args, **kwargs)

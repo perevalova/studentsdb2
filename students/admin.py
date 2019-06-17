@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from django.contrib import admin
 from .models import Student, Group, Exam, ExamResults, MonthJournal
 from django.core.urlresolvers import reverse
@@ -15,7 +13,7 @@ class StudentFormAdmin(ModelForm):
         # get group where current student is a leader
         groups = Group.objects.filter(leader=self.instance)
         if len(groups) > 0 and self.cleaned_data['student_group'] != groups[0]:
-            raise ValidationError(_(u'Student is a leader of a different group.'), code='invalid')
+            raise ValidationError(_('Student is a leader of a different group.'), code='invalid')
 
         return self.cleaned_data['student_group']
 
@@ -43,7 +41,7 @@ class GroupFormAdmin(ModelForm):
         # get group where current student is a leader
         leaders = Student.objects.filter(student_group=self.instance)
         if len(leaders) > 0 and self.cleaned_data['leader'] != leaders[0]:
-            raise ValidationError(_(u'Student does not belong to the current group.'), code='invalid')
+            raise ValidationError(_('Student does not belong to the current group.'), code='invalid')
 
         return self.cleaned_data['leader']
 

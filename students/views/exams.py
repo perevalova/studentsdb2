@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from django import forms
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
@@ -19,6 +17,8 @@ from crispy_forms.bootstrap import FormActions, AppendedText
 from students.models import Exam, ExamResults
 
 from students.util import paginate, get_current_group
+
+from django.utils.translation import ugettext as _
 
 
 class ExamList(TemplateView):
@@ -77,8 +77,8 @@ class ExamAddForm(ModelForm):
         self.helper.layout = Layout(
             'subject', 'teacher_first_name', 'teacher_last_name', 'teacher_middle_name', 'date', 'exam_group',
             FormActions(
-                Submit('add_button', u'Додати', css_class="btn btn-primary"),
-                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )
 
@@ -97,10 +97,10 @@ class ExamAddView(CreateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            messages.warning(request, 'Додавання екзамену скасовано!')
+            messages.warning(request, _('Exam adding has been canceled!'))
             return HttpResponseRedirect(reverse('home'))
         else:
-            messages.success(request, 'Екзамен успішно додано!')
+            messages.success(request, _('Exam added successfully!'))
             return super(ExamAddView, self).post(request, *args, **kwargs)
 
 
@@ -130,8 +130,8 @@ class ExamUpdateForm(ModelForm):
         self.helper.layout = Layout(
             'subject', 'teacher_first_name', 'teacher_last_name', 'teacher_middle_name', 'date', 'exam_group',
             FormActions(
-                Submit('add_button', u'Додати', css_class="btn btn-primary"),
-                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )
 
@@ -150,10 +150,10 @@ class ExamUpdateView(UpdateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            messages.warning(request, 'Редагування екзамену відмінено!')
+            messages.warning(request, _('Exam editing has been canceled!'))
             return HttpResponseRedirect(reverse('home'))
         else:
-            messages.success(request, 'Екзамен успішно збережено!')
+            messages.success(request, _('Exam saved successfully!'))
             return super(ExamUpdateView, self).post(request, *args, **kwargs)
 
 
@@ -165,5 +165,5 @@ class ExamDeleteView(DeleteView):
         return HttpResponseRedirect(reverse('home'))
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, 'Екзамен успішно видалено!')
+        messages.success(request, _('Exam deleted successfully!'))
         return super(ExamDeleteView, self).post(request, *args, **kwargs)
