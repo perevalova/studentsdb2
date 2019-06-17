@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 17:34+0300\n"
+"POT-Creation-Date: 2019-06-17 20:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,7 +224,7 @@ msgstr "Дія"
 #: students/templates/students/groups_list.html:56
 #: students/templates/students/groups_list.html:58
 #: students/templates/students/groups_list.html:70
-#: students/templates/students/journal.html:72
+#: students/templates/students/journal.html:71
 #: students/templates/students/students_list.html:70
 #: students/templates/students/students_list.html:71
 #: students/templates/students/students_list.html:81
