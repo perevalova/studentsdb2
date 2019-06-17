@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 16:25+0300\n"
+"POT-Creation-Date: 2019-06-17 17:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,110 @@ msgstr ""
 
 #: students/admin.py:44
 msgid "Student does not belong to the current group."
+msgstr ""
+
+#: students/models.py:8 students/models.py:67
+msgid "First name"
+msgstr ""
+
+#: students/models.py:9 students/models.py:68
+msgid "Last name"
+msgstr ""
+
+#: students/models.py:10 students/models.py:69
+msgid "Middle name"
+msgstr ""
+
+#: students/models.py:11
+msgid "Birth date"
+msgstr ""
+
+#: students/models.py:12 students/templates/students/students_list.html:31
+msgid "Photo"
+msgstr ""
+
+#: students/models.py:13 students/models.py:34 students/models.py:71
+#: students/templates/students/exams_list.html:66
+msgid "Group"
+msgstr ""
+
+#: students/models.py:14
+msgid "Ticket"
+msgstr ""
+
+#: students/models.py:15 students/models.py:31
+msgid "Additional notes"
+msgstr ""
+
+#: students/models.py:18 students/models.py:48 students/models.py:86
+#: students/templates/students/journal.html:45
+msgid "Student"
+msgstr ""
+
+#: students/models.py:19 students/templates/students/base.html:52
+#: students/templates/students/students_list.html:6
+msgid "Students"
+msgstr ""
+
+#: students/models.py:29 students/templates/students/groups_list.html:33
+msgid "Title"
+msgstr ""
+
+#: students/models.py:30 students/templates/students/groups_list.html:42
+msgid "Leader"
+msgstr ""
+
+#: students/models.py:35 students/templates/students/base.html:54
+#: students/templates/students/groups_list.html:6
+#: students/templates/students/groups_list.html:8
+#: students/templates/students/journal.html:6
+msgid "Groups"
+msgstr ""
+
+#: students/models.py:49 students/templates/students/exams_list.html:42
+msgid "Date"
+msgstr ""
+
+#: students/models.py:52
+msgid "Month Journal"
+msgstr ""
+
+#: students/models.py:53
+msgid "Month Journals"
+msgstr ""
+
+#: students/models.py:66
+msgid "Title subject"
+msgstr ""
+
+#: students/models.py:70
+msgid "Date exam"
+msgstr ""
+
+#: students/models.py:74
+msgid "Exam"
+msgstr ""
+
+#: students/models.py:75 students/templates/students/base.html:55
+#: students/templates/students/exams_list.html:6
+#: students/templates/students/exams_list.html:8
+msgid "Exams"
+msgstr ""
+
+#: students/models.py:85
+msgid "Subject"
+msgstr ""
+
+#: students/models.py:87
+msgid "Grade"
+msgstr ""
+
+#: students/models.py:90
+msgid "The result of the exam"
+msgstr ""
+
+#: students/models.py:91
+msgid "The results of the exams"
 msgstr ""
 
 #: students/templates/contact_admin/form.html:7
@@ -48,28 +152,10 @@ msgstr ""
 msgid "All Students"
 msgstr ""
 
-#: students/templates/students/base.html:52
-#: students/templates/students/students_list.html:6
-msgid "Students"
-msgstr ""
-
 #: students/templates/students/base.html:53
 #: students/templates/students/groups_list.html:66
 #: students/templates/students/students_list.html:78
 msgid "Journal"
-msgstr ""
-
-#: students/templates/students/base.html:54
-#: students/templates/students/groups_list.html:6
-#: students/templates/students/groups_list.html:8
-#: students/templates/students/journal.html:6
-msgid "Groups"
-msgstr ""
-
-#: students/templates/students/base.html:55
-#: students/templates/students/exams_list.html:6
-#: students/templates/students/exams_list.html:8
-msgid "Exams"
 msgstr ""
 
 #: students/templates/students/base.html:56
@@ -113,20 +199,12 @@ msgstr ""
 msgid "Title Subject"
 msgstr ""
 
-#: students/templates/students/exams_list.html:42
-msgid "Date"
-msgstr ""
-
 #: students/templates/students/exams_list.html:50
 msgid "Teacher Last Name"
 msgstr ""
 
 #: students/templates/students/exams_list.html:58
 msgid "Teacher First Name"
-msgstr ""
-
-#: students/templates/students/exams_list.html:66
-msgid "Group"
 msgstr ""
 
 #: students/templates/students/exams_list.html:72
@@ -178,14 +256,6 @@ msgstr ""
 msgid "Edit Group"
 msgstr ""
 
-#: students/templates/students/groups_list.html:33
-msgid "Title"
-msgstr ""
-
-#: students/templates/students/groups_list.html:42
-msgid "Leader"
-msgstr ""
-
 #: students/templates/students/groups_list.html:48
 #: students/templates/students/students_list.html:57
 msgid "Actions"
@@ -224,10 +294,6 @@ msgstr ""
 msgid "Next Month"
 msgstr ""
 
-#: students/templates/students/journal.html:45
-msgid "Student"
-msgstr ""
-
 #: students/templates/students/students_add.html:7
 #: students/templates/students/students_add.html:9
 #: students/templates/students/students_list.html:13
@@ -251,10 +317,6 @@ msgstr ""
 
 #: students/templates/students/students_list.html:8
 msgid "Base of Students"
-msgstr ""
-
-#: students/templates/students/students_list.html:31
-msgid "Photo"
 msgstr ""
 
 #: students/templates/students/students_list.html:34

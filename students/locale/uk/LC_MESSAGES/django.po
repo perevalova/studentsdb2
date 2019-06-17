@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 16:25+0300\n"
+"POT-Creation-Date: 2019-06-17 17:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,110 @@ msgstr "Студент є старостою іншої групи."
 #: students/admin.py:44
 msgid "Student does not belong to the current group."
 msgstr "Студент не належить до поточної групи."
+
+#: students/models.py:8 students/models.py:67
+msgid "First name"
+msgstr "Ім'я"
+
+#: students/models.py:9 students/models.py:68
+msgid "Last name"
+msgstr "Прізвище"
+
+#: students/models.py:10 students/models.py:69
+msgid "Middle name"
+msgstr "По батькові"
+
+#: students/models.py:11
+msgid "Birth date"
+msgstr "Дата народження"
+
+#: students/models.py:12 students/templates/students/students_list.html:31
+msgid "Photo"
+msgstr "Фото"
+
+#: students/models.py:13 students/models.py:34 students/models.py:71
+#: students/templates/students/exams_list.html:66
+msgid "Group"
+msgstr "Група"
+
+#: students/models.py:14
+msgid "Ticket"
+msgstr "Білет"
+
+#: students/models.py:15 students/models.py:31
+msgid "Additional notes"
+msgstr "Додаткові нотатки"
+
+#: students/models.py:18 students/models.py:48 students/models.py:86
+#: students/templates/students/journal.html:45
+msgid "Student"
+msgstr "Студент"
+
+#: students/models.py:19 students/templates/students/base.html:52
+#: students/templates/students/students_list.html:6
+msgid "Students"
+msgstr "Студенти"
+
+#: students/models.py:29 students/templates/students/groups_list.html:33
+msgid "Title"
+msgstr "Назва"
+
+#: students/models.py:30 students/templates/students/groups_list.html:42
+msgid "Leader"
+msgstr "Староста"
+
+#: students/models.py:35 students/templates/students/base.html:54
+#: students/templates/students/groups_list.html:6
+#: students/templates/students/groups_list.html:8
+#: students/templates/students/journal.html:6
+msgid "Groups"
+msgstr "Групи"
+
+#: students/models.py:49 students/templates/students/exams_list.html:42
+msgid "Date"
+msgstr "Дата"
+
+#: students/models.py:52
+msgid "Month Journal"
+msgstr "Місячний Журнал"
+
+#: students/models.py:53
+msgid "Month Journals"
+msgstr "Місячні Журнали"
+
+#: students/models.py:66
+msgid "Title subject"
+msgstr "Назва Предмету"
+
+#: students/models.py:70
+msgid "Date exam"
+msgstr "Дата іспиту"
+
+#: students/models.py:74
+msgid "Exam"
+msgstr "Екзамен"
+
+#: students/models.py:75 students/templates/students/base.html:55
+#: students/templates/students/exams_list.html:6
+#: students/templates/students/exams_list.html:8
+msgid "Exams"
+msgstr "Екзамени"
+
+#: students/models.py:85
+msgid "Subject"
+msgstr "Предмет"
+
+#: students/models.py:87
+msgid "Grade"
+msgstr "Оцінка"
+
+#: students/models.py:90
+msgid "The result of the exam"
+msgstr "Результат іспиту"
+
+#: students/models.py:91
+msgid "The results of the exams"
+msgstr "Результати іспитів"
 
 #: students/templates/contact_admin/form.html:7
 #: students/templates/contact_admin/form.html:9
@@ -50,33 +154,13 @@ msgstr "Група:"
 msgid "All Students"
 msgstr "Усі Студенти"
 
-#: students/templates/students/base.html:52
-#: students/templates/students/students_list.html:6
-msgid "Students"
-msgstr "Студенти"
-
 #: students/templates/students/base.html:53
 #: students/templates/students/groups_list.html:66
 #: students/templates/students/students_list.html:78
 msgid "Journal"
 msgstr "Відвідування"
 
-#: students/templates/students/base.html:54
-#: students/templates/students/groups_list.html:6
-#: students/templates/students/groups_list.html:8
-#: students/templates/students/journal.html:6
-msgid "Groups"
-msgstr "Групи"
-
-#: students/templates/students/base.html:55
-#: students/templates/students/exams_list.html:6
-#: students/templates/students/exams_list.html:8
-msgid "Exams"
-msgstr "Екзамени"
-
 #: students/templates/students/base.html:56
-#, fuzzy
-#| msgid "Contact"
 msgid "Contacts"
 msgstr "Контакти"
 
@@ -117,10 +201,6 @@ msgstr "Редагувати Екзамен"
 msgid "Title Subject"
 msgstr "Назва Предмету"
 
-#: students/templates/students/exams_list.html:42
-msgid "Date"
-msgstr "Дата"
-
 #: students/templates/students/exams_list.html:50
 msgid "Teacher Last Name"
 msgstr "Ім'я Викладача"
@@ -128,10 +208,6 @@ msgstr "Ім'я Викладача"
 #: students/templates/students/exams_list.html:58
 msgid "Teacher First Name"
 msgstr "Прізвище Викладача"
-
-#: students/templates/students/exams_list.html:66
-msgid "Group"
-msgstr "Група"
 
 #: students/templates/students/exams_list.html:72
 #: students/templates/students/exams_list.html:87
@@ -182,14 +258,6 @@ msgstr "Додати Групу"
 msgid "Edit Group"
 msgstr "Редагувати Групу"
 
-#: students/templates/students/groups_list.html:33
-msgid "Title"
-msgstr "Назва"
-
-#: students/templates/students/groups_list.html:42
-msgid "Leader"
-msgstr "Староста"
-
 #: students/templates/students/groups_list.html:48
 #: students/templates/students/students_list.html:57
 msgid "Actions"
@@ -231,10 +299,6 @@ msgstr "Попередній Місяць"
 msgid "Next Month"
 msgstr "Наступний Місяць"
 
-#: students/templates/students/journal.html:45
-msgid "Student"
-msgstr "Студент"
-
 #: students/templates/students/students_add.html:7
 #: students/templates/students/students_add.html:9
 #: students/templates/students/students_list.html:13
@@ -259,10 +323,6 @@ msgstr "Редагувати Студента"
 #: students/templates/students/students_list.html:8
 msgid "Base of Students"
 msgstr "База Студентів"
-
-#: students/templates/students/students_list.html:31
-msgid "Photo"
-msgstr "Фото"
 
 #: students/templates/students/students_list.html:34
 msgid "Last Name"
@@ -296,7 +356,9 @@ msgstr "Повідомлення надіслано успішно!"
 msgid ""
 "There was an unexpected error while sending the letter. Try using this form "
 "later."
-msgstr "Під час відправки листа виникла непередбачувана помилка. Спробуйте скористатись даною формою пізніше."
+msgstr ""
+"Під час відправки листа виникла непередбачувана помилка. Спробуйте "
+"скористатись даною формою пізніше."
 
 #: students/views/exams.py:80 students/views/exams.py:133
 #: students/views/groups.py:80 students/views/groups.py:129
