@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-16 16:05+0000\n"
+"POT-Creation-Date: 2019-06-17 11:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,11 @@ msgstr ""
 
 #: students/admin.py:46
 msgid "Student does not belong to the current group."
+msgstr ""
+
+#: students/templates/contact_admin/form.html:7
+#: students/templates/contact_admin/form.html:9
+msgid "Contact the Administrator"
 msgstr ""
 
 #: students/templates/students/base.html:8
@@ -68,13 +73,11 @@ msgid "Exams"
 msgstr ""
 
 #: students/templates/students/base.html:56
-msgid "Contact"
+msgid "Contacts"
 msgstr ""
 
 #: students/templates/students/exam_confirm_delete.html:6
 #: students/templates/students/exam_confirm_delete.html:8
-#, fuzzy
-#| msgid "Delete"
 msgid "Delete Exam"
 msgstr ""
 
@@ -98,15 +101,11 @@ msgstr ""
 #: students/templates/students/exams_add.html:7
 #: students/templates/students/exams_add.html:9
 #: students/templates/students/exams_list.html:13
-#, fuzzy
-#| msgid "Exams"
 msgid "Add Exam"
 msgstr ""
 
 #: students/templates/students/exams_edit.html:7
 #: students/templates/students/exams_edit.html:9
-#, fuzzy
-#| msgid "Edit"
 msgid "Edit Exam"
 msgstr ""
 
@@ -119,20 +118,14 @@ msgid "Date"
 msgstr ""
 
 #: students/templates/students/exams_list.html:50
-#, fuzzy
-#| msgid "Last Name"
 msgid "Teacher Last Name"
 msgstr ""
 
 #: students/templates/students/exams_list.html:58
-#, fuzzy
-#| msgid "First Name"
 msgid "Teacher First Name"
 msgstr ""
 
 #: students/templates/students/exams_list.html:66
-#, fuzzy
-#| msgid "Group:"
 msgid "Group"
 msgstr ""
 
@@ -166,8 +159,6 @@ msgstr ""
 
 #: students/templates/students/group_confirm_delete.html:6
 #: students/templates/students/group_confirm_delete.html:8
-#, fuzzy
-#| msgid "Delete"
 msgid "Delete Group"
 msgstr ""
 
@@ -179,15 +170,11 @@ msgstr ""
 #: students/templates/students/groups_add.html:7
 #: students/templates/students/groups_add.html:9
 #: students/templates/students/groups_list.html:13
-#, fuzzy
-#| msgid "Group:"
 msgid "Add Group"
 msgstr ""
 
 #: students/templates/students/groups_edit.html:7
 #: students/templates/students/groups_edit.html:9
-#, fuzzy
-#| msgid "Group:"
 msgid "Edit Group"
 msgstr ""
 
@@ -238,8 +225,6 @@ msgid "Next Month"
 msgstr ""
 
 #: students/templates/students/journal.html:45
-#, fuzzy
-#| msgid "Students"
 msgid "Student"
 msgstr ""
 
@@ -251,8 +236,6 @@ msgstr ""
 
 #: students/templates/students/students_confirm_delete.html:6
 #: students/templates/students/students_confirm_delete.html:8
-#, fuzzy
-#| msgid "All Students"
 msgid "Delete Student"
 msgstr ""
 
@@ -263,8 +246,6 @@ msgstr ""
 
 #: students/templates/students/students_edit.html:6
 #: students/templates/students/students_edit.html:8
-#, fuzzy
-#| msgid "Add Student"
 msgid "Edit Student"
 msgstr ""
 

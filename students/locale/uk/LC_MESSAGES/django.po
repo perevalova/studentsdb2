@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-16 16:05+0000\n"
+"POT-Creation-Date: 2019-06-17 11:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,11 @@ msgstr "Студент є старостою іншої групи"
 #: students/admin.py:46
 msgid "Student does not belong to the current group."
 msgstr "Студент не належить до поточної групи."
+
+#: students/templates/contact_admin/form.html:7
+#: students/templates/contact_admin/form.html:9
+msgid "Contact the Administrator"
+msgstr "Зв'язок з Адміністратором"
 
 #: students/templates/students/base.html:8
 #: students/templates/students/base.html:30
@@ -70,7 +75,9 @@ msgid "Exams"
 msgstr "Екзамени"
 
 #: students/templates/students/base.html:56
-msgid "Contact"
+#, fuzzy
+#| msgid "Contact"
+msgid "Contacts"
 msgstr "Контакти"
 
 #: students/templates/students/exam_confirm_delete.html:6
@@ -81,7 +88,7 @@ msgstr "Видалити"
 #: students/templates/students/exam_confirm_delete.html:24
 #, python-format
 msgid "Do you really want to delete exam: \"%(object)s\"?"
-msgstr ""
+msgstr "Ви дійсно хочете видалити іспит: \"%(object)s\"?"
 
 #: students/templates/students/exam_confirm_delete.html:26
 #: students/templates/students/group_confirm_delete.html:26
@@ -197,14 +204,16 @@ msgstr "Облік Відвідувачів"
 msgid ""
 "There is no student at the base yet. Please,\n"
 "            <a href=\"%(students_add)s\">add</a> first."
-msgstr "Поки немає жодного студента в базі. Будь ласка, \n"
+msgstr ""
+"Поки немає жодного студента в базі. Будь ласка, \n"
 "            <a href=\"%(students_add)s\">додайте</a> першого."
 
 #: students/templates/students/journal.html:22
 msgid ""
 "Changes to the log are saved automatically with each click in the cell of "
 "the table."
-msgstr "Зміни в журнал зберігаються автоматично при кожному кліку в клітинці таблиці."
+msgstr ""
+"Зміни в журнал зберігаються автоматично при кожному кліку в клітинці таблиці."
 
 #: students/templates/students/journal.html:23
 msgid "Saving..."
