@@ -104,6 +104,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'uk'
 
+LANGUAGES = (
+    ('en', 'English'),
+    ('uk', 'Ukrainian'),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'students/locale'),
+)
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

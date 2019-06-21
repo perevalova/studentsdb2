@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 20:17+0300\n"
+"POT-Creation-Date: 2019-06-21 22:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Student"
 msgstr ""
 
-#: students/models.py:19 students/templates/students/base.html:52
+#: students/models.py:19 students/templates/students/base.html:70
 #: students/templates/students/students_list.html:6
 msgid "Students"
 msgstr ""
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Leader"
 msgstr ""
 
-#: students/models.py:35 students/templates/students/base.html:54
+#: students/models.py:35 students/templates/students/base.html:72
 #: students/templates/students/groups_list.html:6
 #: students/templates/students/groups_list.html:8
 #: students/templates/students/journal.html:6
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Exam"
 msgstr ""
 
-#: students/models.py:75 students/templates/students/base.html:55
+#: students/models.py:75 students/templates/students/base.html:73
 #: students/templates/students/exams_list.html:6
 #: students/templates/students/exams_list.html:8
 msgid "Exams"
@@ -136,7 +136,7 @@ msgstr ""
 
 #: students/templates/students/base.html:8
 #: students/templates/students/base.html:30
-#: students/templates/students/base.html:86
+#: students/templates/students/base.html:104
 msgid "Student Account Service"
 msgstr ""
 
@@ -152,13 +152,21 @@ msgstr ""
 msgid "All Students"
 msgstr ""
 
-#: students/templates/students/base.html:53
+#: students/templates/students/base.html:59
+msgid "Uk"
+msgstr ""
+
+#: students/templates/students/base.html:60
+msgid "En"
+msgstr ""
+
+#: students/templates/students/base.html:71
 #: students/templates/students/groups_list.html:66
 #: students/templates/students/students_list.html:78
 msgid "Journal"
 msgstr ""
 
-#: students/templates/students/base.html:56
+#: students/templates/students/base.html:74
 msgid "Contacts"
 msgstr ""
 

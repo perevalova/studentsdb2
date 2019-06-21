@@ -21,6 +21,7 @@ from students.views.students import StudentList, StudentUpdateView, StudentAddVi
 from students.views.groups import GroupList, GroupAddView, GroupUpdateView, GroupDeleteView
 from students.views.exams import ExamList, ExamAddView, ExamUpdateView, ExamDeleteView
 from students.views.journal import JournalView
+from students.util import lang
 
 from .settings import MEDIA_ROOT, DEBUG
 from students.views import students, groups, journal, exams, contact_admin
@@ -30,10 +31,17 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
 
 
+# urlpatterns = (
+#     url(r'^i18n/', include('django.conf.urls.i18n')),
+#     #url(r'^setlang/$', set_language, name='set_language'),
+#     #url(r'^$', StudentList.as_view(), name='home'),
+#
+# )
+
 urlpatterns = i18n_patterns(
+    url(r'^lang/(?P<lang_code>[a-z]{2})/$', lang, name='lang'),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^$', StudentList.as_view(), name='home'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^students/add/$', StudentAddView.as_view(), name='students_add'),
     url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
     url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
