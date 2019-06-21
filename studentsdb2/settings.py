@@ -107,6 +107,7 @@ LANGUAGE_CODE = 'uk'
 LANGUAGES = (
     ('en', 'English'),
     ('uk', 'Ukrainian'),
+    ('ru', 'Russian'),
 )
 
 LOCALE_PATHS = (

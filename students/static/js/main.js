@@ -84,6 +84,7 @@ function initGroupSelector() {
     });
 }
 
+
 function initJournal() {
     var indicator = $('#ajax-progress-indicator');
     var errormessage = $('#error_message');
@@ -215,7 +216,7 @@ function initEditStudentForm(form, modal) {
         },
         'beforeSand': function () {
             html.find('input, textarea').attr({readonly, disabled});
-            modal.find('.modal-body').html('<div class="alert alert-warning" role="alert">{% trans "Form sending..." %}</div>');
+            modal.find('.modal-body').html('<div class="alert alert-warning" role="alert">Відправка форми...</div>');
         }
     });
 }
