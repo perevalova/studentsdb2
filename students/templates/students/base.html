@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
 <html lang="uk">
@@ -42,20 +43,6 @@
                 </select>
             </div>
                 <div class="col-xs-2" id="lang">
-{#                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}#}
-{#                        <input name="next" type="hidden" value="{{ redirect_to }}" />#}
-{#                        <select name="language">#}
-{#                            {% get_current_language as LANGUAGE_CODE %}#}
-{#                            {% get_available_languages as LANGUAGES %}#}
-{#                            {% get_language_info_list for LANGUAGES as languages %}#}
-{#                            {% for language in languages %}#}
-{#                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>#}
-{#                                    {{ language.name_local }} ({{ language.code }})#}
-{#                                </option>#}
-{#                            {% endfor %}#}
-{#                        </select>#}
-{#                        <input type="submit" value="Go" />#}
-{#                    </form>#}
                     <span><a href="{% url 'lang' 'uk' %}"><img src="{% static 'img/uk.svg' %}" width="25" height="25">{% trans "Uk" %}</a></span>
                     <span><a href="{% url 'lang' 'ru' %}"><img src="{% static 'img/ru.svg' %}" width="25" height="25">{% trans "Ru" %}</a></span>
                     <span><a href="{% url 'lang' 'en' %}"><img src="{% static 'img/en.svg' %}" width="25" height="25">{% trans "En" %}</a></span>
@@ -65,17 +52,24 @@
         <!-- End Header -->
 
             <!-- Start SubHeader -->
+            {% with LANGUAGE_CODE as lang_code %}
             <div class="row" id="sub-header">
                 <div class="col-xs-12">
                     <ul class="nav nav-tabs" role="tablist" id="nav-tabs">
-                        <li role="presentation" {% if request.path == '/' %}class="active"{% endif %}><a href="{% url 'home' %}" class="ajax-load">{% trans "Students" %}</a></li>
-                        <li role="presentation" {% if '/journal' in request.path %}class="active"{% endif %}><a href="{% url 'journal' %}" class="ajax-load">{% trans "Journal" %}</a></li>
-                        <li role="presentation" {% if '/groups' in request.path %}class="active"{% endif %}><a href="{% url 'groups' %}" class="ajax-load">{% trans "Groups" %}</a></li>
-                        <li role="presentation" {% if '/exams' in request.path %}class="active"{% endif %}><a href="{% url 'exams' %}" class="ajax-load">{% trans "Exams" %}</a></li>
-                        <li role="presentation" {% if '/contact-admin' in request.path %}class="active"{% endif %}><a href="{% url 'contact_admin' %}" class="ajax-load">{% trans "Contacts" %}</a></li>
+                        {% url "home" as home_url %}
+                        {% url "journal" as journal_url %}
+                        {% url "groups" as groups_url %}
+                        {% url "exams" as exams_url %}
+                        {% url "contact_admin" as contact_admin_url %}
+                        <li role="presentation" {% if request.path == home_url %}class="active"{% endif %}><a href="{% url 'home' %}" class="ajax-load">{% trans "Students" %}</a></li>
+                        <li role="presentation" {% if journal_url in request.path %}class="active"{% endif %}><a href="{% url 'journal' %}" class="ajax-load">{% trans "Journal" %}</a></li>
+                        <li role="presentation" {% if groups_url in request.path %}class="active"{% endif %}><a href="{% url 'groups' %}" class="ajax-load">{% trans "Groups" %}</a></li>
+                        <li role="presentation" {% if exams_url in request.path %}class="active"{% endif %}><a href="{% url 'exams' %}" class="ajax-load">{% trans "Exams" %}</a></li>
+                        <li role="presentation" {% if contact_admin_url in request.path %}class="active"{% endif %}><a href="{% url 'contact_admin' %}" class="ajax-load">{% trans "Contacts" %}</a></li>
                     </ul>
                 </div>
             </div>
+            {% endwith %}
             <!-- End SubHeader -->
 
         <!-- Start Content Columns -->
