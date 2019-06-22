@@ -13,7 +13,7 @@ from studentsdb2.settings import ADMIN_EMAIL
 
 import logging
 
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 class ContactForm(forms.Form):
 
@@ -36,13 +36,13 @@ class ContactForm(forms.Form):
         self.helper.field_class = 'col-sm-10'
 
         # form buttons
-        self.helper.add_input(Submit('send_button', u'Надіслати'))
+        self.helper.add_input(Submit('send_button', _('Send')))
 
-    from_email = forms.EmailField(label=_("Your email"))
+    from_email = forms.EmailField(label=_('Your email'))
 
-    subject = forms.CharField(label=_("Title message"), max_length=128)
+    subject = forms.CharField(label=_('Title message'), max_length=128)
 
-    message = forms.CharField(label=_("Text message"),max_length=2560, widget=forms.Textarea)
+    message = forms.CharField(label=_('Text message'),max_length=2560, widget=forms.Textarea)
 
 class ContactView(FormView):
     template_name = 'contact_admin/form.html'

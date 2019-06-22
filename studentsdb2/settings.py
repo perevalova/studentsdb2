@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'students',
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -108,6 +109,11 @@ LANGUAGES = (
     ('en', 'English'),
     ('uk', 'Ukrainian'),
     ('ru', 'Russian'),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uk'
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'students.translation',
 )
 
 LOCALE_PATHS = (

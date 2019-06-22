@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 20:16+0300\n"
+"POT-Creation-Date: 2019-06-22 10:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: students/static/js/main.js:139 students/static/js/main.js:166
-#: students/static/js/main.js:191 students/static/js/main.js:235
-#: students/static/js/main.js:262 students/static/js/main.js:287
-#: students/static/js/main.js:331 students/static/js/main.js:358
-#: students/static/js/main.js:380 students/static/js/main.js:421
-#: students/static/js/main.js:448 students/static/js/main.js:473
-#: students/static/js/main.js:517 students/static/js/main.js:544
-#: students/static/js/main.js:566 students/static/js/main.js:607
-#: students/static/js/main.js:634 students/static/js/main.js:659
+#: students/static/js/main.js:140 students/static/js/main.js:167
+#: students/static/js/main.js:192 students/static/js/main.js:236
+#: students/static/js/main.js:263 students/static/js/main.js:288
+#: students/static/js/main.js:332 students/static/js/main.js:359
+#: students/static/js/main.js:381 students/static/js/main.js:422
+#: students/static/js/main.js:449 students/static/js/main.js:474
+#: students/static/js/main.js:518 students/static/js/main.js:545
+#: students/static/js/main.js:567 students/static/js/main.js:608
+#: students/static/js/main.js:635 students/static/js/main.js:660
 msgid "There was an error on the server. Please, try again a bit later."
 msgstr ""
