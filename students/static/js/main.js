@@ -1,25 +1,52 @@
 function initTabLoad() {
     $('.ajax-load').click(function(event) {
-        var toLoad = $(this).attr('href');
+        var tab = $(this);
+        var toLoad = tab.children('a').attr('href');
         var content = $('#content-column');
 
         content.hide('100', loadContent); // hide content
         history.pushState(null, '', toLoad); //change URL
         function loadContent() {
-            content.load(toLoad + ' #content-column', '', showNewContent);
-        }
-        function showNewContent() {
+            content.load(toLoad + ' #content-column', '');
             content.show('speed'); // show new content
         }
+        // function showNewContent() {
+        //     content.show('speed'); // show new content
+        // }
 
-        if ($('.nav li').hasClass('active')) {
-                $('.nav li').removeClass('active');
-                $(this).parent('li').addClass('active');
-            }
+        if (!tab.hasClass('active')) {
+            $('.nav li').removeClass('active');
+            tab.addClass('active');
+        }
 
         return false;
 
     });
+}
+
+function initAddTabClass() {
+    // add class="active" to selected tab in navigation tabs
+    if (window.location.pathname.indexOf("/") == 0) {
+            $('.nav li').removeClass('active');
+            $('.nav li:eq(0)').addClass('active');
+        }
+    if (window.location.href.indexOf("journal") > -1) {
+            $('.nav li').removeClass('active');
+            $('.nav li:eq(1)').addClass('active');
+        }
+    if (window.location.href.indexOf("groups") > -1) {
+            $('.nav li').removeClass('active');
+            $('.nav li:eq(2)').addClass('active');
+        }
+    if (window.location.href.indexOf("exams") > -1) {
+            $('.nav li').removeClass('active');
+            $('.nav li:eq(3)').addClass('active');
+        }
+    if (window.location.href.indexOf("contact-admin") > -1) {
+            $('.nav li').removeClass('active');
+            $('.nav li:eq(4)').addClass('active');
+        }
+
 }
 
 function initPagination() {
@@ -28,19 +55,16 @@ function initPagination() {
         var pageselect = $('.table');
 
         // change pagination tabs
-        //content.hide('100', loadContent); // hide content
+        // content.hide('100', loadContent); // hide content
         history.pushState(null, '', toLoad); //change URL
 
         // update table
         pageselect.hide('100', loadContent); // hide content
         function loadContent() {
-            pageselect.load(window.location.href + ' .table', '', showNewContent);
+            pageselect.load(window.location.href + ' .table', '');
             pageselect.append(window.location.href + ' .table', '');
             pageselect.show('speed');
         }
-        // function showNewContent() {
-        //     pageselect.show('speed'); // show new content
-        // }
 
         if ($('.pagination li').hasClass('active')) {
             $('.pagination li').removeClass('active');
@@ -179,7 +203,7 @@ function initEditStudentForm(form, modal) {
     initDateFields();
 
     // close modal window on Cancel button click
-    form.find('input[name="cancel_button"]').click(function(event){
+    form.find("input[name='cancel_button']").click(function(event){
         modal.find('.modal-body').html(html.find('.alert'));
         setTimeout(function(){location.reload(true);}, 500);
         return false;
@@ -693,6 +717,7 @@ function initAddExamForm(form, modal) {
 $(document).ready(function(){
     initPagination();
     initTabLoad();
+    initAddTabClass();
     initJournal();
     initGroupSelector();
     initDateFields();
@@ -709,7 +734,4 @@ $(document).ready(function(){
     initAddExamPage();
     initAddExamForm();
 });
-
-$(document).ajaxStop(function() {
-    initPagination();
-});
+//
