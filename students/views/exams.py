@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse, request
 from django.core import serializers
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView, DeleteView
@@ -87,7 +88,7 @@ class ExamAddForm(ModelForm):
         )
 
 
-class ExamAddView(CreateView):
+class ExamAddView(LoginRequiredMixin, CreateView):
     model = Exam
     template_name = 'students/exams_add.html'
     form_class = ExamAddForm
@@ -140,7 +141,7 @@ class ExamUpdateForm(ModelForm):
         )
 
 
-class ExamUpdateView(UpdateView):
+class ExamUpdateView(LoginRequiredMixin, UpdateView):
     model = Exam
     template_name = 'students/exams_edit.html'
     form_class = ExamUpdateForm
@@ -157,7 +158,7 @@ class ExamUpdateView(UpdateView):
             return super(ExamUpdateView, self).post(request, *args, **kwargs)
 
 
-class ExamDeleteView(DeleteView):
+class ExamDeleteView(LoginRequiredMixin, DeleteView):
     model = Exam
     template_name = 'students/exam_confirm_delete.html'
 

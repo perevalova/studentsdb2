@@ -6,6 +6,7 @@ from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, FormView, DeleteView
 from django.views.generic import UpdateView
 from django.forms import ModelForm, ValidationError
@@ -83,7 +84,7 @@ class GroupAddForm(ModelForm):
         )
 
 
-class GroupAddView(CreateView):
+class GroupAddView(LoginRequiredMixin, CreateView):
     model = Group
     template_name = 'students/groups_add.html'
     form_class = GroupAddForm
@@ -142,7 +143,7 @@ class GroupUpdateForm(ModelForm):
         return self.cleaned_data['leader']
 
 
-class GroupUpdateView(UpdateView):
+class GroupUpdateView(LoginRequiredMixin, UpdateView):
     model = Group
     template_name = 'students/groups_edit.html'
     form_class = GroupUpdateForm
@@ -159,7 +160,7 @@ class GroupUpdateView(UpdateView):
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
 
 
-class GroupDeleteView(DeleteView):
+class GroupDeleteView(LoginRequiredMixin, DeleteView):
     model = Group
     template_name = 'students/group_confirm_delete.html'
 

@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.base import TemplateView
 from django.views.generic import UpdateView
@@ -24,6 +25,7 @@ from .validation import valid_image_mimetype, valid_image_size
 from students.util import paginate, get_current_group
 
 from django.utils.translation import ugettext as _
+
 
 
 class StudentList(TemplateView):
@@ -89,7 +91,7 @@ class StudentAddForm(ModelForm):
             AppendedText('birthday', '<span class="glyphicon glyphicon-calendar"></span>', active=True),
         )
 
-class StudentAddView(CreateView):
+class StudentAddView(LoginRequiredMixin, CreateView):
     model = Student
     template_name = 'students/students_add.html'
     form_class = StudentAddForm
@@ -151,7 +153,7 @@ class StudentUpdateForm(ModelForm):
         return self.cleaned_data['student_group']
 
 
-class StudentUpdateView(UpdateView):
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
     model = Student
     template_name = 'students/students_edit.html'
     form_class = StudentUpdateForm
@@ -168,7 +170,7 @@ class StudentUpdateView(UpdateView):
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
 
-class StudentDeleteView(DeleteView):
+class StudentDeleteView(LoginRequiredMixin, DeleteView):
     model = Student
     template_name = 'students/students_confirm_delete.html'
 

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import RedirectView
 from django.views.static import serve
 from students.views.contact_admin import ContactView
@@ -44,27 +45,27 @@ urlpatterns = i18n_patterns(
     url(r'^lang/(?P<lang_code>[a-z]{2})/$', lang, name='lang'),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^$', StudentList.as_view(), name='home'),
-    url(r'^students/add/$', StudentAddView.as_view(), name='students_add'),
-    url(r'^students/(?P<pk>\d+)/edit/$', StudentUpdateView.as_view(), name='students_edit'),
-    url(r'^students/(?P<pk>\d+)/delete/$', StudentDeleteView.as_view(), name='students_delete'),
+    url(r'^students/add/$', login_required(StudentAddView.as_view()), name='students_add'),
+    url(r'^students/(?P<pk>\d+)/edit/$', login_required(StudentUpdateView.as_view()), name='students_edit'),
+    url(r'^students/(?P<pk>\d+)/delete/$', login_required(StudentDeleteView.as_view()), name='students_delete'),
 
     # Groups urls
-    url(r'^groups/$', GroupList.as_view(), name='groups'),
-    url(r'^groups/add/$', GroupAddView.as_view(), name='groups_add'),
-    url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='groups_edit'),
-    url(r'^groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='groups_delete'),
+    url(r'^groups/$', login_required(GroupList.as_view()), name='groups'),
+    url(r'^groups/add/$', login_required(GroupAddView.as_view()), name='groups_add'),
+    url(r'^groups/(?P<pk>\d+)/edit/$', login_required(GroupUpdateView.as_view()), name='groups_edit'),
+    url(r'^groups/(?P<pk>\d+)/delete/$', login_required(GroupDeleteView.as_view()), name='groups_delete'),
 
     # Visiting urls
-    url(r'^journal/(?P<pk>\d+)?/?$', JournalView.as_view(), name='journal'),
+    url(r'^journal/(?P<pk>\d+)?/?$', login_required(JournalView.as_view()), name='journal'),
 
     # Exams urls
-    url(r'^exams/$', ExamList.as_view(), name='exams'),
-    url(r'^exams/add/$', ExamAddView.as_view(), name='exams_add'),
-    url(r'^exams/(?P<pk>\d+)/edit/$', ExamUpdateView.as_view(), name='exams_edit'),
-    url(r'^exams/(?P<pk>\d+)/delete/$', ExamDeleteView.as_view(), name='exams_delete'),
+    url(r'^exams/$', login_required(ExamList.as_view()), name='exams'),
+    url(r'^exams/add/$', login_required(ExamAddView.as_view()), name='exams_add'),
+    url(r'^exams/(?P<pk>\d+)/edit/$', login_required(ExamUpdateView.as_view()), name='exams_edit'),
+    url(r'^exams/(?P<pk>\d+)/delete/$', login_required(ExamDeleteView.as_view()), name='exams_delete'),
 
     # Contact Admin Form
-    url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),
+    url(r'^contact-admin/$', permission_required(ContactView.as_view()), name='contact_admin'),
 
     url(r'^admin/', admin.site.urls),
 

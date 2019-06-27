@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic.base import TemplateView
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
@@ -98,6 +99,7 @@ class JournalView(TemplateView):
         # with paginated students
         return context
 
+    @login_required
     def post(self, request, *args, **kwargs):
         data = request.POST
 
