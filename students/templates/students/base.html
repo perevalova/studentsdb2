@@ -32,6 +32,7 @@
                 <h1>{% block logo %}{% trans "Student Account Service" %}{% endblock logo %}</h1>
             </div>
 
+            {% if user.is_authenticated %}
             <!-- Groups Selector -->
             {% block menu_groups %}
             <div class="col-xs-4" id="group-selector">
@@ -43,12 +44,30 @@
                     {% endfor %}
                 </select>
             </div>
-                <div class="col-xs-2" id="lang">
-                    <span><a href="{% url 'lang' 'uk' %}"><img src="{% static 'img/uk.svg' %}" width="25" height="25">{% trans "Uk" %}</a></span>
-                    <span><a href="{% url 'lang' 'ru' %}"><img src="{% static 'img/ru.svg' %}" width="25" height="25">{% trans "Ru" %}</a></span>
-                    <span><a href="{% url 'lang' 'en' %}"><img src="{% static 'img/en.svg' %}" width="25" height="25">{% trans "En" %}</a></span>
-                </div>
             {% endblock menu_groups %}
+            <!-- User's toolbar for authenticated users -->
+            <div class="col-xs-2" id="user-toolbar">
+                <span>{{ user.username }}</span> |
+                <a href="{% url 'auth_logout' %}">{% trans "Logout" %}</a>
+            </div>
+
+            {% else %}
+
+            <!-- User's toolbar for anonymous users -->
+            <div class="col-xs-6" id="user-toolbar">
+                <a href="{% url 'auth_login' %}">{% trans "Login" %}</a> |
+                <a href="{% url 'registration_register' %}">{% trans "Signup" %}</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Select language -->
+        <div class="row">
+            <div class="col-xs-2" id="lang">
+                <span><a href="{% url 'lang' 'uk' %}"><img src="{% static 'img/uk.svg' %}" width="25" height="25">{% trans "Uk" %}</a></span>
+                <span><a href="{% url 'lang' 'ru' %}"><img src="{% static 'img/ru.svg' %}" width="25" height="25">{% trans "Ru" %}</a></span>
+                <span><a href="{% url 'lang' 'en' %}"><img src="{% static 'img/en.svg' %}" width="25" height="25">{% trans "En" %}</a></span>
+            </div>
         </div>
         <!-- End Header -->
 

@@ -5,3 +5,4 @@ pytz==2018.5
 python-magic==0.4.15
 django-crispy-forms==1.7.2
 python-dateutil
+django-registration-redux==2.6

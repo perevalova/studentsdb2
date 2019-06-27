@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic import RedirectView
 from django.views.static import serve
 from students.views.contact_admin import ContactView
 from students.views.students import StudentList, StudentUpdateView, StudentAddView, StudentDeleteView
@@ -29,6 +30,7 @@ from students.views import students, groups, journal, exams, contact_admin
 from django.utils.translation import ugettext_lazy as _
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
+from django.contrib.auth import views as auth_views
 
 
 # urlpatterns = (
@@ -65,6 +67,11 @@ urlpatterns = i18n_patterns(
     url(r'^contact-admin/$', ContactView.as_view(), name='contact_admin'),
 
     url(r'^admin/', admin.site.urls),
+
+    # User Related urls
+    url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
+    url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 )
 
 

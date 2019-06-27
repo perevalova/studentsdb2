@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-22 10:11+0300\n"
+"POT-Creation-Date: 2019-06-27 16:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr "Дополнительные заметки"
 msgid "Student"
 msgstr "Студент"
 
-#: students/models.py:19 students/templates/students/base.html:71
+#: students/models.py:19 students/templates/students/base.html:84
 #: students/templates/students/students_list.html:6
 msgid "Students"
 msgstr "Студенты"
@@ -79,7 +79,7 @@ msgstr "Название"
 msgid "Leader"
 msgstr "Староста"
 
-#: students/models.py:35 students/templates/students/base.html:73
+#: students/models.py:35 students/templates/students/base.html:86
 #: students/templates/students/groups_list.html:6
 #: students/templates/students/groups_list.html:8
 #: students/templates/students/journal.html:6
@@ -110,7 +110,7 @@ msgstr "Дата екзамена"
 msgid "Exam"
 msgstr "Экзамен"
 
-#: students/models.py:75 students/templates/students/base.html:74
+#: students/models.py:75 students/templates/students/base.html:87
 #: students/templates/students/exams_list.html:6
 #: students/templates/students/exams_list.html:8
 msgid "Exams"
@@ -137,43 +137,55 @@ msgstr "Результаты экзаменов"
 msgid "Contact the Administrator"
 msgstr "Связь с Администратором"
 
-#: students/templates/students/base.html:8
-#: students/templates/students/base.html:30
-#: students/templates/students/base.html:105
+#: students/templates/students/base.html:9
+#: students/templates/students/base.html:32
+#: students/templates/students/base.html:119
 msgid "Student Account Service"
 msgstr "Сервис Учета Студентов"
 
-#: students/templates/students/base.html:9
+#: students/templates/students/base.html:10
 msgid "App to manage students database"
 msgstr "Приложение для управления базами данных студентов"
 
-#: students/templates/students/base.html:36
+#: students/templates/students/base.html:39
 msgid "Group:"
 msgstr "Группа:"
 
-#: students/templates/students/base.html:38
+#: students/templates/students/base.html:41
 msgid "All Students"
 msgstr "Все Студенты"
 
+#: students/templates/students/base.html:51
+msgid "Logout"
+msgstr "Выход"
+
+#: students/templates/students/base.html:58
+msgid "Login"
+msgstr "Вход"
+
 #: students/templates/students/base.html:59
+msgid "Signup"
+msgstr "Регистрация"
+
+#: students/templates/students/base.html:67
 msgid "Uk"
 msgstr "Ук"
 
-#: students/templates/students/base.html:60
+#: students/templates/students/base.html:68
 msgid "Ru"
 msgstr "Ру"
 
-#: students/templates/students/base.html:61
+#: students/templates/students/base.html:69
 msgid "En"
 msgstr "Англ"
 
-#: students/templates/students/base.html:72
+#: students/templates/students/base.html:85
 #: students/templates/students/groups_list.html:66
 #: students/templates/students/students_list.html:78
 msgid "Journal"
 msgstr "Журнал"
 
-#: students/templates/students/base.html:75
+#: students/templates/students/base.html:88
 msgid "Contacts"
 msgstr "Контакты"
 
