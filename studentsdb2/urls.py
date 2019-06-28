@@ -34,13 +34,6 @@ from django.views.i18n import JavaScriptCatalog
 from django.contrib.auth import views as auth_views
 
 
-# urlpatterns = (
-#     url(r'^i18n/', include('django.conf.urls.i18n')),
-#     #url(r'^setlang/$', set_language, name='set_language'),
-#     #url(r'^$', StudentList.as_view(), name='home'),
-#
-# )
-
 urlpatterns = i18n_patterns(
     url(r'^lang/(?P<lang_code>[a-z]{2})/$', lang, name='lang'),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
@@ -70,7 +63,7 @@ urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
 
     # User Related urls
-    url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
+    url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
     url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
 )
