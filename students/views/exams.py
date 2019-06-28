@@ -1,21 +1,14 @@
-from django import forms
-from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse, request
-from django.core import serializers
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView, DeleteView
 from django.views.generic import UpdateView
-from django.forms import ModelForm, ValidationError
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
-from crispy_forms.bootstrap import FormActions, AppendedText
 
 from students.models import Exam, ExamResults
+from students.forms.exams import ExamAddForm, ExamUpdateForm
 
 from students.util import paginate, get_current_group
 
@@ -52,42 +45,6 @@ class ExamList(TemplateView):
         return context
 
 
-class ExamAddForm(ModelForm):
-    class Meta:
-        model = Exam
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        # call original initializator
-        super(ExamAddForm, self).__init__(*args, **kwargs)
-        
-        # this helper object allows us to customize form
-        self.helper = FormHelper(self)
-
-        # form tag attributes
-        self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'post'
-        self.helper.form_action = reverse('exams_add')
-
-        # twitter bootstrap styles
-        self.helper.help_text_inline = True
-        self.helper.html5_required = True
-        self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10 exam-form-width'
-
-        self.helper.layout = Layout(
-            'subject', 'teacher_first_name', 'teacher_last_name', 'teacher_middle_name', 'date', 'exam_group',
-            FormActions(
-                Submit('add_button', _('Add'), css_class="btn btn-primary"),
-                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
-            )
-        )
-
-        self.helper.layout[4] = Layout(
-            AppendedText('date', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
-        )
-
-
 class ExamAddView(LoginRequiredMixin, CreateView):
     model = Exam
     template_name = 'students/exams_add.html'
@@ -103,42 +60,6 @@ class ExamAddView(LoginRequiredMixin, CreateView):
         else:
             messages.success(request, _('Exam added successfully!'))
             return super(ExamAddView, self).post(request, *args, **kwargs)
-
-
-class ExamUpdateForm(ModelForm):
-    class Meta:
-        model = Exam
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        # call original initializer
-        super(ExamUpdateForm, self).__init__(*args, **kwargs)
-        
-        # this helper object allows us to customize form
-        self.helper = FormHelper(self)
-
-        # form tag attributes
-        self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = reverse('exams_edit', kwargs={'pk': kwargs['instance'].id})
-
-        # twitter bootstrap styles
-        self.helper.help_text_inline = True
-        self.helper.html5_required = True
-        self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10 exam-form-width'
-
-        self.helper.layout = Layout(
-            'subject', 'teacher_first_name', 'teacher_last_name', 'teacher_middle_name', 'date', 'exam_group',
-            FormActions(
-                Submit('add_button', _('Add'), css_class="btn btn-primary"),
-                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
-            )
-        )
-
-        self.helper.layout[4] = Layout(
-            AppendedText('date', '<span class="glyphicon glyphicon-calendar"></span>', active=True)
-        )
 
 
 class ExamUpdateView(LoginRequiredMixin, UpdateView):

@@ -1,21 +1,12 @@
-from django.shortcuts import render
-from django import forms
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
-from django.core import serializers
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.base import TemplateView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, FormView, DeleteView
 from django.views.generic import UpdateView
-from django.forms import ModelForm, ValidationError
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
-from crispy_forms.bootstrap import FormActions, AppendedText
-
 from students.models import Group, Student
+from students.forms.groups import GroupAddForm, GroupUpdateForm
 
 from students.util import paginate, get_current_group
 
@@ -52,38 +43,6 @@ class GroupList(TemplateView):
         return context
 
 
-class GroupAddForm(ModelForm):
-    class Meta:
-        model = Group
-        fields = ['title', 'leader', 'notes']
-
-    def __init__(self, *args, **kwargs):
-        # call original initializator
-        super(GroupAddForm, self).__init__(*args, **kwargs)
-        
-        # this helper object allows us to customize form
-        self.helper = FormHelper(self)
-
-        # form tag attributes
-        self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'post'
-        self.helper.form_action = reverse('groups_add')
-
-        # twitter bootstrap styles
-        self.helper.help_text_inline = True
-        self.helper.html5_required = True
-        self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10'
-
-        self.helper.layout = Layout(
-            'title', 'leader', 'notes',
-            FormActions(
-                Submit('add_button', _('Add'), css_class="btn btn-primary"),
-                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
-            )
-        )
-
-
 class GroupAddView(LoginRequiredMixin, CreateView):
     model = Group
     template_name = 'students/groups_add.html'
@@ -99,48 +58,6 @@ class GroupAddView(LoginRequiredMixin, CreateView):
         else:
             messages.success(request, _('Group added successfully!'))
             return super(GroupAddView, self).post(request, *args, **kwargs)
-
-
-class GroupUpdateForm(ModelForm):
-    class Meta:
-        model = Group
-        fields = ['title', 'leader', 'notes']
-
-    def __init__(self, *args, **kwargs):
-        # call original initializator
-        super(GroupUpdateForm, self).__init__(*args, **kwargs)
-        
-        # this helper object allows us to customize form
-        self.helper = FormHelper(self)
-
-        # form tag attributes
-        self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = reverse('groups_edit', kwargs={'pk': kwargs['instance'].id})
-
-        # twitter bootstrap styles
-        self.helper.help_text_inline = True
-        self.helper.html5_required = True
-        self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-10'
-
-        self.helper.layout = Layout(
-            'title', 'leader', 'notes',
-            FormActions(
-                Submit('add_button', _('Add'), css_class="btn btn-primary"),
-                Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
-            )
-        )
-
-    def clean_leader(self):
-        """Check if student is leader in any group.
-        If yes, then ensure it's the same as selected group."""
-        # get group where current student is a leader
-        leaders = Student.objects.filter(student_group=self.instance)
-        if len(leaders) > 0 and self.cleaned_data['leader'] != leaders[0]:
-            raise ValidationError(_('Student is a leader of different group.'), code='invalid')
-
-        return self.cleaned_data['leader']
 
 
 class GroupUpdateView(LoginRequiredMixin, UpdateView):
