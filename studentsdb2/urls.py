@@ -26,7 +26,6 @@ from students.views.journal import JournalView
 from students.util import lang
 
 from .settings import MEDIA_ROOT, DEBUG
-from students.views import students, groups, journal, exams, contact_admin
 
 from django.utils.translation import ugettext_lazy as _
 from django.conf.urls.i18n import i18n_patterns
@@ -58,14 +57,13 @@ urlpatterns = i18n_patterns(
     url(r'^exams/(?P<pk>\d+)/delete/$', login_required(ExamDeleteView.as_view()), name='exams_delete'),
 
     # Contact Admin Form
-    url(r'^contact-admin/$', permission_required(ContactView.as_view()), name='contact_admin'),
+    url(r'^contact-admin/$', login_required(ContactView.as_view()), name='contact_admin'),
 
     url(r'^admin/', admin.site.urls),
 
     # User Related urls
     url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
-    url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 )
 
 

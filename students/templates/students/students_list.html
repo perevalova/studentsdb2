@@ -56,7 +56,9 @@
                 {% endif %}
                 </a>
             </th>
+            {% if user.is_authenticated %}
             <th>{% trans "Actions" %}</th>
+            {% endif %}
         </tr>
     </thead>
     {% endwith %}
@@ -69,9 +71,10 @@
             {% else %}
             <td><img class="img-circle" height="30" width="30" src="{% static "img/default_user.png" %}" alt="student_image"></td>
             {% endif %}
-            <td><a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.last_name }}</a></td>
-            <td><a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{{ student.first_name }}</a></td>
+            <td><a {% if user.is_authenticated %} title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link" {% endif %}>{{ student.last_name }}</a></td>
+            <td><a {% if user.is_authenticated %} title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link" {% endif %}>{{ student.first_name }}</a></td>
             <td>{{ student.ticket }}</td>
+            {% if user.is_authenticated %}
             <td>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{% trans "Action" %}<span class="caret"></span></button>
@@ -87,6 +90,7 @@
                     </ul>
                 </div>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
