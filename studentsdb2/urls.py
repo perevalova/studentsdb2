@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import RedirectView
 from django.views.static import serve
 from students.views.contact_admin import ContactView
 from students.views.students import StudentList, StudentUpdateView, StudentAddView, StudentDeleteView
@@ -24,6 +23,7 @@ from students.views.groups import GroupList, GroupAddView, GroupUpdateView, Grou
 from students.views.exams import ExamList, ExamAddView, ExamUpdateView, ExamDeleteView
 from students.views.journal import JournalView
 from students.util import lang
+from students.views.users import UserView
 
 from .settings import MEDIA_ROOT, DEBUG
 
@@ -57,7 +57,7 @@ urlpatterns = i18n_patterns(
     url(r'^exams/(?P<pk>\d+)/delete/$', login_required(ExamDeleteView.as_view()), name='exams_delete'),
 
     # Contact Admin Form
-    url(r'^contact-admin/$', login_required(ContactView.as_view()), name='contact_admin'),
+    url(r'^contact-admin/$', permission_required('auth.add_user')(ContactView.as_view()), name='contact_admin'),
 
     url(r'^admin/', admin.site.urls),
 

@@ -46,6 +46,9 @@ function initAddTabClass() {
             $('.nav li').removeClass('active');
             $('.nav li:eq(4)').addClass('active');
         }
+    if (window.location.href.indexOf("accounts") > -1) {
+            $('.nav li').removeClass('active');
+        }
 
 }
 

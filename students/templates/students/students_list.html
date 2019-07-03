@@ -71,8 +71,20 @@
             {% else %}
             <td><img class="img-circle" height="30" width="30" src="{% static "img/default_user.png" %}" alt="student_image"></td>
             {% endif %}
-            <td><a {% if user.is_authenticated %} title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link" {% endif %}>{{ student.last_name }}</a></td>
-            <td><a {% if user.is_authenticated %} title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link" {% endif %}>{{ student.first_name }}</a></td>
+            <td>
+                {% if user.is_authenticated %}
+                    <a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">
+                {% endif %}
+                {{ student.last_name }}
+                </a>
+            </td>
+            <td>
+                {% if user.is_authenticated %}
+                    <a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">
+                {% endif %}
+                {{ student.first_name }}
+                </a>
+            </td>
             <td>{{ student.ticket }}</td>
             {% if user.is_authenticated %}
             <td>
