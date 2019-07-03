@@ -1,0 +1,32 @@
+{% extends "students/base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{{ get_full_name|default:username }}{% endblock %}
+{% block title %}{{ get_full_name|default:username }}{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+    {% if email %}
+    <tr>
+        <td>{% trans 'Email' %}:</td>
+        <td>{{ email }}</td>
+    </tr>
+    {% endif %}
+
+    {% if username %}
+    <tr>
+        <td>{% trans 'Username' %}:</td>
+        <td>{{ username }}</td>
+    </tr>
+    {% endif %}
+
+    {% if date_joined %}
+    <tr>
+        <td>{% trans 'Joined' %}:</td>
+        <td>{{ date_joined }}</td>
+    </tr>
+    {% endif %}
+
+    </table>
+
+{% endblock content%}

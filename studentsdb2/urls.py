@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required, permission_required
+from django.views.generic.base import TemplateView
 from django.views.static import serve
 from students.views.contact_admin import ContactView
 from students.views.students import StudentList, StudentUpdateView, StudentAddView, StudentDeleteView
@@ -62,6 +63,8 @@ urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
 
     # User Related urls
+    url(r'^accounts/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')), name='profile'),
+    url(r'^accounts/profile/(?P<pk>\d+)/$', UserView.as_view(), name='user'),
     url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
     url(r'^accounts/', include('registration.backends.default.urls')),
 )
