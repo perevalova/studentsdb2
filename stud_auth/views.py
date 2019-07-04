@@ -13,13 +13,15 @@ class UserView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         id = User.objects.get(pk=kwargs['pk'])
-        phone = StProfile.objects.get(pk=kwargs['pk'])
+        idcustom = StProfile.objects.get(pk=kwargs['pk'])
         context['username'] = id.username
         context['get_full_name'] = id.get_full_name
+        context['photo'] = idcustom.photo
+        context['passport'] = idcustom.passport
         context['email'] = id.email
         context['date_joined'] = id.date_joined.strftime('%d.%m.%Y')
         try:
-            context['mobile_phone'] = phone.mobile_phone
+            context['mobile_phone'] = idcustom.mobile_phone
         except Exception:
             context['mobile_phone'] = ''
 

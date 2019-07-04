@@ -1,39 +1,86 @@
 {% extends "students/base.html" %}
 {% load i18n %}
 
+{% load static from staticfiles %}
+
 {% block meta_title %}{{ user.get_full_name|default:user.username }}{% endblock %}
 {% block title %}{{ user.get_full_name|default:user.username }}{% endblock %}
 
 {% block content %}
     <table class="table table-striped">
-    {% if user.email %}
-    <tr>
-        <td>{% trans 'Email' %}:</td>
-        <td>{{ user.email }}</td>
-    </tr>
-    {% endif %}
 
-    {% if user.username %}
-    <tr>
-        <td>{% trans 'Username' %}:</td>
-        <td>{{ user.username }}</td>
-    </tr>
-    {% endif %}
+        {% if user.stprofile.photo %}
+            <tr>
+                <td>{% trans 'Photo' %}:</td>
+                <td><img class="img-circle" height="70" width="70" src="{{ user.stprofile.photo.url }}"
+                         alt="user_image">
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{% trans 'Photo' %}:</td>
+                <td><img class="img-circle" height="70" width="70" src="{% static 'img/default_user.png' %}"
+                         alt="user_image">
+                </td>
+            </tr>
+        {% endif %}
 
-    {% if user.date_joined %}
-    <tr>
-        <td>{% trans 'Joined' %}:</td>
-        <td>{{ user.date_joined }}</td>
-    </tr>
-    {% endif %}
+        {% if user.email %}
+            <tr>
+                <td>{% trans 'Email' %}:</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        {% endif %}
 
-    {% if user.stprofile.mobile_phone %}
-    <tr>
-        <td>{% trans 'Mobile Phone' %}:</td>
-        <td>{{ user.stprofile.mobile_phone }}</td>
-    </tr>
-    {% endif %}
+        {% if user.username %}
+            <tr>
+                <td>{% trans 'Username' %}:</td>
+                <td>{{ user.username }}</td>
+            </tr>
+        {% endif %}
+
+        {% if user.date_joined %}
+            <tr>
+                <td>{% trans 'Joined' %}:</td>
+                <td>{{ user.date_joined }}</td>
+            </tr>
+        {% endif %}
+
+        {% if user.stprofile.mobile_phone %}
+            <tr>
+                <td>{% trans 'Mobile Phone' %}:</td>
+                <td>{{ user.stprofile.mobile_phone }}</td>
+            </tr>
+        {% endif %}
+
+        {% if user.stprofile.city %}
+            <tr>
+                <td>{% trans 'City' %}:</td>
+                <td>{{ user.stprofile.city }}</td>
+            </tr>
+        {% endif %}
+
+        {% if user.stprofile.street %}
+            <tr>
+                <td>{% trans 'Street' %}:</td>
+                <td>{{ user.stprofile.street }}</td>
+            </tr>
+        {% endif %}
+
+        {% if user.stprofile.house %}
+            <tr>
+                <td>{% trans 'House' %}:</td>
+                <td>{{ user.stprofile.house }}</td>
+            </tr>
+        {% endif %}
+
+        {% if user.stprofile.passport %}
+            <tr>
+                <td>{% trans 'Passport number' %}:</td>
+                <td>{{ user.stprofile.passport }}</td>
+            </tr>
+        {% endif %}
 
     </table>
 
-{% endblock content%}
+{% endblock content %}
