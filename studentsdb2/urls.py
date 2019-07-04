@@ -60,6 +60,8 @@ urlpatterns = i18n_patterns(
     # Contact Admin Form
     url(r'^contact-admin/$', permission_required('auth.add_user')(ContactView.as_view()), name='contact_admin'),
 
+    url('', include('social_django.urls', namespace='social')),
+
     url(r'^admin/', admin.site.urls),
 
     # User Related urls

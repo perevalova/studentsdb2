@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'social_django',
+    'django_extensions',
     'stud_auth',
     'students',
     'modeltranslation',
@@ -69,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
                 'studentsdb2.context_processors.students_proc',
                 'students.context_processors.groups_processor',
             ],
@@ -209,3 +213,24 @@ REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = 'home'
+
+# Social Auth
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.associate_by_email',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = "717405708697850"
+SOCIAL_AUTH_FACEBOOK_SECRET = "0d853965d94f86c24578f330118e0f36"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "378052489681-0svraf22mnafrfas7eli7c6tflqge9t5.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "zKWBiGfBdrt1-tJfkbo4B1Qi"

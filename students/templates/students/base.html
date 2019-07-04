@@ -52,13 +52,20 @@
             </div>
 
             {% else %}
-
             <!-- User's toolbar for anonymous users -->
             <div class="col-xs-6" id="user-toolbar">
                 <a href="{% url 'auth_login' %}">{% trans "Login" %}</a> |
                 <a href="{% url 'registration_register' %}">{% trans "Signup" %}</a>
             </div>
             {% endif %}
+        </div>
+
+        <div class="row" id="signup">
+            <div class="col-xs-12">
+                <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">{% trans 'Facebook' %}</a> |
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">{% trans 'Google' %}</a>
+
+            </div>
         </div>
 
         <!-- Select language -->
