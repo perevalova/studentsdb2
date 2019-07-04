@@ -24,7 +24,7 @@ from students.views.groups import GroupList, GroupAddView, GroupUpdateView, Grou
 from students.views.exams import ExamList, ExamAddView, ExamUpdateView, ExamDeleteView
 from students.views.journal import JournalView
 from students.util import lang
-from students.views.users import UserView
+from stud_auth.views import UserView
 
 from .settings import MEDIA_ROOT, DEBUG
 
@@ -64,7 +64,7 @@ urlpatterns = i18n_patterns(
 
     # User Related urls
     url(r'^accounts/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')), name='profile'),
-    url(r'^accounts/profile/(?P<pk>\d+)/$', UserView.as_view(), name='user'),
+    url(r'^accounts/profile/(?P<pk>\d+)/$', login_required(UserView.as_view()), name='user'),
     url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
     url(r'^accounts/', include('registration.backends.default.urls')),
 )

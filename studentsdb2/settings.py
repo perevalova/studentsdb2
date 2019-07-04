@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'stud_auth',
     'students',
     'modeltranslation',
 ]
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'studentsdb2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'studentsdb2', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'stud_auth', 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

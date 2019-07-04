@@ -27,6 +27,13 @@
     </tr>
     {% endif %}
 
+    {% if mobile_phone %}
+    <tr>
+        <td>{% trans 'Mobile Phone' %}:</td>
+        <td>{{ mobile_phone }}</td>
+    </tr>
+    {% endif %}
+
     </table>
 
 {% endblock content%}
