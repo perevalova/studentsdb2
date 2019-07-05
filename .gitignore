@@ -57,6 +57,7 @@ email.py
 
 #Ignore modules
 db_settings.py
+soc_settings.py
 
 .idea/
 

@@ -230,7 +230,5 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = "717405708697850"
-SOCIAL_AUTH_FACEBOOK_SECRET = "0d853965d94f86c24578f330118e0f36"
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "378052489681-0svraf22mnafrfas7eli7c6tflqge9t5.apps.googleusercontent.com"
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "zKWBiGfBdrt1-tJfkbo4B1Qi"
+# Auth keys
+from .soc_settings  import *
