@@ -25,6 +25,7 @@ from students.views.exams import ExamList, ExamAddView, ExamUpdateView, ExamDele
 from students.views.journal import JournalView
 from students.util import lang
 from stud_auth.views import UserView
+from students.views.users import UserList
 
 from .settings import MEDIA_ROOT, DEBUG
 
@@ -61,6 +62,7 @@ urlpatterns = i18n_patterns(
     url(r'^contact-admin/$', permission_required('auth.add_user')(ContactView.as_view()), name='contact_admin'),
 
     url('', include('social_django.urls', namespace='social')),
+    url(r'^users/$', UserList.as_view(), name='users'),
 
     url(r'^admin/', admin.site.urls),
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-04 11:42+0000\n"
+"POT-Creation-Date: 2019-07-05 09:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,6 +81,7 @@ msgid "Birth date"
 msgstr "Дата рождения"
 
 #: students/models.py:12 students/templates/students/students_list.html:33
+#: students/templates/students/users.html:23
 msgid "Photo"
 msgstr "Фото"
 
@@ -102,7 +103,7 @@ msgstr "Дополнительные заметки"
 msgid "Student"
 msgstr "Студент"
 
-#: students/models.py:19 students/templates/students/base.html:84
+#: students/models.py:19 students/templates/students/base.html:94
 #: students/templates/students/students_list.html:6
 msgid "Students"
 msgstr "Студенты"
@@ -115,7 +116,7 @@ msgstr "Название"
 msgid "Leader"
 msgstr "Староста"
 
-#: students/models.py:35 students/templates/students/base.html:87
+#: students/models.py:35 students/templates/students/base.html:97
 #: students/templates/students/groups_list.html:6
 #: students/templates/students/groups_list.html:8
 #: students/templates/students/journal.html:6
@@ -146,7 +147,7 @@ msgstr "Дата екзамена"
 msgid "Exam"
 msgstr "Экзамен"
 
-#: students/models.py:75 students/templates/students/base.html:88
+#: students/models.py:75 students/templates/students/base.html:98
 #: students/templates/students/exams_list.html:6
 #: students/templates/students/exams_list.html:8
 msgid "Exams"
@@ -174,8 +175,8 @@ msgid "Contact the Administrator"
 msgstr "Связь с Администратором"
 
 #: students/templates/students/base.html:9
-#: students/templates/students/base.html:32
-#: students/templates/students/base.html:123
+#: students/templates/students/base.html:34
+#: students/templates/students/base.html:136
 msgid "Student Account Service"
 msgstr "Сервис Учета Студентов"
 
@@ -183,15 +184,15 @@ msgstr "Сервис Учета Студентов"
 msgid "App to manage students database"
 msgstr "Приложение для управления базами данных студентов"
 
-#: students/templates/students/base.html:39
+#: students/templates/students/base.html:41
 msgid "Group:"
 msgstr "Группа:"
 
-#: students/templates/students/base.html:41
+#: students/templates/students/base.html:43
 msgid "All Students"
 msgstr "Все Студенты"
 
-#: students/templates/students/base.html:51
+#: students/templates/students/base.html:53
 msgid "Logout"
 msgstr "Выход"
 
@@ -203,27 +204,33 @@ msgstr "Вход"
 msgid "Signup"
 msgstr "Регистрация"
 
-#: students/templates/students/base.html:67
+#: students/templates/students/base.html:76
 msgid "Uk"
 msgstr "Ук"
 
-#: students/templates/students/base.html:68
+#: students/templates/students/base.html:77
 msgid "Ru"
 msgstr "Ру"
 
-#: students/templates/students/base.html:69
+#: students/templates/students/base.html:78
 msgid "En"
 msgstr "Англ"
 
-#: students/templates/students/base.html:86
+#: students/templates/students/base.html:96
 #: students/templates/students/groups_list.html:66
 #: students/templates/students/students_list.html:95
 msgid "Journal"
 msgstr "Журнал"
 
-#: students/templates/students/base.html:91
+#: students/templates/students/base.html:101
 msgid "Contacts"
 msgstr "Контакты"
+
+#: students/templates/students/base.html:104
+#: students/templates/students/users.html:6
+#: students/templates/students/users.html:24
+msgid "Users"
+msgstr "Пользователи"
 
 #: students/templates/students/exam_confirm_delete.html:6
 #: students/templates/students/exam_confirm_delete.html:8
@@ -398,6 +405,10 @@ msgstr "Имя"
 msgid "Ticket №"
 msgstr "№ Билета"
 
+#: students/templates/students/users.html:8
+msgid "Base of Users"
+msgstr "База Пользователей"
+
 #: students/views/contact_admin.py:30
 msgid "Message sended successfuly!"
 msgstr "Сообщение отправлено успешно!"
@@ -446,22 +457,22 @@ msgstr "Группу успешно сохранено!"
 msgid "Group deleted successfully!"
 msgstr "Группу успешно удалено!"
 
-#: students/views/students.py:70
+#: students/views/students.py:54
 msgid "Student adding has been canceled!"
 msgstr "Добавление студента было отменено!"
 
-#: students/views/students.py:73
+#: students/views/students.py:57
 msgid "Student added successfully!"
 msgstr "Студента успешно добавлено!"
 
-#: students/views/students.py:87
+#: students/views/students.py:71
 msgid "Student editing has been canceled!"
 msgstr "Редактирование студента было отменено!"
 
-#: students/views/students.py:90
+#: students/views/students.py:74
 msgid "Student updated successfully!"
 msgstr "Студента успешно обновлено!"
 
-#: students/views/students.py:102
+#: students/views/students.py:86
 msgid "Student deleted successfully!"
 msgstr "Студента успешно удалено!"

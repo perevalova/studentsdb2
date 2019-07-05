@@ -1,31 +1,15 @@
-from datetime import datetime
-
-from django.shortcuts import render
-from django import forms
-from django.core import serializers
-from django.template.loader import render_to_string
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.base import TemplateView
-from django.views.generic import UpdateView
-from django.views.generic.edit import CreateView, DeleteView
-from django.forms import ModelForm, ValidationError
-
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
-from crispy_forms.bootstrap import FormActions, AppendedText
-
-from students.models import Student, Group
-from students.forms.students import StudentAddForm, StudentUpdateForm
-from .validation import valid_image_mimetype, valid_image_size
-
-from students.util import paginate, get_current_group
-
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext as _
+from django.views.generic import UpdateView
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView, DeleteView
+
+from students.forms.students import StudentAddForm, StudentUpdateForm
+from students.models import Student
+from students.util import paginate, get_current_group
 
 
 class StudentList(TemplateView):

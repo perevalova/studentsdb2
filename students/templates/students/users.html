@@ -1,0 +1,50 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Users" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Base of Users" %}{% endblock title %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    {% endif %}
+
+<!-- Start Students Listing -->
+{% if users %}
+<table class="table table-hover table-striped">
+{#    {% with order_by=request.GET.order_by reverse=request.GET.reverse status_number=request.GET.status_number %}#}
+    <thead>
+        <tr>
+            <th><a>№</a></th>
+            <th><a href="#">{% trans "Photo" %}</a></th>
+            <th><a href="#">{% trans "Users" %}</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            {% if user.photo %}
+            <td><img class="img-circle" height="30" width="30" src="{{ user.photo.url }}" alt="user_image"></td>
+            {% else %}
+            <td><img class="img-circle" height="30" width="30" src="{% static "img/default_user.png" %}" alt="user_image"></td>
+            {% endif %}
+            <td><a href="{% url 'user' user.id %}">{{ user.username }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<!-- End Users Listing -->
+
+<!-- Pagination -->
+
+{% with object_list=users %}
+    {% include "students/pagination.html" %}
+{% endwith %}
+
+{% endblock content %}
