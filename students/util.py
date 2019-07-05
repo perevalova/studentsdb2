@@ -9,6 +9,10 @@ from django.utils.translation import (
     LANGUAGE_SESSION_KEY, check_for_language
 )
 
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+
 from studentsdb2 import settings as MySettings
 
 
@@ -117,3 +121,8 @@ def get_current_group(request):
     else:
         return None
 
+def e_handler404(request):
+    context = RequestContext(request)
+    response = render_to_response('errors/404.html', context)
+    response.status_code = 404
+    return response
