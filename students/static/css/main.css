@@ -23,10 +23,12 @@ h1, h2, h3, h4, h5, h6 {
 	color: #555555;
 }
 #lang {
+	margin-top: 10px;
     float: right;
     text-align: right;
 }
 #signup {
+    float: right;
     text-align: right;
 }
 /* Form Styles */
