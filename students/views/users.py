@@ -2,6 +2,7 @@ from django.views.generic.base import TemplateView
 
 from django.contrib.auth.models import User
 
+from stud_auth.models import StProfile
 from students.util import paginate
 
 
@@ -14,6 +15,7 @@ class UserView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         id = User.objects.get(pk=kwargs['pk'])
+        context['usersobj'] = StProfile.objects.all()
         context['username'] = id.username
         context['get_full_name'] = id.get_full_name
         context['email'] = id.email
@@ -30,6 +32,7 @@ class UserList(TemplateView):
         context = super(UserList, self).get_context_data(**kwargs)
 
         users = User.objects.all()
+        context['usersobj'] = StProfile.objects.all()
 
         # apply pagination, 10 users per page
         context = paginate(users, 10, self.request, context, var_name='users')
