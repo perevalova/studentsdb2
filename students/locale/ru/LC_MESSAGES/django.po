@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-05 09:00+0000\n"
+"POT-Creation-Date: 2019-07-07 18:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,6 +63,31 @@ msgstr "Студент является старостой другой груп
 #: students/forms/students.py:40
 msgid "Save"
 msgstr "Сохранить"
+
+#: students/management/commands/stcount.py:10
+msgid ""
+"Prints to console number of students, groups and users related objects in a "
+"database."
+msgstr ""
+"Виводить у консоль кількість студентів, груп та користувачів пов'язаних з "
+"об'єктами в базі даних."
+
+#: students/management/commands/stcount.py:15
+msgid "student"
+msgstr "студент"
+
+#: students/management/commands/stcount.py:16
+msgid "group"
+msgstr "группа"
+
+#: students/management/commands/stcount.py:17
+msgid "user"
+msgstr "користувач"
+
+#: students/management/commands/stcount.py:22
+#, python-format
+msgid "Number of %(var)ss in database: %(modelname)d"
+msgstr "Кількість %(var)s у базі даних: %(modelname)d"
 
 #: students/models.py:8 students/models.py:67
 msgid "First name"
