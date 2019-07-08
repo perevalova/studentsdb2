@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 18:14+0000\n"
+"POT-Creation-Date: 2019-07-07 18:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,23 +71,6 @@ msgid ""
 msgstr ""
 "Виводить у консоль кількість студентів, груп та користувачів пов'язаних з "
 "об'єктами в базі даних."
-
-#: students/management/commands/stcount.py:15
-msgid "student"
-msgstr "студент"
-
-#: students/management/commands/stcount.py:16
-msgid "group"
-msgstr "группа"
-
-#: students/management/commands/stcount.py:17
-msgid "user"
-msgstr "користувач"
-
-#: students/management/commands/stcount.py:22
-#, python-format
-msgid "Number of %(var)ss in database: %(modelname)d"
-msgstr "Кількість %(var)s у базі даних: %(modelname)d"
 
 #: students/models.py:8 students/models.py:67
 msgid "First name"
@@ -501,3 +484,15 @@ msgstr "Студента успешно обновлено!"
 #: students/views/students.py:86
 msgid "Student deleted successfully!"
 msgstr "Студента успешно удалено!"
+
+#~ msgid "Number of %(var)ss in database: %(modelname)d"
+#~ msgstr "Кількість %(var)s у базі даних: %(modelname)d"
+
+#~ msgid "student"
+#~ msgstr "студент"
+
+#~ msgid "group"
+#~ msgstr "группа"
+
+#~ msgid "user"
+#~ msgstr "користувач"

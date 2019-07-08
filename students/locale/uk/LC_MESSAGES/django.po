@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 18:14+0000\n"
+"POT-Creation-Date: 2019-07-07 18:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,27 +67,6 @@ msgstr "Зберегти"
 msgid ""
 "Prints to console number of students, groups and users related objects in a "
 "database."
-msgstr ""
-
-#: students/management/commands/stcount.py:15
-#, fuzzy
-#| msgid "Student"
-msgid "student"
-msgstr "Студент"
-
-#: students/management/commands/stcount.py:16
-#, fuzzy
-#| msgid "Group"
-msgid "group"
-msgstr "Група"
-
-#: students/management/commands/stcount.py:17
-msgid "user"
-msgstr ""
-
-#: students/management/commands/stcount.py:22
-#, python-format
-msgid "Number of %(var)ss in database: %(modelname)d"
 msgstr ""
 
 #: students/models.py:8 students/models.py:67
@@ -501,3 +480,13 @@ msgstr "Студента оновлено успішно!"
 #: students/views/students.py:86
 msgid "Student deleted successfully!"
 msgstr "Студента видалено успішно!"
+
+#, fuzzy
+#~| msgid "Student"
+#~ msgid "student"
+#~ msgstr "Студент"
+
+#, fuzzy
+#~| msgid "Group"
+#~ msgid "group"
+#~ msgstr "Група"
