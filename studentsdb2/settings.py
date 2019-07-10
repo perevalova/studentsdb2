@@ -9,11 +9,14 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
 import os
 
+try:
+    from .dev_settings import *
+except ImportError:
+    from .pro_settings import *
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from students.util import e_handler404
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,13 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'h^ba&35w@#$$8!f@qgca4(f-_n83d8mq@i5=k8kcwia_(y0y@b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -42,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    # 3rd party
     'social_django',
     'django_extensions',
+    # local
     'stud_auth',
     'students',
     'modeltranslation',
@@ -89,7 +89,6 @@ WSGI_APPLICATION = 'studentsdb2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-from .db_settings import DATABASES
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -140,26 +139,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_URL = '/static/'
-
-PORTAL_URL = ''
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-
-# email settings
-ADMIN_EMAIL = 'perev4n@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'perev4n@gmail.com'
-try:
-    from .email import EMAIL_HOST_PASSWORD
-except Exception:
-    pass
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -232,8 +211,3 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-
-# Auth keys
-from .soc_settings  import *
-
-handler404 = e_handler404

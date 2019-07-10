@@ -120,9 +120,3 @@ def get_current_group(request):
             return group
     else:
         return None
-
-def e_handler404(request):
-    context = RequestContext(request)
-    response = render_to_response('errors/404.html', context)
-    response.status_code = 404
-    return response

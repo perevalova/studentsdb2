@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 18:39+0000\n"
+"POT-Creation-Date: 2019-07-10 14:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,7 +108,7 @@ msgstr "Додаткові нотатки"
 msgid "Student"
 msgstr "Студент"
 
-#: students/models.py:19 students/templates/students/base.html:94
+#: students/models.py:19 students/templates/students/base.html:95
 #: students/templates/students/students_list.html:6
 msgid "Students"
 msgstr "Студенти"
@@ -121,7 +121,7 @@ msgstr "Назва"
 msgid "Leader"
 msgstr "Староста"
 
-#: students/models.py:35 students/templates/students/base.html:97
+#: students/models.py:35 students/templates/students/base.html:98
 #: students/templates/students/groups_list.html:6
 #: students/templates/students/groups_list.html:8
 #: students/templates/students/journal.html:6
@@ -152,7 +152,7 @@ msgstr "Дата іспиту"
 msgid "Exam"
 msgstr "Екзамен"
 
-#: students/models.py:75 students/templates/students/base.html:98
+#: students/models.py:75 students/templates/students/base.html:99
 #: students/templates/students/exams_list.html:6
 #: students/templates/students/exams_list.html:8
 msgid "Exams"
@@ -179,9 +179,59 @@ msgstr "Результати іспитів"
 msgid "Contact the Administrator"
 msgstr "Зв'язок з Адміністратором"
 
+#: students/templates/errors/400.html:6
+msgid "Bad Request"
+msgstr "Хибний Запит"
+
+#: students/templates/errors/400.html:8
+msgid "Your request resulted in an error."
+msgstr "Ваш запит призвів до помилки."
+
+#: students/templates/errors/403.html:6
+msgid "Forbidden"
+msgstr "Заборонено"
+
+#: students/templates/errors/403.html:8
+msgid "Access denied"
+msgstr "Доступ заборонено"
+
+#: students/templates/errors/404.html:6
+msgid "Page not found"
+msgstr "Сторінка не знайдена"
+
+#: students/templates/errors/404.html:8
+msgid "Sorry, we haven't found what you're looking for."
+msgstr "Вибачте, ми не знайшли, що Ви шукали"
+
+#: students/templates/errors/404.html:18
+msgid "GO BACK HOME"
+msgstr "ПОВЕРНУТИСЯ ДОДОМУ"
+
+#: students/templates/errors/500.html:6
+msgid "Oops, error on the server"
+msgstr "Упс, помилка на сервері"
+
+#: students/templates/errors/500.html:8
+msgid "Oops, something went wrong :-("
+msgstr "Упс, щось пішло не так :-("
+
+#: students/templates/errors/500.html:13
+msgid "Sorry, it's me, not you"
+msgstr "Вибачте, це я, не Ви"
+
+#: students/templates/errors/500.html:14
+msgid "Internal Error"
+msgstr "Внутрішня Помилка"
+
+#: students/templates/errors/500.html:15
+msgid ""
+"We recorded our mistake and will fix it soon. Please, get back to us a bit "
+"later."
+msgstr "Ми записали свою помилку і скоро це виправимо. Будь ласка, поверніться до нас трохи пізніше."
+
 #: students/templates/students/base.html:9
-#: students/templates/students/base.html:34
-#: students/templates/students/base.html:136
+#: students/templates/students/base.html:35
+#: students/templates/students/base.html:137
 msgid "Student Account Service"
 msgstr "Сервіс Обліку Студентів"
 
@@ -189,49 +239,49 @@ msgstr "Сервіс Обліку Студентів"
 msgid "App to manage students database"
 msgstr "Додаток для управління базами даних студентів"
 
-#: students/templates/students/base.html:41
+#: students/templates/students/base.html:42
 msgid "Group:"
 msgstr "Група:"
 
-#: students/templates/students/base.html:43
+#: students/templates/students/base.html:44
 msgid "All Students"
 msgstr "Усі Студенти"
 
-#: students/templates/students/base.html:53
+#: students/templates/students/base.html:54
 msgid "Logout"
 msgstr "Вихід"
 
-#: students/templates/students/base.html:58
+#: students/templates/students/base.html:59
 msgid "Login"
 msgstr "Вхід"
 
-#: students/templates/students/base.html:59
+#: students/templates/students/base.html:60
 msgid "Signup"
 msgstr "Реєстрація"
 
-#: students/templates/students/base.html:76
+#: students/templates/students/base.html:77
 msgid "Uk"
 msgstr "Ук"
 
-#: students/templates/students/base.html:77
+#: students/templates/students/base.html:78
 msgid "Ru"
 msgstr "Ру"
 
-#: students/templates/students/base.html:78
+#: students/templates/students/base.html:79
 msgid "En"
 msgstr "Англ"
 
-#: students/templates/students/base.html:96
+#: students/templates/students/base.html:97
 #: students/templates/students/groups_list.html:66
 #: students/templates/students/students_list.html:95
 msgid "Journal"
 msgstr "Відвідування"
 
-#: students/templates/students/base.html:101
+#: students/templates/students/base.html:102
 msgid "Contacts"
 msgstr "Контакти"
 
-#: students/templates/students/base.html:104
+#: students/templates/students/base.html:105
 #: students/templates/students/users.html:6
 #: students/templates/students/users.html:24
 msgid "Users"

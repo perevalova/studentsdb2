@@ -1,9 +1,21 @@
+{% extends "students/base.html" %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block meta_title %}{% trans "Page not found" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Sorry, we haven't found what you're looking for." %}{% endblock title %}
+
+
+{% block content %}
+
 <body class="bg-purple">
 
 <div class="stars">
     <div class="central-body">
         <img class="image-404" src="http://salehriaz.com/404Page/img/404.svg" width="300px">
-        <a href="{% url 'home' %}" class="btn-go-home" target="_blank">GO BACK HOME</a>
+        <a href="/" class="btn-go-home" target="_blank">{% trans "GO BACK HOME" %}</a>
     </div>
     <div class="objects">
         <img class="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" width="40px">
@@ -27,3 +39,5 @@
 </div>
 
 </body>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "students/base.html" %}
+
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block meta_title %}{% trans "Oops, error on the server" %}{% endblock meta_title %}
+
+{% block title %}{% trans "Oops, something went wrong :-(" %}{% endblock title %}
+
+
+{% block content %}
+    <h2>500</h2>
+    <p>{% trans "Sorry, it's me, not you" %}</p>
+    <p>{% trans "Internal Error" %}</p>
+    <p>{% trans "We recorded our mistake and will fix it soon. Please, get back to us a bit later." %}</p>
+
+{% endblock content %}

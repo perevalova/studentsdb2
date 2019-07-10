@@ -58,8 +58,11 @@ email.py
 #Ignore modules
 db_settings.py
 soc_settings.py
-
+dev_settings.py
 .idea/
 
 # Logging file
 studentsdb2.log
+
+# Python Decouple
+*.env
