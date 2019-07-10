@@ -26,7 +26,6 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
-TEMPLATE_DEBUG = config('TEMPLATE_DEBUG')
 
 # Application definition
 
@@ -80,6 +79,7 @@ TEMPLATES = [
                 'studentsdb2.context_processors.students_proc',
                 'students.context_processors.groups_processor',
             ],
+            'debug': False,
         },
     },
 ]
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'studentsdb2.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://studaccservice.herokuapp.com', '127.0.0.1']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
