@@ -223,6 +223,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+PORTAL_URL = ''
+
 # email settings
 ADMIN_EMAIL = config('ADMIN_EMAIL')
 EMAIL_HOST = 'smtp.gmail.com'
