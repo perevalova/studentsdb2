@@ -11,7 +11,7 @@ class Student(models.Model):
     birthday = models.DateField(blank=False, verbose_name=_("Birth date"), null=True)
     photo = models.ImageField(blank=True, verbose_name=_("Photo"), null=True)
     student_group = models.ForeignKey('Group', verbose_name=_("Group"), blank=False, null=True, on_delete=models.PROTECT)
-    ticket = models.CharField(max_length=256, blank=False, verbose_name=_("Ticket"))
+    ticket = models.PositiveIntegerField(unique=True, blank=False, verbose_name=_("Ticket"))
     notes = models.TextField(blank=True, verbose_name=_("Additional notes"))
 
     class Meta(object):
