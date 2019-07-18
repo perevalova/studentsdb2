@@ -30,7 +30,12 @@
             </tr>
         {% endif %}
 
-        {% if username %}
+        {% if full_name %}
+            <tr>
+                <td>{% trans 'Full name' %}:</td>
+                <td>{{ full_name }}</td>
+            </tr>
+        {% else %}
             <tr>
                 <td>{% trans 'Username' %}:</td>
                 <td>{{ username }}</td>

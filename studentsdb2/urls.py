@@ -24,8 +24,7 @@ from students.views.groups import GroupList, GroupAddView, GroupUpdateView, Grou
 from students.views.exams import ExamList, ExamAddView, ExamUpdateView, ExamDeleteView
 from students.views.journal import JournalView
 from students.util import lang
-from stud_auth.views import UserView
-from students.views.users import UserList
+from stud_auth.views import UserView, UserList
 
 from .settings import MEDIA_ROOT, DEBUG
 
@@ -58,19 +57,21 @@ urlpatterns = i18n_patterns(
     url(r'^exams/(?P<pk>\d+)/edit/$', login_required(ExamUpdateView.as_view()), name='exams_edit'),
     url(r'^exams/(?P<pk>\d+)/delete/$', login_required(ExamDeleteView.as_view()), name='exams_delete'),
 
-    # Contact Admin Form
-    url(r'^contact-admin/$', permission_required('auth.add_user')(ContactView.as_view()), name='contact_admin'),
-
     url('', include('social_django.urls', namespace='social')),
-    url(r'^users/$', UserList.as_view(), name='users'),
-
-    url(r'^admin/', admin.site.urls),
 
     # User Related urls
     url(r'^accounts/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')), name='profile'),
     url(r'^accounts/profile/(?P<pk>\d+)/$', login_required(UserView.as_view()), name='user'),
     url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
     url(r'^accounts/', include('registration.backends.default.urls')),
+
+    url(r'^users/$', UserList.as_view(), name='users'),
+
+    # Contact Admin Form
+    url(r'^contact-admin/$', permission_required('auth.add_user')(ContactView.as_view()), name='contact_admin'),
+
+    url(r'^admin/', admin.site.urls),
+
 )
 
 

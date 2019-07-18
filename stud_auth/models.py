@@ -13,12 +13,12 @@ class StProfile(models.Model):
         verbose_name = _("User Profile")
 
     # extra user data
-    photo = models.ImageField(blank=True, verbose_name=_("Photo"), null=True)
-    mobile_phone = models.CharField(max_length=13, blank=True, verbose_name=_("Mobile Phone"), default='')
-    passport = models.CharField(max_length=8, blank=True, verbose_name=_("Passport number"))
+    photo = models.ImageField(blank=True, verbose_name="Photo", null=True)
+    mobile_phone = models.CharField(max_length=13, blank=True, verbose_name="Mobile Phone", default='')
+    passport = models.CharField(max_length=8, blank=True, verbose_name="Passport number")
     city = models.CharField(max_length=20, blank=True, verbose_name=_("City"))
     street = models.CharField(max_length=25, blank=True, verbose_name=_("Street"))
-    house = models.CharField(max_length=5, blank=True, verbose_name=_("House"))
+    house = models.CharField(max_length=5, blank=True, verbose_name="House")
 
     def __str__(self):
         return self.user.username
