@@ -30,7 +30,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "students/static")
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -38,6 +38,10 @@ SECURE_BROWSER_XSS_FILTER = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONSX_FRAME_OPTIONS = 'DENY'
+
+# admins
+ADMINS = (('Anastasia', 'perev4n@gmail.com'),)
+MANAGERS = (('Anastasia', 'perev4n@gmail.com'),)
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url

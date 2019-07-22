@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+
     # 3rd party
     'social_django',
     'django_extensions',
-    # local
+
+    # Local
     'stud_auth',
     'students',
     'modeltranslation',
@@ -238,6 +240,3 @@ SOCIAL_AUTH_FACEBOOK_SECRET = config('FACEBOOK_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET')
 
-# admins
-ADMINS = (('Anastasia', 'perev4n@gmail.com'),)
-MANAGERS = (('Anastasia', 'perev4n@gmail.com'),)
