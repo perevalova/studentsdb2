@@ -92,17 +92,17 @@
                         {% url "exams" as exams_url %}
                         {% url "contact_admin" as contact_admin_url %}
                         {% url "users" as users_url %}
-                        <li role="presentation" class="ajax-load" {% if request.path == home_url %}class="active"{% endif %}><a href="{% url 'home' %}">{% trans "Students" %}</a></li>
+                        <li role="presentation" class="ajax-load {% if request.path == home_url %}active{% endif %}"><a href="{% url 'home' %}">{% trans "Students" %}</a></li>
                         {% if user.is_authenticated %}
-                        <li role="presentation" class="ajax-load" {% if journal_url in request.path %}class="active"{% endif %}><a href="{% url 'journal' %}">{% trans "Journal" %}</a></li>
-                        <li role="presentation" class="ajax-load" {% if groups_url in request.path %}class="active"{% endif %}><a href="{% url 'groups' %}">{% trans "Groups" %}</a></li>
-                        <li role="presentation" class="ajax-load" {% if exams_url in request.path %}class="active"{% endif %}><a href="{% url 'exams' %}">{% trans "Exams" %}</a></li>
+                        <li role="presentation" class="ajax-load {% if journal_url in request.path %}active{% endif %}"><a href="{% url 'journal' %}">{% trans "Journal" %}</a></li>
+                        <li role="presentation" class="ajax-load {% if groups_url in request.path %}active{% endif %}"><a href="{% url 'groups' %}">{% trans "Groups" %}</a></li>
+                        <li role="presentation" class="ajax-load {% if exams_url in request.path %}active{% endif %}"><a href="{% url 'exams' %}">{% trans "Exams" %}</a></li>
                         {% endif %}
                         {% if perms.auth.add_user %}
-                        <li role="presentation" class="ajax-load" {% if contact_admin_url in request.path %}class="active"{% endif %}><a href="{% url 'contact_admin' %}">{% trans "Contacts" %}</a></li>
+                        <li role="presentation" class="ajax-load {% if contact_admin_url in request.path %}active{% endif %}"><a href="{% url 'contact_admin' %}">{% trans "Contacts" %}</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
-                        <li role="presentation" class="ajax-load" {% if users_url in request.path %}class="active"{% endif %}><a href="{% url 'users' %}">{% trans "Users" %}</a></li>
+                        <li role="presentation" class="ajax-load {% if users_url in request.path %}active{% endif %}"><a href="{% url 'users' %}">{% trans "Users" %}</a></li>
                         {% endif %}
                     </ul>
                 </div>
