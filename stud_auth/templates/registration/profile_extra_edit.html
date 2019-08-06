@@ -1,0 +1,22 @@
+{% extends "students/base.html" %}
+{% load i18n %}
+
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block meta_title %}{{ uuser.username }}{% endblock %}
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <form enctype="multipart/form-data">
+            <table>
+                {% csrf_token %}
+                {% crispy form %}
+            </table>
+        </form>
+        <br>
+    </div>
+
+{% endblock %}

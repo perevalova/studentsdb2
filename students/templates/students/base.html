@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% trans "Student Account Service" %}</title>
-    <meta name="description" value="{% trans "App to manage students database" %}">
+    <meta name="description" value="{% trans 'App to manage students database' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {#    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">#}
 
@@ -25,7 +25,7 @@
 
 <body>    
     <!-- Start Container -->
-    <div class="container">
+    <div class="container" id="main-content">
 
         <!-- Start Header -->
         <div class="row" id="header">
@@ -50,7 +50,7 @@
             {% endblock menu_groups %}
             <!-- User's toolbar for authenticated users -->
             <div class="col-xs-2" id="user-toolbar">
-                <a href="{% url 'profile' %}">{{ user.get_full_name|default:user.username }}</a> |
+                <a href="{% url 'profile' %}">{{ user.username }}</a> |
                 <a href="{% url 'auth_logout' %}">{% trans "Logout" %}</a>
             </div>
             {% else %}

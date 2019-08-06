@@ -36,9 +36,9 @@ def log_group_updated_added_event(sender, **kwargs):
 
     group = kwargs['instance']
     if kwargs['created']:
-        logger.info("Group added: %s %s %s (ID: %d)", group.title, group.leader.first_name, group.leader.last_name, group.id)
+        logger.info("Group added: %s (ID: %d)", group.title, group.id)
     else:
-        logger.info("Group updated: %s %s %s (ID: %d)", group.title, group.leader.first_name, group.leader.last_name, group.id)
+        logger.info("Group updated: %s %s %s (ID: %d)", group.title, group.id)
     print(sender)
 
 

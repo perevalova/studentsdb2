@@ -12,8 +12,7 @@
         {% if user.stprofile.photo %}
             <tr>
                 <td>{% trans 'Photo' %}:</td>
-                <td><img class="img-circle" height="70" width="70" src="{{ user.stprofile.url }}" alt="user_image">
-                </td>
+                <td><img class="img-circle" height="70" width="70" src="{{ user.stprofile.photo.url }}" alt="user_image"></td>
             </tr>
         {% else %}
             <tr>

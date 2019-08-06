@@ -3,10 +3,14 @@
 
 {% load static from staticfiles %}
 
-{% block meta_title %}{{ user.get_full_name|default:user.username }}{% endblock %}
-{% block title %}{{ user.get_full_name|default:user.username }}{% endblock %}
+{% block meta_title %}{{ user.username }}{% endblock %}
+{% block title %}{{ user.username }}{% endblock %}
 
 {% block content %}
+    <div class="col">
+        <a href="{% url 'profile_edit' %}">{% trans 'Edit profile' %}</a>
+    </div>
+
     <table class="table table-striped">
 
         {% if user.stprofile.photo %}
