@@ -137,7 +137,7 @@ function initJournal() {
             },
             'error': function(xhr, status, error){
                 errormessage.show();
-                alert(data.status);
+                // alert(data.status);
                 indicator.hide();
             },
             'success': function(data, status, xhr){
@@ -210,7 +210,7 @@ function initEditStudentForm(form, modal) {
     initDateFields();
 
     // close modal window on Cancel button click
-    form.find("input[name='cancel_button']").click(function(event){
+    form.find('input[name="cancel_button"]').click(function(event){
         modal.find('.modal-body').html(html.find('.alert'));
         setTimeout(function(){location.reload(true);}, 500);
         return false;
