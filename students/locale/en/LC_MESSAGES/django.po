@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-10 14:26+0000\n"
+"POT-Creation-Date: 2019-08-12 10:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,7 +84,6 @@ msgid "Birth date"
 msgstr ""
 
 #: students/models.py:12 students/templates/students/students_list.html:33
-#: students/templates/students/users.html:23
 msgid "Photo"
 msgstr ""
 
@@ -172,59 +171,59 @@ msgstr ""
 msgid "The results of the exams"
 msgstr ""
 
-#: students/templates/contact_admin/form.html:7
-#: students/templates/contact_admin/form.html:9
-msgid "Contact the Administrator"
-msgstr ""
-
-#: students/templates/errors/400.html:6
+#: students/templates/400.html:6
 msgid "Bad Request"
 msgstr ""
 
-#: students/templates/errors/400.html:8
+#: students/templates/400.html:8
 msgid "Your request resulted in an error."
 msgstr ""
 
-#: students/templates/errors/403.html:6
+#: students/templates/403.html:6
 msgid "Forbidden"
 msgstr ""
 
-#: students/templates/errors/403.html:8
+#: students/templates/403.html:8
 msgid "Access denied"
 msgstr ""
 
-#: students/templates/errors/404.html:6
+#: students/templates/404.html:6
 msgid "Page not found"
 msgstr ""
 
-#: students/templates/errors/404.html:8
+#: students/templates/404.html:8
 msgid "Sorry, we haven't found what you're looking for."
 msgstr ""
 
-#: students/templates/errors/404.html:18
+#: students/templates/404.html:18
 msgid "GO BACK HOME"
 msgstr ""
 
-#: students/templates/errors/500.html:6
+#: students/templates/500.html:6
 msgid "Oops, error on the server"
 msgstr ""
 
-#: students/templates/errors/500.html:8
+#: students/templates/500.html:8
 msgid "Oops, something went wrong :-("
 msgstr ""
 
-#: students/templates/errors/500.html:13
+#: students/templates/500.html:13
 msgid "Sorry, it's me, not you"
 msgstr ""
 
-#: students/templates/errors/500.html:14
+#: students/templates/500.html:14
 msgid "Internal Error"
 msgstr ""
 
-#: students/templates/errors/500.html:15
+#: students/templates/500.html:15
 msgid ""
 "We recorded our mistake and will fix it soon. Please, get back to us a bit "
 "later."
+msgstr ""
+
+#: students/templates/contact_admin/form.html:7
+#: students/templates/contact_admin/form.html:9
+msgid "Contact the Administrator"
 msgstr ""
 
 #: students/templates/students/base.html:9
@@ -280,8 +279,6 @@ msgid "Contacts"
 msgstr ""
 
 #: students/templates/students/base.html:105
-#: students/templates/students/users.html:6
-#: students/templates/students/users.html:24
 msgid "Users"
 msgstr ""
 
@@ -452,10 +449,6 @@ msgstr ""
 
 #: students/templates/students/students_list.html:53
 msgid "Ticket №"
-msgstr ""
-
-#: students/templates/students/users.html:8
-msgid "Base of Users"
 msgstr ""
 
 #: students/views/contact_admin.py:30

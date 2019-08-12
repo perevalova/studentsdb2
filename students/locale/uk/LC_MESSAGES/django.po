@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-10 14:26+0000\n"
+"POT-Creation-Date: 2019-08-12 10:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,6 @@ msgid "Birth date"
 msgstr "Дата народження"
 
 #: students/models.py:12 students/templates/students/students_list.html:33
-#: students/templates/students/users.html:23
 msgid "Photo"
 msgstr "Фото"
 
@@ -174,60 +173,62 @@ msgstr "Результат іспиту"
 msgid "The results of the exams"
 msgstr "Результати іспитів"
 
+#: students/templates/400.html:6
+msgid "Bad Request"
+msgstr "Хибний Запит"
+
+#: students/templates/400.html:8
+msgid "Your request resulted in an error."
+msgstr "Ваш запит призвів до помилки."
+
+#: students/templates/403.html:6
+msgid "Forbidden"
+msgstr "Заборонено"
+
+#: students/templates/403.html:8
+msgid "Access denied"
+msgstr "Доступ заборонено"
+
+#: students/templates/404.html:6
+msgid "Page not found"
+msgstr "Сторінка не знайдена"
+
+#: students/templates/404.html:8
+msgid "Sorry, we haven't found what you're looking for."
+msgstr "Вибачте, ми не знайшли, що Ви шукали"
+
+#: students/templates/404.html:18
+msgid "GO BACK HOME"
+msgstr "ПОВЕРНУТИСЯ ДОДОМУ"
+
+#: students/templates/500.html:6
+msgid "Oops, error on the server"
+msgstr "Упс, помилка на сервері"
+
+#: students/templates/500.html:8
+msgid "Oops, something went wrong :-("
+msgstr "Упс, щось пішло не так :-("
+
+#: students/templates/500.html:13
+msgid "Sorry, it's me, not you"
+msgstr "Вибачте, це я, не Ви"
+
+#: students/templates/500.html:14
+msgid "Internal Error"
+msgstr "Внутрішня Помилка"
+
+#: students/templates/500.html:15
+msgid ""
+"We recorded our mistake and will fix it soon. Please, get back to us a bit "
+"later."
+msgstr ""
+"Ми записали свою помилку і скоро це виправимо. Будь ласка, поверніться до "
+"нас трохи пізніше."
+
 #: students/templates/contact_admin/form.html:7
 #: students/templates/contact_admin/form.html:9
 msgid "Contact the Administrator"
 msgstr "Зв'язок з Адміністратором"
-
-#: students/templates/errors/400.html:6
-msgid "Bad Request"
-msgstr "Хибний Запит"
-
-#: students/templates/errors/400.html:8
-msgid "Your request resulted in an error."
-msgstr "Ваш запит призвів до помилки."
-
-#: students/templates/errors/403.html:6
-msgid "Forbidden"
-msgstr "Заборонено"
-
-#: students/templates/errors/403.html:8
-msgid "Access denied"
-msgstr "Доступ заборонено"
-
-#: students/templates/errors/404.html:6
-msgid "Page not found"
-msgstr "Сторінка не знайдена"
-
-#: students/templates/errors/404.html:8
-msgid "Sorry, we haven't found what you're looking for."
-msgstr "Вибачте, ми не знайшли, що Ви шукали"
-
-#: students/templates/errors/404.html:18
-msgid "GO BACK HOME"
-msgstr "ПОВЕРНУТИСЯ ДОДОМУ"
-
-#: students/templates/errors/500.html:6
-msgid "Oops, error on the server"
-msgstr "Упс, помилка на сервері"
-
-#: students/templates/errors/500.html:8
-msgid "Oops, something went wrong :-("
-msgstr "Упс, щось пішло не так :-("
-
-#: students/templates/errors/500.html:13
-msgid "Sorry, it's me, not you"
-msgstr "Вибачте, це я, не Ви"
-
-#: students/templates/errors/500.html:14
-msgid "Internal Error"
-msgstr "Внутрішня Помилка"
-
-#: students/templates/errors/500.html:15
-msgid ""
-"We recorded our mistake and will fix it soon. Please, get back to us a bit "
-"later."
-msgstr "Ми записали свою помилку і скоро це виправимо. Будь ласка, поверніться до нас трохи пізніше."
 
 #: students/templates/students/base.html:9
 #: students/templates/students/base.html:35
@@ -282,8 +283,6 @@ msgid "Contacts"
 msgstr "Контакти"
 
 #: students/templates/students/base.html:105
-#: students/templates/students/users.html:6
-#: students/templates/students/users.html:24
 msgid "Users"
 msgstr "Користувачі"
 
@@ -459,10 +458,6 @@ msgstr "Ім'я"
 msgid "Ticket №"
 msgstr "№ Білету"
 
-#: students/templates/students/users.html:8
-msgid "Base of Users"
-msgstr "База Користувачів"
-
 #: students/views/contact_admin.py:30
 msgid "Message sended successfuly!"
 msgstr "Повідомлення надіслано успішно!"
@@ -530,6 +525,9 @@ msgstr "Студента оновлено успішно!"
 #: students/views/students.py:86
 msgid "Student deleted successfully!"
 msgstr "Студента видалено успішно!"
+
+#~ msgid "Base of Users"
+#~ msgstr "База Користувачів"
 
 #, fuzzy
 #~| msgid "Student"

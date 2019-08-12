@@ -35,7 +35,7 @@ class UserEditView(UpdateView):
             messages.warning(request, _('User editing has been canceled!'))
             return HttpResponseRedirect(reverse('profile'))
         else:
-            messages.success(request, _('User profile was editing successfully!'))
+            messages.success(request, _('User profile edited successfully!'))
             return super(UserEditView, self).post(request, *args, **kwargs)
 
 #
@@ -91,7 +91,7 @@ class UserExtraEditView(UpdateView):
             messages.warning(request, _('User editing has been canceled!'))
             return HttpResponseRedirect(reverse('profile'))
         else:
-            messages.success(request, _('User profile was editing successfully!'))
+            messages.success(request, _('User profile edited successfully!'))
             return super(UserExtraEditView, self).post(request, *args, **kwargs)
 
 
