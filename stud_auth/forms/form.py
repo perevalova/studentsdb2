@@ -25,7 +25,7 @@ class UserEditForm(ModelForm):
 
         # form tag attributes
         self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'post'
+        self.helper.form_method = 'POST'
         self.helper.form_action = reverse('profile_edit')
 
         # twitter bootstrap styles
@@ -57,7 +57,7 @@ class StProfileEditForm(ModelForm):
 
         # form tag attributes
         self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'post'
+        self.helper.form_method = 'POST'
         self.helper.form_action = reverse('profile_extra_edit')
 
         # twitter bootstrap styles

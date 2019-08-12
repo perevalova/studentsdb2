@@ -4,19 +4,20 @@
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block meta_title %}{{ uuser.username }}{% endblock %}
+{% block meta_title %}{{ user.username }}{% endblock %}
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block content %}
 
     <div class="container">
-        <form enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="form-group">
             <table>
                 {% csrf_token %}
                 {% crispy form %}
             </table>
+            </div>
         </form>
-        <br>
     </div>
 
 {% endblock %}

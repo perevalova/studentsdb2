@@ -13,13 +13,20 @@
     </div>
 
     <div class="container">
-        <form enctype="multipart/form-data">
-            <table>
-                {% csrf_token %}
-                {% crispy form %}
-            </table>
+        <form method="post" enctype="multipart/form-data"
+              class="form-horizontal">
+            <div class="form-group">
+                <table>
+                    {% csrf_token %}
+                    {% crispy form %}
+                </table>
+            </div>
         </form>
-        <br>
+        <div class="col">
+            <a class="btn btn-default" id="change-password"
+               href="{% url 'auth_password_change' %}"
+               role="button">{% trans 'Change password' %}</a>
+        </div>
     </div>
 
 {% endblock %}

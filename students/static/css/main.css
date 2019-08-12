@@ -55,11 +55,19 @@ input {
 .exam-form-width {
 	width: 300px;
 }
+
 /*User's Toolbar*/
 #user-toolbar {
     margin-top: 30px;
     text-align: right;
 }
+
+/* Edit profile */
+#change-password {
+    margin-left: 185px;
+    margin-bottom: 10px;
+}
+
 /* Journal Table Styles */
 td.day-box,
 th.day-header {

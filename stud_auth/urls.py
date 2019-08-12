@@ -9,7 +9,6 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^accounts/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')), name='profile'),
     url(r'^accounts/profile/(?P<pk>\d+)/$', login_required(UserView.as_view()), name='user'),
-    # url(r'^accounts/profile/edit/$', login_required(UserRegistrationView.as_view()), name='profile_edit'),
     url(r'^accounts/profile/edit/$', login_required(UserEditView.as_view()), name='profile_edit'),
     url(r'^accounts/profile/edit/extra$', login_required(UserExtraEditView.as_view()), name='profile_extra_edit'),
     url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
