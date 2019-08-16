@@ -28,13 +28,13 @@ class JournalView(TemplateView):
             today = datetime.today()
             month = date(today.year, today.month, 1)
 
-        # current_group = get_current_group(self.request)
-        #
-        # if current_group:
-        #     students = MonthJournal.objects.filter(student=current_group)
-        # else:
-        #     # otherwise show all students
-        #     students = MonthJournal.objects.all()
+        current_group = get_current_group(self.request)
+
+        if current_group:
+            students = MonthJournal.objects.filter(student__student_group=current_group)
+        else:
+            # otherwise show all students
+            students = MonthJournal.objects.all()
 
         # calculate current, previous and next month details;
         # we need this for month navigation element in template

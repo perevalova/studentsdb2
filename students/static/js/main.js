@@ -101,16 +101,16 @@ function initGroupSelector() {
         }
 
         // ajax update info table
-        groupselector.hide('100', loadContent); // hide content
+        groupselector.fadeOut(400, loadContent); // hide content
         function loadContent() {
             groupselector.load(window.location.href + ' .table', '', showNewContent);
         }
         function showNewContent() {
-            groupselector.show('speed'); // show new content
+            groupselector.fadeIn(400); // show new content
         }
 
         // and reload a page
-        //location.reload(true);
+        location.reload(true);
 
         return true;
     });
