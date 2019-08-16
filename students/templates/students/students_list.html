@@ -11,7 +11,7 @@
 
     <!-- Add Student Button -->
     {% if user.is_authenticated %}
-        <a class="btn btn-primary student-add-form-link" href="{% url 'students_add' %}">{% trans "Add Student" %}</a>
+        <a class="btn btn-primary add-form-link" href="{% url 'students_add' %}">{% trans "Add Student" %}</a>
     {% endif %}
 
 <!-- Progress spinner -->
@@ -73,14 +73,14 @@
             {% endif %}
             <td>
                 {% if user.is_authenticated %}
-                    <a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">
+                    <a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="edit-form-link">
                 {% endif %}
                 {{ student.last_name }}
                 </a>
             </td>
             <td>
                 {% if user.is_authenticated %}
-                    <a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">
+                    <a title="{% trans 'Edit' %}" href="{% url 'students_edit' student.id %}" class="edit-form-link">
                 {% endif %}
                 {{ student.first_name }}
                 </a>
@@ -95,7 +95,7 @@
                             <a role="menuitem" tabindex="-1" href="{% url 'journal' student.id %}">{% trans "Journal" %}</a>
                         </li>
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}" class="student-edit-form-link">{% trans "Edit" %}</a>
+                            <a role="menuitem" tabindex="-1" href="{% url 'students_edit' student.id %}" class="edit-form-link">{% trans "Edit" %}</a>
                         <li role="presentation">
                             <a role="menuitem" tabindex="-1" href="{% url 'students_delete' student.id %}">{% trans "Delete" %}</a>
                         </li>

@@ -25,7 +25,7 @@ class StudentAddForm(ModelForm):
 
         # form tag attributes
         self.helper.form_class = 'form-horizontal'
-        self.helper.form_method = 'post'
+        self.helper.form_method = 'POST'
         self.helper.form_action = reverse('students_add')
 
         # twitter bootstrap styles

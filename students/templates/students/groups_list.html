@@ -10,7 +10,7 @@
 {% block content %}
 
     <!-- Add Group Button -->
-    <a class="btn btn-primary group-add-form-link" href="{% url 'groups_add' %}">{% trans "Add Group" %}</a>
+    <a class="btn btn-primary add-form-link" href="{% url 'groups_add' %}">{% trans "Add Group" %}</a>
 
     <!-- Progress spinner -->
     {% include "students/progress_spinner.html" %}
@@ -54,9 +54,9 @@
                 <tr>
                     <td>{{ forloop.counter }}</td>
                     <td><a title="{% trans 'Edit' %}" href="{% url 'groups_edit' group.id %}"
-                           class="group-edit-form-link">{{ group.title }}</a></td>
+                           class="edit-form-link">{{ group.title }}</a></td>
                     <td><a title="{% trans 'Edit' %}" href="{% url 'groups_edit' group.id %}"
-                           class="group-edit-form-link">{{ group.leader }}</a></td>
+                           class="edit-form-link">{{ group.leader }}</a></td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -67,7 +67,7 @@
                                 </li>
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1" href="{% url 'groups_edit' group.id %}"
-                                       class="group-edit-form-link">{% trans "Edit" %}</a>
+                                       class="edit-form-link">{% trans "Edit" %}</a>
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1"
                                        href="{% url 'groups_delete' group.id %}">{% trans "Delete" %}</a>

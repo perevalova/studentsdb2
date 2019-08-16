@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
     url(r'^accounts/', include('registration.backends.default.urls')),
 
-    url(r'^users/$', UserList.as_view(), name='users'),
+    url(r'^users/$', login_required(UserList.as_view()), name='users'),
 ]

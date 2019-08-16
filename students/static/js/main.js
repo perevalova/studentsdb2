@@ -2,13 +2,14 @@ function initTabLoad() {
     $('.ajax-load').click(function(event) {
         var tab = $(this);
         var toLoad = tab.children('a').attr('href');
-        var content = $('#content-column');
+        var content = $('#content-columns');
 
-        content.hide('100', loadContent); // hide content
+        content.fadeOut(400, loadContent); // hide content
         history.pushState(null, '', toLoad); //change URL
         function loadContent() {
             content.load(toLoad + ' #content-column', '');
-            content.show('speed'); // show new content
+            // content.show('speed'); // show new content
+            content.fadeIn(); // show new content
         }
         // function showNewContent() {
         //     content.show('speed'); // show new content
@@ -66,11 +67,11 @@ function initPagination() {
         history.pushState(null, '', toLoad); //change URL
 
         // update table
-        pageselect.hide('100', loadContent); // hide content
+        pageselect.fadeOut(400, loadContent); // hide content
         function loadContent() {
             pageselect.load(window.location.href + ' .table', '');
             pageselect.append(window.location.href + ' .table', '');
-            pageselect.show('speed');
+            pageselect.fadeIn();
         }
 
         if ($('.pagination li').hasClass('active')) {
@@ -156,15 +157,17 @@ function initDateFields() {
     });
 }
 
-function initEditStudentPage() {
+$(function () {
+// function initEditPage() {
     var indicator = $('#progress-spinner');
 
-    $('a.student-edit-form-link').click(function(event){
+    $('#content-column').on('click', '.edit-form-link', function(event){
         var link = $(this);
+        var url = $('a.edit-form-link');
         $.ajax({
-            'url': link.attr('href'),
+            'url': url.attr('href'),
             'dataType': 'html',
-            'type': 'get',
+            'type': 'GET',
             'success': function(data, status, xhr){
                 // check if we got successfull response from the server
                 if (status !== 'success') {
@@ -178,7 +181,7 @@ function initEditStudentPage() {
                 modal.find('.modal-body').html(form);
 
                 // init our edit form
-                initEditStudentForm(form, modal);
+                initEditForm(form, modal);
 
                 // setup and show modal window finally
                 modal.modal({
@@ -200,17 +203,17 @@ function initEditStudentPage() {
                 indicator.hide();
             }
         });
-        
+
         return false;
     });
-}
+});
 
-function initEditStudentForm(form, modal) {
+function initEditForm(form, modal) {
     // attach datepicker
     initDateFields();
 
     // close modal window on Cancel button click
-    form.find('input[name="cancel_button"]').click(function(event){
+    form.find('input[name="cancel_button"]').on('click', function(event){
         modal.find('.modal-body').html(html.find('.alert'));
         setTimeout(function(){location.reload(true);}, 500);
         return false;
@@ -234,7 +237,7 @@ function initEditStudentForm(form, modal) {
                 modal.find('.modal-body').append(newform);
 
                 // initialize form fields and buttons
-                initEditStudentForm(newform, modal);
+                initEditForm(newform, modal);
             } else {
                 // if no form, it means success and we need to reload page to get updated students list;
                 // reload after 2 seconds, so that user can read success message
@@ -242,8 +245,8 @@ function initEditStudentForm(form, modal) {
                 //html.load('home');
                 setTimeout(function(){location.load('home .table');}, 500);
             }
+             setTimeout(function(){location.load('home .table');}, 500);
 
-            // html.load("")
         },
         'beforeSand': function () {
             html.find('input, textarea').attr({readonly, disabled});
@@ -252,15 +255,17 @@ function initEditStudentForm(form, modal) {
     });
 }
 
-function initAddStudentPage() {
+$(function () {
+// function initAddPage() {
     var indicator = $('#progress-spinner');
 
-    $('a.student-add-form-link').click(function(event){
+    $('#content-column').on('click', '.add-form-link', function(event){
         var link = $(this);
+        var url = $('a.add-form-link');
         $.ajax({
-            'url': link.attr('href'),
+            'url': url.attr('href'),
             'dataType': 'html',
-            'type': 'get',
+            'type': 'GET',
             'success': function(data, status, xhr){
                 // check if we got successfull response from the server
                 if (status !== 'success') {
@@ -274,7 +279,7 @@ function initAddStudentPage() {
                 modal.find('.modal-body').html(form);
 
                 // init our edit form
-                initAddStudentForm(form, modal);
+                initAddForm(form, modal);
 
                 // setup and show modal window finally
                 modal.modal({
@@ -299,14 +304,14 @@ function initAddStudentPage() {
 
         return false;
     });
-}
+});
 
-function initAddStudentForm(form, modal) {
+function initAddForm(form, modal) {
     // attach datepicker
     initDateFields();
 
     // close modal window on Cancel button click
-    form.find('input[name="cancel_button"]').click(function(event){
+    form.find('input[name="cancel_button"]').on('click', function(event){
         modal.find('.modal-body').html(html.find('.alert'));
         setTimeout(function(){location.reload(true);}, 500);
         return false;
@@ -330,7 +335,7 @@ function initAddStudentForm(form, modal) {
                 modal.find('.modal-body').append(newform);
 
                 // initialize form fields and buttons
-                initAddStudentForm(newform, modal);
+                initAddForm(newform, modal);
             } else {
                 // if no form, it means success and we need to reload page to get updated students list;
                 // reload after 2 seconds, so that user can read success message
@@ -338,380 +343,8 @@ function initAddStudentForm(form, modal) {
                 //html.load('home');
                 setTimeout(function(){location.load('home .table');}, 500);
             }
+             setTimeout(function(){location.load('home .table');}, 500);
 
-            // html.load("")
-        },
-        'beforeSand': function () {
-            html.find('input, textarea').attr({readonly, disabled});
-            modal.find('.modal-body').html('<div class="alert alert-warning" role="alert">Відправка форми...</div>');
-        }
-    });
-}
-
-function initEditGroupPage() {
-    var indicator = $('#progress-spinner');
-
-    $('a.group-add-form-link').click(function(event){
-        var link = $(this);
-        $.ajax({
-            'url': link.attr('href'),
-            'dataType': 'html',
-            'type': 'get',
-            'success': function(data, status, xhr){
-                // check if we got successfull response from the server
-                if (status !== 'success') {
-                    alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                    return false;
-                }
-
-                // update modal window with arrived content from the server
-                var modal = $('#myModal'), html = $(data), form = html.find('#content-column form');
-                modal.find('.modal-title').html(html.find('#content-column h2').text());
-                modal.find('.modal-body').html(form);
-
-                // init our edit form
-                initEditGroupForm(form, modal);
-
-                // setup and show modal window finally
-                modal.modal({
-                    'keyboard': false,
-                    'backdrop': false,
-                    'show': true
-                });
-                indicator.hide();
-            },
-            'beforeSend': function(xhr, settings){
-                indicator.show();
-                link.click(function(event) {
-	                return false;
-                })
-            },
-            'error': function(){
-                alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                return false;
-                indicator.hide();
-            }
-        });
-
-        return false;
-    });
-}
-
-function initEditGroupForm(form, modal) {
-    // close modal window on Cancel button click
-    form.find('input[name="cancel_button"]').click(function(event){
-        modal.find('.modal-body').html(html.find('.alert'));
-        setTimeout(function(){location.reload(true);}, 500);
-        return false;
-    });
-
-    // make form work in AJAX mode
-    form.ajaxForm({
-        'dataType': 'html',
-        'error': function() {
-            alert(gettext('There was an error on the server. Please, try again a bit later.'));
-            return false;
-        },
-        'success': function(data, status, xhr) {
-            var html = $(data), newform = html.find('#content-column form');
-
-            // copy alert to modal window
-            modal.find('.modal-body').html(html.find('.alert'));
-
-            // copy form to modal if we found it in server response
-            if (newform.lenght > 0) {
-                modal.find('.modal-body').append(newform);
-
-                // initialize form fields and buttons
-                initEditGroupForm(newform, modal);
-            } else {
-                // if no form, it means success and we need to reload page to get updated students list;
-                // reload after 2 seconds, so that user can read success message
-                // TODO: ajax update info
-                setTimeout(function(){location.reload(true);}, 500);
-            }
-        },
-        'beforeSand': function () {
-            html.find('input, textarea').attr({readonly, disabled});
-            modal.find('.modal-body').html('<div class="alert alert-warning" role="alert">Відправка форми...</div>');
-        }
-    });
-}
-
-function initAddGroupPage() {
-    var indicator = $('#progress-spinner');
-
-    $('a.group-add-form-link').click(function(event){
-        var link = $(this);
-        $.ajax({
-            'url': link.attr('href'),
-            'dataType': 'html',
-            'type': 'get',
-            'success': function(data, status, xhr){
-                // check if we got successfull response from the server
-                if (status !== 'success') {
-                    alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                    return false;
-                }
-
-                // update modal window with arrived content from the server
-                var modal = $('#myModal'), html = $(data), form = html.find('#content-column form');
-                modal.find('.modal-title').html(html.find('#content-column h2').text());
-                modal.find('.modal-body').html(form);
-
-                // init our edit form
-                initAddGroupForm(form, modal);
-
-                // setup and show modal window finally
-                modal.modal({
-                    'keyboard': false,
-                    'backdrop': false,
-                    'show': true
-                });
-                indicator.hide();
-            },
-            'beforeSend': function(xhr, settings){
-                indicator.show();
-                link.click(function(event) {
-	                return false;
-                })
-            },
-            'error': function(){
-                alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                return false;
-                indicator.hide();
-            }
-        });
-
-        return false;
-    });
-}
-
-function initAddGroupForm(form, modal) {
-    // attach datepicker
-    initDateFields();
-
-    // close modal window on Cancel button click
-    form.find('input[name="cancel_button"]').click(function(event){
-        modal.find('.modal-body').html(html.find('.alert'));
-        setTimeout(function(){location.reload(true);}, 500);
-        return false;
-    });
-
-    // make form work in AJAX mode
-    form.ajaxForm({
-        'dataType': 'html',
-        'error': function() {
-            alert(gettext('There was an error on the server. Please, try again a bit later.'));
-            return false;
-        },
-        'success': function(data, status, xhr) {
-            var html = $(data), newform = html.find('#content-column form');
-
-            // copy alert to modal window
-            modal.find('.modal-body').html(html.find('.alert'));
-
-            // copy form to modal if we found it in server response
-            if (newform.lenght > 0) {
-                modal.find('.modal-body').append(newform);
-
-                // initialize form fields and buttons
-                initAddGroupForm(newform, modal);
-            } else {
-                // if no form, it means success and we need to reload page to get updated students list;
-                // reload after 2 seconds, so that user can read success message
-                // TODO: ajax update info
-                //html.load('home');
-                setTimeout(function(){location.load('home .table');}, 500);
-            }
-
-            // html.load("")
-        },
-        'beforeSand': function () {
-            html.find('input, textarea').attr({readonly, disabled});
-            modal.find('.modal-body').html('<div class="alert alert-warning" role="alert">Відправка форми...</div>');
-        }
-    });
-}
-
-function initEditExamPage() {
-    var indicator = $('#progress-spinner');
-
-    $('a.exam-edit-form-link').click(function(event){
-        var link = $(this);
-        $.ajax({
-            'url': link.attr('href'),
-            'dataType': 'html',
-            'type': 'get',
-            'success': function(data, status, xhr){
-                // check if we got successfull response from the server
-                if (status !== 'success') {
-                    alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                    return false;
-                }
-
-                // update modal window with arrived content from the server
-                var modal = $('#myModal'), html = $(data), form = html.find('#content-column form');
-                modal.find('.modal-title').html(html.find('#content-column h2').text());
-                modal.find('.modal-body').html(form);
-
-                // init our edit form
-                initEditGroupForm(form, modal);
-
-                // setup and show modal window finally
-                modal.modal({
-                    'keyboard': false,
-                    'backdrop': false,
-                    'show': true
-                });
-                indicator.hide();
-            },
-            'beforeSend': function(xhr, settings){
-                indicator.show();
-                link.click(function(event) {
-	                return false;
-                })
-            },
-            'error': function(){
-                alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                return false;
-                indicator.hide();
-            }
-        });
-
-        return false;
-    });
-}
-
-function initEditExamForm(form, modal) {
-    // close modal window on Cancel button click
-    form.find('input[name="cancel_button"]').click(function(event){
-        modal.find('.modal-body').html(html.find('.alert'));
-        setTimeout(function(){location.reload(true);}, 500);
-        return false;
-    });
-
-    // make form work in AJAX mode
-    form.ajaxForm({
-        'dataType': 'html',
-        'error': function() {
-            alert(gettext('There was an error on the server. Please, try again a bit later.'));
-            return false;
-        },
-        'success': function(data, status, xhr) {
-            var html = $(data), newform = html.find('#content-column form');
-
-            // copy alert to modal window
-            modal.find('.modal-body').html(html.find('.alert'));
-
-            // copy form to modal if we found it in server response
-            if (newform.lenght > 0) {
-                modal.find('.modal-body').append(newform);
-
-                // initialize form fields and buttons
-                initEditExamForm(newform, modal);
-            } else {
-                // if no form, it means success and we need to reload page to get updated students list;
-                // reload after 2 seconds, so that user can read success message
-                // TODO: ajax update info
-                setTimeout(function(){location.reload(true);}, 500);
-            }
-        },
-        'beforeSand': function () {
-            html.find('input, textarea').attr({readonly, disabled});
-            modal.find('.modal-body').html('<div class="alert alert-warning" role="alert">Відправка форми...</div>');
-        }
-    });
-}
-
-function initAddExamPage() {
-    var indicator = $('#progress-spinner');
-
-    $('a.exam-add-form-link').click(function(event){
-        var link = $(this);
-        $.ajax({
-            'url': link.attr('href'),
-            'dataType': 'html',
-            'type': 'get',
-            'success': function(data, status, xhr){
-                // check if we got successfull response from the server
-                if (status !== 'success') {
-                    alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                    return false;
-                }
-
-                // update modal window with arrived content from the server
-                var modal = $('#myModal'), html = $(data), form = html.find('#content-column form');
-                modal.find('.modal-title').html(html.find('#content-column h2').text());
-                modal.find('.modal-body').html(form);
-
-                // init our edit form
-                initAddExamForm(form, modal);
-
-                // setup and show modal window finally
-                modal.modal({
-                    'keyboard': false,
-                    'backdrop': false,
-                    'show': true
-                });
-                indicator.hide();
-            },
-            'beforeSend': function(xhr, settings){
-                indicator.show();
-                link.click(function(event) {
-	                return false;
-                })
-            },
-            'error': function(){
-                alert(gettext('There was an error on the server. Please, try again a bit later.'));
-                return false;
-                indicator.hide();
-            }
-        });
-
-        return false;
-    });
-}
-
-function initAddExamForm(form, modal) {
-    // attach datepicker
-    initDateFields();
-
-    // close modal window on Cancel button click
-    form.find('input[name="cancel_button"]').click(function(event){
-        modal.find('.modal-body').html(html.find('.alert'));
-        setTimeout(function(){location.reload(true);}, 500);
-        return false;
-    });
-
-    // make form work in AJAX mode
-    form.ajaxForm({
-        'dataType': 'html',
-        'error': function() {
-            alert(gettext('There was an error on the server. Please, try again a bit later.'));
-            return false;
-        },
-        'success': function(data, status, xhr) {
-            var html = $(data), newform = html.find('#content-column form');
-
-            // copy alert to modal window
-            modal.find('.modal-body').html(html.find('.alert'));
-
-            // copy form to modal if we found it in server response
-            if (newform.lenght > 0) {
-                modal.find('.modal-body').append(newform);
-
-                // initialize form fields and buttons
-                initAddExamForm(newform, modal);
-            } else {
-                // if no form, it means success and we need to reload page to get updated students list;
-                // reload after 2 seconds, so that user can read success message
-                // TODO: ajax update info
-                //html.load('home');
-                setTimeout(function(){location.load('home .table');}, 500);
-            }
-
-            // html.load("")
         },
         'beforeSand': function () {
             html.find('input, textarea').attr({readonly, disabled});
@@ -728,17 +361,8 @@ $(document).ready(function(){
     initJournal();
     initGroupSelector();
     initDateFields();
-    initEditStudentPage();
-    initEditStudentForm();
-    initAddStudentPage();
-    initAddStudentForm();
-    initEditGroupPage();
-    initEditGroupForm();
-    initAddGroupPage();
-    initAddGroupForm();
-    initEditExamPage();
-    initEditExamForm();
-    initAddExamPage();
-    initAddExamForm();
+    // initEditPage();
+    initEditForm();
+    // initAddPage();
+    initAddForm();
 });
-//
