@@ -99,7 +99,6 @@ class JournalView(TemplateView):
         # with paginated students
         return context
 
-    @login_required
     def post(self, request, *args, **kwargs):
         data = request.POST
 
@@ -117,5 +116,4 @@ class JournalView(TemplateView):
         setattr(journal, 'present_day%d' % current_date.day, present)
         journal.save()
 
-        # return success status
         return JsonResponse({'status': 'success'})
