@@ -1,7 +1,8 @@
 # Students
 Student Account Service
+https://studaccservice.herokuapp.com
 
-for student accounting. It's based on the fact that the user has to register (in this way he gets access to add, edit and delete students, groups, exams, and may make changes to the journal). It is also possible to send a letter to the administrator. Exist student filtration. It's possible to view the site in three languages. Authorization via social networks.
+For student accounting. It's based on the fact that the user has to register (in this way he gets access to add, edit and delete students, groups, exams, and may make changes to the journal). It is also possible to send a letter to the administrator. Exist student filtration. It's possible to view the site in three languages. Authorization via social networks.
 
 ## Installation
 
