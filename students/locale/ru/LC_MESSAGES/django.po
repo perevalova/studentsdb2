@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 10:54+0000\n"
+"POT-Creation-Date: 2019-08-19 16:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,9 +44,7 @@ msgstr "Заголовок письма"
 msgid "Text message"
 msgstr "Текст сообщения"
 
-#: students/forms/exams.py:40 students/forms/exams.py:76
-#: students/forms/groups.py:39 students/forms/groups.py:71
-#: students/forms/students.py:74
+#: students/forms/exams.py:40 students/forms/groups.py:39
 msgid "Add"
 msgstr "Добавить"
 
@@ -56,13 +54,14 @@ msgstr "Добавить"
 msgid "Cancel"
 msgstr "Отменить"
 
+#: students/forms/exams.py:76 students/forms/groups.py:71
+#: students/forms/students.py:40 students/forms/students.py:74
+msgid "Save"
+msgstr "Сохранить"
+
 #: students/forms/groups.py:82 students/forms/students.py:88
 msgid "Student is a leader of different group."
 msgstr "Студент является старостой другой группы."
-
-#: students/forms/students.py:40
-msgid "Save"
-msgstr "Сохранить"
 
 #: students/management/commands/stcount.py:10
 msgid ""
@@ -506,7 +505,14 @@ msgstr "Группу успешно добавлено!"
 msgid "Group saved successfully!"
 msgstr "Группу успешно сохранено!"
 
-#: students/views/groups.py:88
+#: students/views/groups.py:91
+msgid ""
+"Deleting a group that has students is forbidden! Remove all students first."
+msgstr ""
+"Удаление группы, в которой есть студенты, запрещено! Сначала удалите всех "
+"студентов."
+
+#: students/views/groups.py:94
 msgid "Group deleted successfully!"
 msgstr "Группу успешно удалено!"
 

@@ -73,7 +73,7 @@ class ExamUpdateForm(ModelForm):
         self.helper.layout = Layout(
             'subject', 'teacher_first_name', 'teacher_last_name', 'teacher_middle_name', 'date', 'exam_group',
             FormActions(
-                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('add_button', _('Save'), css_class="btn btn-primary"),
                 Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )

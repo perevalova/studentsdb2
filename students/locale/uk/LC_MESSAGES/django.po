@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 10:54+0000\n"
+"POT-Creation-Date: 2019-08-19 16:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,9 +43,7 @@ msgstr "Заголовок листа"
 msgid "Text message"
 msgstr "Текст повідомлення"
 
-#: students/forms/exams.py:40 students/forms/exams.py:76
-#: students/forms/groups.py:39 students/forms/groups.py:71
-#: students/forms/students.py:74
+#: students/forms/exams.py:40 students/forms/groups.py:39
 msgid "Add"
 msgstr "Додати"
 
@@ -55,19 +53,22 @@ msgstr "Додати"
 msgid "Cancel"
 msgstr "Скасувати"
 
+#: students/forms/exams.py:76 students/forms/groups.py:71
+#: students/forms/students.py:40 students/forms/students.py:74
+msgid "Save"
+msgstr "Зберегти"
+
 #: students/forms/groups.py:82 students/forms/students.py:88
 msgid "Student is a leader of different group."
 msgstr "Студент є старостою іншої групи."
-
-#: students/forms/students.py:40
-msgid "Save"
-msgstr "Зберегти"
 
 #: students/management/commands/stcount.py:10
 msgid ""
 "Prints to console number of students, groups and users related objects in a "
 "database."
 msgstr ""
+"Друкує в консолі кількість об'єктів, пов'язаних зі студентами, групами та "
+"користувачами, у базу даних."
 
 #: students/models.py:8 students/models.py:67
 msgid "First name"
@@ -502,7 +503,14 @@ msgstr "Групу додано успішно!"
 msgid "Group saved successfully!"
 msgstr "Групу додано успішно!"
 
-#: students/views/groups.py:88
+#: students/views/groups.py:91
+msgid ""
+"Deleting a group that has students is forbidden! Remove all students first."
+msgstr ""
+"Видаляти групу, яка має студентів, заборонено! Спочатку видаліть усіх "
+"студентів."
+
+#: students/views/groups.py:94
 msgid "Group deleted successfully!"
 msgstr "Групу видалено успішно!"
 

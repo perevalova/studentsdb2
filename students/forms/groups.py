@@ -68,7 +68,7 @@ class GroupUpdateForm(ModelForm):
         self.helper.layout = Layout(
             'title', 'leader', 'notes',
             FormActions(
-                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('add_button', _('Save'), css_class="btn btn-primary"),
                 Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )

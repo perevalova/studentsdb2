@@ -84,7 +84,7 @@ class ExamDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'students/exam_confirm_delete.html'
 
     def get_success_url(self):
-        return HttpResponseRedirect(reverse('exams'))
+        return reverse('exams')
 
     def post(self, request, *args, **kwargs):
         messages.success(request, _('Exam deleted successfully!'))

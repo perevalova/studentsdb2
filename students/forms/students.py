@@ -71,7 +71,7 @@ class StudentUpdateForm(ModelForm):
         self.helper.layout = Layout(
             'first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'student_group', 'ticket', 'notes',
             FormActions(
-                Submit('add_button', _('Add'), css_class="btn btn-primary"),
+                Submit('add_button', _('Save'), css_class="btn btn-primary"),
                 Submit('cancel_button', _('Cancel'), css_class="btn btn-link"),
             )
         )

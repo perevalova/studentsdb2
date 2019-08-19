@@ -102,8 +102,7 @@ class UserList(TemplateView):
         # get context data from TemplateView class
         context = super(UserList, self).get_context_data(**kwargs)
 
-        users = User.objects.order_by('username')
-        # users = StProfile.objects.order_by('user__username')
+        users = User.objects.filter(is_superuser__exact=False).order_by('username')
 
         # apply pagination, 10 users per page
         context = paginate(users, 10, self.request, context, var_name='users')
