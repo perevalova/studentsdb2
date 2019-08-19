@@ -56,7 +56,7 @@
                     <td><a title="{% trans 'Edit' %}" href="{% url 'groups_edit' group.id %}"
                            class="edit-form-link">{{ group.title }}</a></td>
                     <td><a title="{% trans 'Edit' %}" href="{% url 'groups_edit' group.id %}"
-                           class="edit-form-link">{{ group.leader }}</a></td>
+                           class="edit-form-link">{% if group.leader %}{{ group.leader }}{% endif %}</a></td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">

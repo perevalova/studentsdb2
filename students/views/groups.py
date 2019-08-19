@@ -49,12 +49,12 @@ class GroupAddView(LoginRequiredMixin, CreateView):
     form_class = GroupAddForm
 
     def get_success_url(self):
-        return reverse('home')
+        return reverse('groups')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(request, _('Group adding has been canceled!'))
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('groups'))
         else:
             messages.success(request, _('Group added successfully!'))
             return super(GroupAddView, self).post(request, *args, **kwargs)
@@ -66,12 +66,12 @@ class GroupUpdateView(LoginRequiredMixin, UpdateView):
     form_class = GroupUpdateForm
 
     def get_success_url(self):
-        return reverse('home')
+        return reverse('groups')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(request, _('Group adding has been canceled!'))
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('groups'))
         else:
             messages.success(request, _('Group saved successfully!'))
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
@@ -82,8 +82,14 @@ class GroupDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'students/group_confirm_delete.html'
 
     def get_success_url(self):
-        return HttpResponseRedirect(reverse('home'))
+        return reverse('groups')
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, _('Group deleted successfully!'))
-        return super(GroupDeleteView, self).post(request, *args, **kwargs)
+        group = Group.objects.get(pk=kwargs['pk'])
+        student = Student.objects.filter(student_group=group.id)
+        if student:
+            messages.warning(request, _('Deleting a group that has students is forbidden! Remove all students first.'))
+            return HttpResponseRedirect(reverse('groups'))
+        else:
+            messages.success(request, _('Group deleted successfully!'))
+            return super(GroupDeleteView, self).post(request, *args, **kwargs)

@@ -48,7 +48,7 @@ def log_group_delete_event(sender, **kwargs):
     logger = logging.getLogger(__name__)
 
     group = kwargs['instance']
-    logger.info("Group deleted: %s %s %s (ID: %d)", group.title, group.leader.first_name, group.leader.last_name, group.id)
+    logger.info("Group deleted: %s (ID: %d)", group.title, group.id)
     print(sender)
 
 

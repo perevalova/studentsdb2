@@ -36,7 +36,7 @@ class Group(models.Model):
         ordering = ['title']
 
     def __str__(self):
-        if self.leader:
+        if self.leader is not None:
             return "%s (%s %s)" % (self.title, self.leader.first_name, self.leader.last_name)
         else:
             return "%s" % self.title

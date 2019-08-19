@@ -51,12 +51,12 @@ class ExamAddView(LoginRequiredMixin, CreateView):
     form_class = ExamAddForm
 
     def get_success_url(self):
-        return reverse('home')
+        return reverse('exams')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(request, _('Exam adding has been canceled!'))
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('exams'))
         else:
             messages.success(request, _('Exam added successfully!'))
             return super(ExamAddView, self).post(request, *args, **kwargs)
@@ -68,12 +68,12 @@ class ExamUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ExamUpdateForm
 
     def get_success_url(self):
-        return reverse('home')
+        return reverse('exams')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(request, _('Exam editing has been canceled!'))
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('exams'))
         else:
             messages.success(request, _('Exam saved successfully!'))
             return super(ExamUpdateView, self).post(request, *args, **kwargs)
@@ -84,7 +84,7 @@ class ExamDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'students/exam_confirm_delete.html'
 
     def get_success_url(self):
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('exams'))
 
     def post(self, request, *args, **kwargs):
         messages.success(request, _('Exam deleted successfully!'))
