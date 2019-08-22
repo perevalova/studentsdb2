@@ -36,7 +36,7 @@ class ExamList(TemplateView):
         reverse = self.request.GET.get('reverse', '')
         if order_by in ('subject', 'exam_group', 'date', 'teacher_first_name', 'teacher_last_name'):
             exams = exams.order_by(order_by)
-            if request.GET.get('reverse', '') == '1':
+            if self.request.GET.get('reverse', '') == '1':
                 exams = exams.reverse()
 
         # apply pagination, 10 students per page

@@ -85,9 +85,8 @@ class GroupDeleteView(LoginRequiredMixin, DeleteView):
         return reverse('groups')
 
     def post(self, request, *args, **kwargs):
-        group = Group.objects.get(pk=kwargs['pk'])
-        student = Student.objects.filter(student_group=group.id)
-        if student:
+        group = Group.objects.filter(student__student_group=kwargs['pk'])
+        if group:
             messages.warning(request, _('Deleting a group that has students is forbidden! Remove all students first.'))
             return HttpResponseRedirect(reverse('groups'))
         else:
