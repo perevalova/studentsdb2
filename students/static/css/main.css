@@ -2,25 +2,33 @@
 body {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
 }
 #main-content {
-    flex-grow: 1;
-    position: relative;
-
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
 }
-
+#content-columns {
+	flex: 1 0 auto;
+}
+#footer {
+	flex: 0 0 auto;
+    text-align: center;
+	border-top: 1px solid #dddddd;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
 .alert {
 	margin-top: 10px;
 }
-#footer {
-    text-align: center;
-	border-top: 1px solid #dddddd;
-	padding-top: 10px;
+#logo {
+  text-decoration: none;
+  color: #000000;
 }
+
 /* Groups Selector */
 #group-selector {
 	margin-top: 30px;
@@ -43,6 +51,7 @@ h1, h2, h3, h4, h5, h6 {
     float: right;
     text-align: right;
 }
+
 /* Form Styles */
 textarea,
 select,
