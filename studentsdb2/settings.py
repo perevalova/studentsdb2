@@ -82,6 +82,7 @@ TEMPLATES = [
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
                 'studentsdb2.context_processors.students_proc',
+                'studentsdb2.context_processors.site_creator',
                 'students.context_processors.groups_processor',
             ],
             'debug': False,

@@ -25,7 +25,7 @@ class StudentAdmin(admin.ModelAdmin):
     ordering = ['last_name']
     list_filter = ['student_group']
     list_per_page = 10
-    search_fields = ['last_name', 'first_name', 'middle_name', 'ticket', 'notes']
+    search_fields = ['last_name', 'first_name', 'middle_name', 'ticket']
     form = StudentFormAdmin
 
     @staticmethod
