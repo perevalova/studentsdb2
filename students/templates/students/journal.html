@@ -29,6 +29,16 @@
         <!-- Progress spinner -->
         {% include "students/progress_spinner.html" %}
 
+        <div class="flex button-group">
+            <form class="navbar-form" action="{% url 'journal' %}" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control"
+                           placeholder="Find student" name="search">
+                </div>
+                <button type="submit"
+                        class="btn btn-default">{% trans "Search" %}</button>
+            </form>
+        </div>
 
         <p id="journal-nav" class="text-center">
             <a href="?month={{ prev_month }}" title="{% trans 'Previous Month' %}">&larr;</a>

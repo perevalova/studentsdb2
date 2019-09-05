@@ -29,6 +29,11 @@ class GroupList(TemplateView):
             # otherwise show all students
             groups = Group.objects.all()
 
+        search_group = self.request.GET.get('search', '')
+        if search_group:
+            groups = Group.objects.filter(title__icontains=search_group)
+        #TODO: show message if request doesn't match any query
+
         # try to order groups list
         order_by = self.request.GET.get('order_by', '')
         reverse = self.request.GET.get('reverse', '')

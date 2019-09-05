@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext as _
 from django.views.generic import UpdateView
@@ -24,8 +25,13 @@ class StudentList(TemplateView):
         if current_group:
             students = Student.objects.filter(student_group=current_group)
         else:
-            # otherwise show all students
             students = Student.objects.all()
+
+        search_student = self.request.GET.get('search', '')
+        if search_student:
+            # students = Student.objects.filter(first_name__icontains=search_student, last_name__icontains=search_student)
+            students = Student.objects.filter(Q(first_name__icontains=search_student) | Q(last_name__icontains=search_student))
+        #TODO: show message if request doesn't match any query
 
         # try to order students list
         order_by = self.request.GET.get('order_by', '')

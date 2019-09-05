@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
@@ -35,6 +36,12 @@ class JournalView(TemplateView):
         else:
             # otherwise show all students
             students = MonthJournal.objects.all()
+
+        search_student = self.request.GET.get('search', '')
+        if search_student:
+            # students = Student.objects.filter(first_name__icontains=search_student, last_name__icontains=search_student)
+            students = Student.objects.filter(Q(first_name__icontains=search_student) | Q(last_name__icontains=search_student))
+        # TODO: show message if request doesn't match any query
 
         # calculate current, previous and next month details;
         # we need this for month navigation element in template

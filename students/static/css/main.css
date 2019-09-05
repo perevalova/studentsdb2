@@ -3,225 +3,276 @@ body {
     min-height: 100vh;
     display: flex;
 }
+
 #main-content {
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
+
 #content-columns {
-	flex: 1 0 auto;
+    flex: 1 0 auto;
 }
+
 #footer {
-	flex: 0 0 auto;
+    flex: 0 0 auto;
     text-align: center;
-	border-top: 1px solid #dddddd;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    border-top: 1px solid #dddddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
 h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
+    font-weight: bold;
 }
+
 .alert {
-	margin-top: 10px;
+    margin-top: 10px;
 }
+
 #logo {
-  text-decoration: none;
-  color: #000000;
+    text-decoration: none;
+    color: #000000;
 }
 
 /* Groups Selector */
 #group-selector {
-	margin-top: 30px;
+    margin-top: 30px;
 }
+
 #group-selector select {
-	margin: 0;
-	width: 85%;
-	background-color: #ffffff;
-	border: 1px solid #cccccc;
-	height: 30px;
-	line-height: 30px;
-	color: #555555;
+    margin: 0;
+    width: 85%;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    height: 30px;
+    line-height: 30px;
+    color: #555555;
 }
+
 #lang {
-	margin-top: 10px;
+    margin-top: 10px;
     float: right;
     text-align: right;
 }
+
 #signup {
     float: right;
     text-align: right;
 }
 
 /* Form Styles */
-textarea,
-select,
-input {
-	max-width: 300px;
-}
-.student-form-width {
-	width: 300px;
-}
-.exam-form-width {
-	width: 300px;
+textarea, select, input {
+    max-width: 300px;
 }
 
-/*User's Toolbar*/
+.student-form-width {
+    width: 300px;
+}
+
+.exam-form-width {
+    width: 300px;
+}
+
+/* Home page*/
+.button-group {
+    display: flex;
+}
+
+.button-group a, .button-group form {
+    align-self: flex-start;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* User's Toolbar */
 #user-toolbar {
     margin-top: 30px;
     text-align: right;
 }
 
+/* Journal Table Styles */
+td.day-box,
+th.day-header {
+    padding: 4px !important;
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+#ajax-progress-indicator, #progress-spinner, #error_message, #send_message {
+    display: none;
+}
+
+/* Students authentication app*/
 /* Edit profile */
 #change-password {
     margin-left: 185px;
     margin-bottom: 10px;
 }
 
-/* Journal Table Styles */
-td.day-box,
-th.day-header {
-	padding: 4px !important;
-	vertical-align: middle !important;
-	text-align: center;
-}
-
-#ajax-progress-indicator, #progress-spinner, #error_message, #send_message {
-	display: none;
-}
-
-/*spinner*/
+/* Spinner */
 .sk-fading-circle {
-  margin: 7px auto;
-  width: 30px;
-  height: 30px;
-  position: relative;
+    margin: 7px auto;
+    width: 30px;
+    height: 30px;
+    position: relative;
 }
 
 .sk-fading-circle .sk-circle {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .sk-fading-circle .sk-circle:before {
-  content: '';
-  display: block;
-  margin: 0 auto;
-  width: 15%;
-  height: 15%;
-  background-color: #333;
-  border-radius: 100%;
-  -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
-          animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
 }
+
 .sk-fading-circle .sk-circle2 {
-  -webkit-transform: rotate(30deg);
-      -ms-transform: rotate(30deg);
-          transform: rotate(30deg);
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
 }
+
 .sk-fading-circle .sk-circle3 {
-  -webkit-transform: rotate(60deg);
-      -ms-transform: rotate(60deg);
-          transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
 }
+
 .sk-fading-circle .sk-circle4 {
-  -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-          transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
+
 .sk-fading-circle .sk-circle5 {
-  -webkit-transform: rotate(120deg);
-      -ms-transform: rotate(120deg);
-          transform: rotate(120deg);
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
 }
+
 .sk-fading-circle .sk-circle6 {
-  -webkit-transform: rotate(150deg);
-      -ms-transform: rotate(150deg);
-          transform: rotate(150deg);
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
 }
+
 .sk-fading-circle .sk-circle7 {
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
+
 .sk-fading-circle .sk-circle8 {
-  -webkit-transform: rotate(210deg);
-      -ms-transform: rotate(210deg);
-          transform: rotate(210deg);
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
 }
+
 .sk-fading-circle .sk-circle9 {
-  -webkit-transform: rotate(240deg);
-      -ms-transform: rotate(240deg);
-          transform: rotate(240deg);
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
 }
+
 .sk-fading-circle .sk-circle10 {
-  -webkit-transform: rotate(270deg);
-      -ms-transform: rotate(270deg);
-          transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
 }
+
 .sk-fading-circle .sk-circle11 {
-  -webkit-transform: rotate(300deg);
-      -ms-transform: rotate(300deg);
-          transform: rotate(300deg);
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
 }
+
 .sk-fading-circle .sk-circle12 {
-  -webkit-transform: rotate(330deg);
-      -ms-transform: rotate(330deg);
-          transform: rotate(330deg);
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
 }
+
 .sk-fading-circle .sk-circle2:before {
-  -webkit-animation-delay: -1.1s;
-          animation-delay: -1.1s;
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
 }
+
 .sk-fading-circle .sk-circle3:before {
-  -webkit-animation-delay: -1s;
-          animation-delay: -1s;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
 }
+
 .sk-fading-circle .sk-circle4:before {
-  -webkit-animation-delay: -0.9s;
-          animation-delay: -0.9s;
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
 }
+
 .sk-fading-circle .sk-circle5:before {
-  -webkit-animation-delay: -0.8s;
-          animation-delay: -0.8s;
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
 }
+
 .sk-fading-circle .sk-circle6:before {
-  -webkit-animation-delay: -0.7s;
-          animation-delay: -0.7s;
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
 }
+
 .sk-fading-circle .sk-circle7:before {
-  -webkit-animation-delay: -0.6s;
-          animation-delay: -0.6s;
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
 }
+
 .sk-fading-circle .sk-circle8:before {
-  -webkit-animation-delay: -0.5s;
-          animation-delay: -0.5s;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
 }
+
 .sk-fading-circle .sk-circle9:before {
-  -webkit-animation-delay: -0.4s;
-          animation-delay: -0.4s;
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
 }
+
 .sk-fading-circle .sk-circle10:before {
-  -webkit-animation-delay: -0.3s;
-          animation-delay: -0.3s;
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
 }
+
 .sk-fading-circle .sk-circle11:before {
-  -webkit-animation-delay: -0.2s;
-          animation-delay: -0.2s;
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
 }
+
 .sk-fading-circle .sk-circle12:before {
-  -webkit-animation-delay: -0.1s;
-          animation-delay: -0.1s;
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
 }
 
 @-webkit-keyframes sk-circleFadeDelay {
-  0%, 39%, 100% { opacity: 0; }
-  40% { opacity: 1; }
+    0%, 39%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
 }
 
 @keyframes sk-circleFadeDelay {
-  0%, 39%, 100% { opacity: 0; }
-  40% { opacity: 1; }
+    0%, 39%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
 }

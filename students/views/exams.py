@@ -31,6 +31,13 @@ class ExamList(TemplateView):
             # otherwise show all students
             exams = Exam.objects.all()
 
+
+        search_exam = self.request.GET.get('search', '')
+        if search_exam:
+            # students = Student.objects.filter(first_name__icontains=search_student, last_name__icontains=search_student)
+            exams = Exam.objects.filter(subject__icontains=search_exam)
+        #TODO: show message if request doesn't match any query
+
         # try to order exams list
         order_by = self.request.GET.get('order_by', '')
         reverse = self.request.GET.get('reverse', '')

@@ -13,6 +13,17 @@
 
     {% endif %}
 
+    <div class="flex button-group">
+        <form class="navbar-form" action="{% url 'users' %}" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       placeholder="Find user" name="search">
+            </div>
+            <button type="submit"
+                    class="btn btn-default">{% trans "Search" %}</button>
+        </form>
+    </div>
+
 <!-- Start Students Listing -->
 {% if users %}
 <table class="table table-hover table-striped">

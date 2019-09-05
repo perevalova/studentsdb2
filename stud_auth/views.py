@@ -102,7 +102,12 @@ class UserList(TemplateView):
         # get context data from TemplateView class
         context = super(UserList, self).get_context_data(**kwargs)
 
-        users = User.objects.filter(is_superuser__exact=False).order_by('username')
+        search_user = self.request.GET.get('search', '')
+        if search_user:
+            users = User.objects.filter(username__icontains=search_user).order_by('username')
+        # TODO: show message if request doesn't match any query
+        else:
+            users = User.objects.filter(is_superuser__exact=False).order_by('username')
 
         # apply pagination, 10 users per page
         context = paginate(users, 10, self.request, context, var_name='users')

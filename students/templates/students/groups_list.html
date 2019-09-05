@@ -9,8 +9,17 @@
 
 {% block content %}
 
+    <div class="flex button-group">
     <!-- Add Group Button -->
-    <a class="btn btn-primary add-form-link" href="{% url 'groups_add' %}">{% trans "Add Group" %}</a>
+        <a class="btn btn-primary add-form-link" href="{% url 'groups_add' %}">{% trans "Add Group" %}</a>
+        <form class="navbar-form" action="{% url 'groups' %}" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       placeholder="Find group" name="search">
+            </div>
+            <button type="submit" class="btn btn-default">{% trans "Search" %}</button>
+        </form>
+    </div>
 
     <!-- Progress spinner -->
     {% include "students/progress_spinner.html" %}
