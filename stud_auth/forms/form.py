@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
+from crispy_forms.layout import Layout, Submit, HTML
 from crispy_forms.bootstrap import FormActions
 
 from django.utils.translation import ugettext as _
@@ -44,6 +44,9 @@ class UserEditForm(ModelForm):
 
 
 class StProfileEditForm(ModelForm):
+    # def get_photo(self, obj):
+    #     return obj.stprofile.get_photo()
+
     class Meta:
         model = StProfile
         fields = ['photo', 'mobile_phone', 'passport', 'city', 'street', 'house']
@@ -67,6 +70,7 @@ class StProfileEditForm(ModelForm):
         self.helper.field_class = 'col-sm-10'
 
         self.helper.layout = Layout(
+            # HTML('<img src="%s" width="50" height="50"/>' % StProfile.get_photo()),
              'photo', 'mobile_phone', 'passport', 'city', 'street', 'house',
             FormActions(
                 Submit('save_button', _('Save'), css_class="btn btn-primary"),

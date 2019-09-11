@@ -39,11 +39,7 @@
         {% for user in users %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            {% if user.stprofile.photo %}
-            <td><img class="img-circle" height="30" width="30" src="{{ user.stprofile.photo.url }}" alt="user_image"></td>
-            {% else %}
-            <td><img class="img-circle" height="30" width="30" src="{% static "img/default_user.png" %}" alt="user_image"></td>
-            {% endif %}
+            <td><img class="img-circle" height="30" width="30" src="{{ user.stprofile.get_photo }}" alt="user_image"></td>
             <td><a href="{% url 'user' user.id %}">{{ user.username }}</a></td>
         </tr>
         {% endfor %}
@@ -53,7 +49,6 @@
 <!-- End Users Listing -->
 
 <!-- Pagination -->
-
 {% with object_list=users %}
     {% include "students/pagination.html" %}
 {% endwith %}
