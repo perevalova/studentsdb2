@@ -19,6 +19,7 @@ class StudentFormAdmin(ModelForm):
 
 
 class StudentAdmin(admin.ModelAdmin):
+    fields = ('last_name', 'first_name')
     list_display = ['last_name', 'first_name', 'ticket', 'student_group']
     list_display_links = ['last_name', 'first_name']
     list_editable = ['student_group']

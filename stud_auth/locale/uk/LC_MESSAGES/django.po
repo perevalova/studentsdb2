@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 16:37+0000\n"
+"POT-Creation-Date: 2019-10-14 08:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,50 +19,58 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: stud_auth/forms/form.py:40 stud_auth/forms/form.py:72
+#: stud_auth/apps.py:7
+msgid "Student authorization"
+msgstr "Авторизація студентів"
+
+#: stud_auth/forms/form.py:40 stud_auth/forms/form.py:76
 msgid "Save"
 msgstr "Зберегти"
 
-#: stud_auth/forms/form.py:41 stud_auth/forms/form.py:73
+#: stud_auth/forms/form.py:41 stud_auth/forms/form.py:77
 msgid "Cancel"
 msgstr "Відміна"
 
-#: stud_auth/models.py:13
+#: stud_auth/models.py:19
 msgid "User Profile"
 msgstr "Профіль Користувача"
 
-#: stud_auth/models.py:16 stud_auth/templates/registration/profile.html:18
+#: stud_auth/models.py:22 stud_auth/templates/registration/profile.html:18
 #: stud_auth/templates/registration/profile.html:25
 #: stud_auth/templates/registration/user.html:14
 #: stud_auth/templates/registration/user.html:19
-#: stud_auth/templates/registration/users.html:23
+#: stud_auth/templates/registration/users.html:34
 msgid "Photo"
 msgstr "Фото"
 
-#: stud_auth/models.py:17 stud_auth/templates/registration/profile.html:55
+#: stud_auth/models.py:23 stud_auth/templates/registration/profile.html:55
 #: stud_auth/templates/registration/user.html:53
 msgid "Mobile Phone"
 msgstr "Мобільний телефон"
 
-#: stud_auth/models.py:18 stud_auth/templates/registration/profile.html:83
+#: stud_auth/models.py:24 stud_auth/templates/registration/profile.html:83
 #: stud_auth/templates/registration/user.html:81
 msgid "Passport number"
 msgstr "Номер паспорта"
 
-#: stud_auth/models.py:19 stud_auth/templates/registration/profile.html:62
+#: stud_auth/models.py:25 stud_auth/templates/registration/profile.html:62
 #: stud_auth/templates/registration/user.html:60
 msgid "City"
 msgstr "Місто"
 
-#: stud_auth/models.py:20 stud_auth/templates/registration/profile.html:69
+#: stud_auth/models.py:26 stud_auth/templates/registration/profile.html:69
 #: stud_auth/templates/registration/user.html:67
 msgid "Street"
 msgstr "Вулиця"
 
-#: stud_auth/models.py:21 stud_auth/templates/registration/profile.html:76
+#: stud_auth/models.py:27 stud_auth/templates/registration/profile.html:76
 #: stud_auth/templates/registration/user.html:74
 msgid "House"
 msgstr "Будинок"
+
+#: stud_auth/models.py:42
+msgid "Avatar"
+msgstr "Аватар"
 
 #: stud_auth/templates/registration/profile.html:11
 msgid "Edit profile"
@@ -96,13 +104,17 @@ msgid "Full name"
 msgstr "Повне ім'я"
 
 #: stud_auth/templates/registration/users.html:6
-#: stud_auth/templates/registration/users.html:24
+#: stud_auth/templates/registration/users.html:35
 msgid "Users"
 msgstr "Користувачі"
 
 #: stud_auth/templates/registration/users.html:8
 msgid "Base of Users"
 msgstr "База Користувачів"
+
+#: stud_auth/templates/registration/users.html:23
+msgid "Search"
+msgstr "Пошук"
 
 #: stud_auth/views.py:35 stud_auth/views.py:91
 msgid "User editing has been canceled!"

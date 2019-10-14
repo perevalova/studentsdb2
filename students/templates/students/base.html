@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% trans "Student Account Service" %}</title>
-    <meta name="description" value="{% trans 'App to manage students database' %}">
+    <meta name="description" content="{% trans 'App to manage students database. Student data management, teacher accounts.' %}">
+    <meta name="keywords" content="{% trans 'student, student account, service for students, students database, teacher accounts' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {#    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">#}
 
@@ -40,12 +41,14 @@
             {% block menu_groups %}
             <div class="col-xs-4" id="group-selector">
                 <strong>{% trans "Group:" %}</strong>
-                <select>
-                    <option value="">{% trans "All Students" %}</option>
-                    {% for group in GROUPS %}
-                    <option value="{{ group.id }}" {% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
-                    {% endfor %}
-                </select>
+                <label>
+                    <select>
+                        <option value="">{% trans "All Students" %}</option>
+                        {% for group in GROUPS %}
+                        <option value="{{ group.id }}" {% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+                        {% endfor %}
+                    </select>
+                </label>
             </div>
             {% endblock menu_groups %}
             <!-- User's toolbar for authenticated users -->
@@ -74,9 +77,9 @@
         <!-- Select language -->
         <div class="row">
             <div class="col-xs-12" id="lang">
-                <span><a href="{% url 'lang' 'uk' %}"><img src="{% static 'img/uk.svg' %}" width="25" height="25">{% trans "Uk" %}</a></span>
-                <span><a href="{% url 'lang' 'ru' %}"><img src="{% static 'img/ru.svg' %}" width="25" height="25">{% trans "Ru" %}</a></span>
-                <span><a href="{% url 'lang' 'en' %}"><img src="{% static 'img/en.svg' %}" width="25" height="25">{% trans "En" %}</a></span>
+                <span><a href="{% url 'lang' 'uk' %}"><img src="{% static 'img/uk.svg' %}" alt="{% trans 'Ukrainian language' %}" width="25" height="25">{% trans "Uk" %}</a></span>
+                <span><a href="{% url 'lang' 'ru' %}"><img src="{% static 'img/ru.svg' %}" alt="{% trans 'Russian language' %}" width="25" height="25">{% trans "Ru" %}</a></span>
+                <span><a href="{% url 'lang' 'en' %}"><img src="{% static 'img/en.svg' %}" alt="{% trans 'English language' %}" width="25" height="25">{% trans "En" %}</a></span>
             </div>
         </div>
         <!-- End Header -->
@@ -135,7 +138,7 @@
                 &copy; 2019 {% trans "Student Account Service" %}
             </div>
             <div class="col-xs-12">
-                {% trans "Made by " %}<a href="{{ creator }}">Anastasia Perevalova</a>
+                {% trans "Made by " %}<a href="{{ creator }}" target="_blank">Anastasia Perevalova</a>
             </div>
         </div>
         {% endblock footer %}
