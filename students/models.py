@@ -1,4 +1,7 @@
+import os
+
 from django.db import models
+from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from .validators import validate_file_extension
 
@@ -121,14 +124,32 @@ class Document(models.Model):
     def __str__(self):
         return "%s %s" % (self.name, self.type)
 
-    def delete(self, *args, **kwargs):
-        self.file.delete(save=True)
-        super().delete(*args, **kwargs)
+@receiver(models.signals.post_delete, sender=Document)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `MediaFile` object is deleted.
+    """
+    if instance.file:
+        if os.path.isfile(instance.file.path):
+            os.remove(instance.file.path)
 
+@receiver(models.signals.pre_save, sender=Document)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    """
+    Deletes old file from filesystem
+    when corresponding `MediaFile` object is updated
+    with new file.
+    """
+    if not instance.pk:
+        return False
 
-    # def fileLink(self):
-    #     if self.File:
-    #         return '<a href="' + str(
-    #             self.File.url) + '">' + 'NameOfFileGoesHere' + '</a>'
-    #     else:
-    #         return '<a href="''"></a>'
+    try:
+        old_file = sender.objects.get(pk=instance.pk).file
+    except sender.DoesNotExist:
+        return False
+
+    new_file = instance.file
+    if not old_file == new_file:
+        if os.path.isfile(old_file.path):
+            os.remove(old_file.path)
