@@ -1,33 +1,64 @@
 import mimetypes
 import os
+
+from pynput.keyboard import Key, Controller
 from django.contrib import admin, messages
 from django.http import HttpResponse
 from django.http.response import Http404
 from django.shortcuts import redirect
-from django.utils.html import format_html, smart_urlquote
-from django.utils.safestring import mark_safe
 
 from .models import Student, Group, Exam, ExamResults, MonthJournal, Document, \
     Type
 from django.core.urlresolvers import reverse
-from django.forms import ModelForm, ValidationError, forms
+from django.forms import ModelForm, ValidationError
 from django.utils.translation import ugettext as _
 
 from inline_actions.admin import InlineActionsMixin
 from inline_actions.admin import InlineActionsModelAdminMixin
 
-# from django.contrib.auth import forms
-from django import forms
-
 
 class DocumentInline(InlineActionsMixin, admin.TabularInline):
     model = Document
-    # template = "admin/students/student/tabular.html"
+    template = "admin/students/student/tabular.html"
     fields = ['name', 'type', 'file']
-    inline_actions = ['view', 'download', 'delete']
+    inline_actions = ['view', 'download', 'print', 'delete']
+    extra = 1
 
-    def get_file_link_css(self, obj):
-        return 'glyphicon glyphicon-eye-open'
+    def get_view_css(self, obj):
+        return 'input-view'
+
+    def get_download_css(self, obj):
+        return 'input-download'
+
+    def get_print_css(self, obj):
+        return 'input-print'
+
+    def get_delete_css(self, obj):
+        return 'input-delete'
+
+    def view(self, request, obj, parent_obj=None):
+        """View selected file"""
+        if obj.file:
+            return redirect(obj.file.url)
+        else:
+            return "No attachment"
+    view.short_description = "View"
+
+    def print(self, request, obj, parent_obj=None):
+        """Print selected file"""
+        if obj.file:
+            import time
+            time.sleep(1.5)
+            keyboard = Controller()
+            with keyboard.pressed(Key.shift):
+                keyboard.press(Key.ctrl)
+                keyboard.press('p')
+                keyboard.release(Key.ctrl)
+                keyboard.release('p')
+            return redirect(obj.file.url)
+        else:
+            return "No attachment"
+    print.short_description = 'Print'
 
     def download(self, request, obj, parent_obj=None):
         """Download selected file"""
@@ -42,17 +73,6 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
         raise Http404
     download.short_description = 'Download'
 
-    def view(self, request, obj, parent_obj=None):
-        """View selected file"""
-        if obj.file:
-            # return mark_safe('<a class="btn btn-dark text-center" href="{url}" role="button">Download</a>'.format(url=obj.file.url))
-            return redirect(obj.file.url)
-            # return '<a href="' + str(obj.file.url) + '">' + 'NameOfFileGoesHere' + '</a>'
-            # return "<a href='%s' download>Download</a>" % (self.file.url,)
-        else:
-            return "No attachment"
-    download.short_description = 'View'
-
     def delete(self, request, obj, parent_obj=None):
         """Remove selected inline instance if permission is sufficient"""
         if self.has_delete_permission(request):
@@ -60,6 +80,7 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
             messages.info(request, "`{}` deleted.".format(obj))
 
     delete.short_description = "Delete"
+
 
 class StudentFormAdmin(ModelForm):
 
