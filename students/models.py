@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
+from .validators import validate_file_extension
 
 class Student(models.Model):
     """Student Model"""
@@ -39,7 +39,7 @@ class Group(models.Model):
         if self.leader is not None:
             return "%s (%s %s)" % (self.title, self.leader.first_name, self.leader.last_name)
         else:
-            return "%s" % self.title
+            return self.title
 
 
 class MonthJournal(models.Model):
@@ -76,7 +76,7 @@ class Exam(models.Model):
         ordering = ['subject']
 
     def __str__(self):
-        return u"%s" % self.subject
+        return self.subject
 
 
 class ExamResults(models.Model):
@@ -92,3 +92,43 @@ class ExamResults(models.Model):
 
     def __str__(self):
         return "%s (%s)" % (self.student, self.student.student_group)
+
+
+class Type(models.Model):
+
+    title = models.CharField(max_length=255, blank=False, null=False, unique=True, verbose_name="Title", error_messages={'unique': 'This type already exist'})
+
+    class Meta(object):
+        verbose_name = _("The type of Document")
+        verbose_name_plural = _("Types of Documents")
+
+    def __str__(self):
+        return self.title
+
+upload_to = "files/"
+
+class Document(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, blank=False, null=False, verbose_name="Name")
+    type = models.ForeignKey(Type, blank=False, null=False, verbose_name="Type")
+    file = models.FileField(upload_to=upload_to, blank=False, null=False, validators=[validate_file_extension], verbose_name="File")
+
+    class Meta(object):
+        verbose_name = _("Document")
+        verbose_name_plural = _("Documents")
+        unique_together = ("student", "type")
+
+    def __str__(self):
+        return "%s %s" % (self.name, self.type)
+
+    def delete(self, *args, **kwargs):
+        self.file.delete(save=True)
+        super().delete(*args, **kwargs)
+
+
+    # def fileLink(self):
+    #     if self.File:
+    #         return '<a href="' + str(
+    #             self.File.url) + '">' + 'NameOfFileGoesHere' + '</a>'
+    #     else:
+    #         return '<a href="''"></a>'
