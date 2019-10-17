@@ -1,9 +1,65 @@
-from django.contrib import admin
-from .models import Student, Group, Exam, ExamResults, MonthJournal
+import mimetypes
+import os
+from django.contrib import admin, messages
+from django.http import HttpResponse
+from django.http.response import Http404
+from django.shortcuts import redirect
+from django.utils.html import format_html, smart_urlquote
+from django.utils.safestring import mark_safe
+
+from .models import Student, Group, Exam, ExamResults, MonthJournal, Document, \
+    Type
 from django.core.urlresolvers import reverse
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, forms
 from django.utils.translation import ugettext as _
 
+from inline_actions.admin import InlineActionsMixin
+from inline_actions.admin import InlineActionsModelAdminMixin
+
+# from django.contrib.auth import forms
+from django import forms
+
+
+class DocumentInline(InlineActionsMixin, admin.TabularInline):
+    model = Document
+    # template = "admin/students/student/tabular.html"
+    fields = ['name', 'type', 'file']
+    inline_actions = ['view', 'download', 'delete']
+
+    def get_file_link_css(self, obj):
+        return 'glyphicon glyphicon-eye-open'
+
+    def download(self, request, obj, parent_obj=None):
+        """Download selected file"""
+        file_path = '%s' % obj.file.file
+        filename = os.path.basename(file_path)
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse(fh.read(),
+                                        content_type=mimetypes.guess_type(filename)[0])
+                response['Content-Disposition'] = 'attachment; filename=%s' % filename
+                return response
+        raise Http404
+    download.short_description = 'Download'
+
+    def view(self, request, obj, parent_obj=None):
+        """View selected file"""
+        if obj.file:
+            # return mark_safe('<a class="btn btn-dark text-center" href="{url}" role="button">Download</a>'.format(url=obj.file.url))
+            return redirect(obj.file.url)
+            # return '<a href="' + str(obj.file.url) + '">' + 'NameOfFileGoesHere' + '</a>'
+            # return "<a href='%s' download>Download</a>" % (self.file.url,)
+        else:
+            return "No attachment"
+    download.short_description = 'View'
+
+    def delete(self, request, obj, parent_obj=None):
+        """Remove selected inline instance if permission is sufficient"""
+        if self.has_delete_permission(request):
+            obj.delete()
+            messages.info(request, "`{}` deleted.".format(obj))
+
+    delete.short_description = "Delete"
 
 class StudentFormAdmin(ModelForm):
 
@@ -18,8 +74,7 @@ class StudentFormAdmin(ModelForm):
         return self.cleaned_data['student_group']
 
 
-class StudentAdmin(admin.ModelAdmin):
-    fields = ('last_name', 'first_name')
+class StudentAdmin(InlineActionsModelAdminMixin, admin.ModelAdmin):
     list_display = ['last_name', 'first_name', 'ticket', 'student_group']
     list_display_links = ['last_name', 'first_name']
     list_editable = ['student_group']
@@ -28,6 +83,7 @@ class StudentAdmin(admin.ModelAdmin):
     list_per_page = 10
     search_fields = ['last_name', 'first_name', 'middle_name', 'ticket']
     form = StudentFormAdmin
+    inlines = (DocumentInline,)
 
     @staticmethod
     def view_on_site(obj):
@@ -91,3 +147,4 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(ExamResults, ExamResultsAdmin)
 admin.site.register(MonthJournal)
+admin.site.register(Type)
