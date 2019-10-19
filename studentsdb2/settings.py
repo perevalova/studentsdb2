@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     # 3rd party
     'social_django',
     'django_extensions',
+    'debug_toolbar',
+    'inline_actions',
 
     # Local
     'stud_auth',
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'studentsdb2.middleware.RequestTimeMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

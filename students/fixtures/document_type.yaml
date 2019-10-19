@@ -1,0 +1,60 @@
+- model: students.Type
+  pk: 1
+  fields:
+    title: Passport
+- model: students.Type
+  pk: 2
+  fields:
+    title: Invitation
+- model: students.Type
+  pk: 3
+  fields:
+    title: Letter
+- model: students.Type
+  pk: 4
+  fields:
+    title: Certificate
+- model: students.Type
+  pk: 5
+  fields:
+    title: Letter of guarantee
+- model: students.Type
+  pk: 6
+  fields:
+    title: Cheque 1
+- model: students.Type
+  pk: 7
+  fields:
+    title: Cheque 2
+- model: students.Type
+  pk: 8
+  fields:
+    title: Cheque 3
+- model: students.Type
+  pk: 9
+  fields:
+    title: Cheque 4
+- model: students.Type
+  pk: 10
+  fields:
+    title: Cheque 5
+- model: students.Type
+  pk: 11
+  fields:
+    title: Cheque 6
+- model: students.Type
+  pk: 12
+  fields:
+    title: Cheque 7
+- model: students.Type
+  pk: 13
+  fields:
+    title: Cheque 8
+- model: students.Type
+  pk: 14
+  fields:
+    title: Cheque 9
+- model: students.Type
+  pk: 15
+  fields:
+    title: Cheque 10

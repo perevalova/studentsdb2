@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 16:37+0000\n"
+"POT-Creation-Date: 2019-10-14 08:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,12 @@ msgstr ""
 msgid "Student is a leader of a different group."
 msgstr ""
 
-#: students/admin.py:44
+#: students/admin.py:45
 msgid "Student does not belong to the current group."
+msgstr ""
+
+#: students/apps.py:8
+msgid "Student base"
 msgstr ""
 
 #: students/forms/contact_admin.py:35
@@ -82,12 +86,12 @@ msgstr ""
 msgid "Birth date"
 msgstr ""
 
-#: students/models.py:12 students/templates/students/students_list.html:33
+#: students/models.py:12 students/templates/students/students_list.html:43
 msgid "Photo"
 msgstr ""
 
 #: students/models.py:13 students/models.py:34 students/models.py:71
-#: students/templates/students/exams_list.html:66
+#: students/templates/students/exams_list.html:76
 msgid "Group"
 msgstr ""
 
@@ -100,31 +104,31 @@ msgid "Additional notes"
 msgstr ""
 
 #: students/models.py:18 students/models.py:48 students/models.py:86
-#: students/templates/students/journal.html:44
+#: students/templates/students/journal.html:54
 msgid "Student"
 msgstr ""
 
-#: students/models.py:19 students/templates/students/base.html:95
+#: students/models.py:19 students/templates/students/base.html:98
 #: students/templates/students/students_list.html:6
 msgid "Students"
 msgstr ""
 
-#: students/models.py:29 students/templates/students/groups_list.html:33
+#: students/models.py:29 students/templates/students/groups_list.html:42
 msgid "Title"
 msgstr ""
 
-#: students/models.py:30 students/templates/students/groups_list.html:42
+#: students/models.py:30 students/templates/students/groups_list.html:51
 msgid "Leader"
 msgstr ""
 
-#: students/models.py:35 students/templates/students/base.html:98
+#: students/models.py:35 students/templates/students/base.html:101
 #: students/templates/students/groups_list.html:6
 #: students/templates/students/groups_list.html:8
 #: students/templates/students/journal.html:6
 msgid "Groups"
 msgstr ""
 
-#: students/models.py:49 students/templates/students/exams_list.html:42
+#: students/models.py:49 students/templates/students/exams_list.html:52
 msgid "Date"
 msgstr ""
 
@@ -148,7 +152,7 @@ msgstr ""
 msgid "Exam"
 msgstr ""
 
-#: students/models.py:75 students/templates/students/base.html:99
+#: students/models.py:75 students/templates/students/base.html:102
 #: students/templates/students/exams_list.html:6
 #: students/templates/students/exams_list.html:8
 msgid "Exams"
@@ -226,59 +230,82 @@ msgid "Contact the Administrator"
 msgstr ""
 
 #: students/templates/students/base.html:9
-#: students/templates/students/base.html:35
-#: students/templates/students/base.html:137
+#: students/templates/students/base.html:36
+#: students/templates/students/base.html:138
 msgid "Student Account Service"
 msgstr ""
 
 #: students/templates/students/base.html:10
-msgid "App to manage students database"
+msgid ""
+"App to manage students database. Student data management, teacher accounts."
 msgstr ""
 
-#: students/templates/students/base.html:42
+#: students/templates/students/base.html:11
+msgid ""
+"student, student account, service for students, students database, teacher "
+"accounts"
+msgstr ""
+
+#: students/templates/students/base.html:43
 msgid "Group:"
 msgstr ""
 
-#: students/templates/students/base.html:44
+#: students/templates/students/base.html:46
 msgid "All Students"
 msgstr ""
 
-#: students/templates/students/base.html:54
+#: students/templates/students/base.html:57
 msgid "Logout"
 msgstr ""
 
-#: students/templates/students/base.html:59
+#: students/templates/students/base.html:62
 msgid "Login"
 msgstr ""
 
-#: students/templates/students/base.html:60
+#: students/templates/students/base.html:63
 msgid "Signup"
 msgstr ""
 
-#: students/templates/students/base.html:77
+#: students/templates/students/base.html:80
+msgid "Ukrainian language"
+msgstr ""
+
+#: students/templates/students/base.html:80
 msgid "Uk"
 msgstr ""
 
-#: students/templates/students/base.html:78
+#: students/templates/students/base.html:81
+msgid "Russian language"
+msgstr ""
+
+#: students/templates/students/base.html:81
 msgid "Ru"
 msgstr ""
 
-#: students/templates/students/base.html:79
+#: students/templates/students/base.html:82
+msgid "English language"
+msgstr ""
+
+#: students/templates/students/base.html:82
 msgid "En"
 msgstr ""
 
-#: students/templates/students/base.html:97
-#: students/templates/students/groups_list.html:66
-#: students/templates/students/students_list.html:95
+#: students/templates/students/base.html:100
+#: students/templates/students/groups_list.html:75
+#: students/templates/students/students_list.html:105
 msgid "Journal"
 msgstr ""
 
-#: students/templates/students/base.html:102
+#: students/templates/students/base.html:104
 msgid "Contacts"
 msgstr ""
 
-#: students/templates/students/base.html:105
+#: students/templates/students/base.html:106
 msgid "Users"
+msgstr ""
+
+#: students/templates/students/base.html:141
+msgid "Made by "
 msgstr ""
 
 #: students/templates/students/exam_confirm_delete.html:6
@@ -305,7 +332,7 @@ msgstr ""
 
 #: students/templates/students/exams_add.html:7
 #: students/templates/students/exams_add.html:9
-#: students/templates/students/exams_list.html:13
+#: students/templates/students/exams_list.html:15
 msgid "Add Exam"
 msgstr ""
 
@@ -314,43 +341,50 @@ msgstr ""
 msgid "Edit Exam"
 msgstr ""
 
-#: students/templates/students/exams_list.html:33
+#: students/templates/students/exams_list.html:21
+#: students/templates/students/groups_list.html:20
+#: students/templates/students/journal.html:39
+#: students/templates/students/students_list.html:23
+msgid "Search"
+msgstr ""
+
+#: students/templates/students/exams_list.html:43
 msgid "Title Subject"
 msgstr ""
 
-#: students/templates/students/exams_list.html:50
+#: students/templates/students/exams_list.html:60
 msgid "Teacher Last Name"
 msgstr ""
 
-#: students/templates/students/exams_list.html:58
+#: students/templates/students/exams_list.html:68
 msgid "Teacher First Name"
 msgstr ""
 
-#: students/templates/students/exams_list.html:72
-#: students/templates/students/exams_list.html:87
-#: students/templates/students/groups_list.html:63
-#: students/templates/students/students_list.html:92
+#: students/templates/students/exams_list.html:82
+#: students/templates/students/exams_list.html:97
+#: students/templates/students/groups_list.html:72
+#: students/templates/students/students_list.html:102
 msgid "Action"
 msgstr ""
 
-#: students/templates/students/exams_list.html:80
-#: students/templates/students/exams_list.html:82
-#: students/templates/students/exams_list.html:83
-#: students/templates/students/exams_list.html:84
 #: students/templates/students/exams_list.html:90
-#: students/templates/students/groups_list.html:56
-#: students/templates/students/groups_list.html:58
-#: students/templates/students/groups_list.html:70
-#: students/templates/students/journal.html:70
-#: students/templates/students/students_list.html:76
-#: students/templates/students/students_list.html:83
-#: students/templates/students/students_list.html:98
+#: students/templates/students/exams_list.html:92
+#: students/templates/students/exams_list.html:93
+#: students/templates/students/exams_list.html:94
+#: students/templates/students/exams_list.html:100
+#: students/templates/students/groups_list.html:65
+#: students/templates/students/groups_list.html:67
+#: students/templates/students/groups_list.html:79
+#: students/templates/students/journal.html:80
+#: students/templates/students/students_list.html:86
+#: students/templates/students/students_list.html:93
+#: students/templates/students/students_list.html:108
 msgid "Edit"
 msgstr ""
 
-#: students/templates/students/exams_list.html:93
-#: students/templates/students/groups_list.html:73
-#: students/templates/students/students_list.html:100
+#: students/templates/students/exams_list.html:103
+#: students/templates/students/groups_list.html:82
+#: students/templates/students/students_list.html:110
 msgid "Delete"
 msgstr ""
 
@@ -366,7 +400,7 @@ msgstr ""
 
 #: students/templates/students/groups_add.html:7
 #: students/templates/students/groups_add.html:9
-#: students/templates/students/groups_list.html:13
+#: students/templates/students/groups_list.html:14
 msgid "Add Group"
 msgstr ""
 
@@ -375,8 +409,8 @@ msgstr ""
 msgid "Edit Group"
 msgstr ""
 
-#: students/templates/students/groups_list.html:48
-#: students/templates/students/students_list.html:60
+#: students/templates/students/groups_list.html:57
+#: students/templates/students/students_list.html:70
 msgid "Actions"
 msgstr ""
 
@@ -405,17 +439,17 @@ msgstr ""
 msgid "An error occurred"
 msgstr ""
 
-#: students/templates/students/journal.html:34
+#: students/templates/students/journal.html:44
 msgid "Previous Month"
 msgstr ""
 
-#: students/templates/students/journal.html:36
+#: students/templates/students/journal.html:46
 msgid "Next Month"
 msgstr ""
 
 #: students/templates/students/students_add.html:7
 #: students/templates/students/students_add.html:9
-#: students/templates/students/students_list.html:14
+#: students/templates/students/students_list.html:16
 msgid "Add Student"
 msgstr ""
 
@@ -438,15 +472,15 @@ msgstr ""
 msgid "Base of Students"
 msgstr ""
 
-#: students/templates/students/students_list.html:36
+#: students/templates/students/students_list.html:46
 msgid "Last Name"
 msgstr ""
 
-#: students/templates/students/students_list.html:45
+#: students/templates/students/students_list.html:55
 msgid "First Name"
 msgstr ""
 
-#: students/templates/students/students_list.html:53
+#: students/templates/students/students_list.html:63
 msgid "Ticket №"
 msgstr ""
 
@@ -460,64 +494,64 @@ msgid ""
 "later."
 msgstr ""
 
-#: students/views/exams.py:58
+#: students/views/exams.py:65
 msgid "Exam adding has been canceled!"
 msgstr ""
 
-#: students/views/exams.py:61
+#: students/views/exams.py:68
 msgid "Exam added successfully!"
 msgstr ""
 
-#: students/views/exams.py:75
+#: students/views/exams.py:82
 msgid "Exam editing has been canceled!"
 msgstr ""
 
-#: students/views/exams.py:78
+#: students/views/exams.py:85
 msgid "Exam saved successfully!"
 msgstr ""
 
-#: students/views/exams.py:90
+#: students/views/exams.py:97
 msgid "Exam deleted successfully!"
 msgstr ""
 
-#: students/views/groups.py:56 students/views/groups.py:73
+#: students/views/groups.py:61 students/views/groups.py:78
 msgid "Group adding has been canceled!"
 msgstr ""
 
-#: students/views/groups.py:59
+#: students/views/groups.py:64
 msgid "Group added successfully!"
 msgstr ""
 
-#: students/views/groups.py:76
+#: students/views/groups.py:81
 msgid "Group saved successfully!"
 msgstr ""
 
-#: students/views/groups.py:91
+#: students/views/groups.py:95
 msgid ""
 "Deleting a group that has students is forbidden! Remove all students first."
 msgstr ""
 
-#: students/views/groups.py:94
+#: students/views/groups.py:98
 msgid "Group deleted successfully!"
 msgstr ""
 
-#: students/views/students.py:54
+#: students/views/students.py:60
 msgid "Student adding has been canceled!"
 msgstr ""
 
-#: students/views/students.py:57
+#: students/views/students.py:63
 msgid "Student added successfully!"
 msgstr ""
 
-#: students/views/students.py:71
+#: students/views/students.py:77
 msgid "Student editing has been canceled!"
 msgstr ""
 
-#: students/views/students.py:74
+#: students/views/students.py:80
 msgid "Student updated successfully!"
 msgstr ""
 
-#: students/views/students.py:86
+#: students/views/students.py:92
 msgid "Student deleted successfully!"
 msgstr ""
 

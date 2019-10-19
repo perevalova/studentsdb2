@@ -1,8 +1,92 @@
-from django.contrib import admin
-from .models import Student, Group, Exam, ExamResults, MonthJournal
+import mimetypes
+import os
+
+from pynput.keyboard import Key, Controller
+from django.contrib import admin, messages
+from django.http import HttpResponse
+from django.http.response import Http404
+from django.shortcuts import redirect
+
+from .models import Student, Group, Exam, ExamResults, MonthJournal, Document, \
+    Type
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, ValidationError
 from django.utils.translation import ugettext as _
+
+from inline_actions.admin import InlineActionsMixin
+from inline_actions.admin import InlineActionsModelAdminMixin
+
+
+class DocumentInline(InlineActionsMixin, admin.TabularInline):
+    model = Document
+    template = "admin/students/student/tabular.html"
+    fields = ['name', 'type', 'file']
+    inline_actions = ['view', 'download', 'print', 'delete']
+    extra = 1
+
+    def get_view_css(self, obj):
+        return 'input-view'
+
+    def get_download_css(self, obj):
+        return 'input-download'
+
+    def get_print_css(self, obj):
+        return 'input-print'
+
+    def get_delete_css(self, obj):
+        return 'input-delete'
+
+    def view(self, request, obj, parent_obj=None):
+        """View selected file"""
+        if obj.file:
+            return redirect(obj.file.url)
+        else:
+            return "No attachment"
+    view.short_description = "View"
+
+    def print(self, request, obj, parent_obj=None):
+        """Print selected file"""
+        if obj.file:
+            keyboard = Controller()
+            browser = request.META.get('HTTP_USER_AGENT', '').lower()
+            import time
+            time.sleep(1.5)
+            if browser.find("chrome") > 0:
+                with keyboard.pressed(Key.shift):
+                    keyboard.press(Key.ctrl)
+                    keyboard.press('p')
+                    keyboard.release(Key.ctrl)
+                    keyboard.release('p')
+            elif browser.find("firefox") > 0:
+                with keyboard.pressed(Key.ctrl):
+                    keyboard.press('p')
+                    keyboard.release(Key.ctrl)
+                    keyboard.release('p')
+            return redirect(obj.file.url)
+        else:
+            return "No attachment"
+    print.short_description = 'Print'
+
+    def download(self, request, obj, parent_obj=None):
+        """Download selected file"""
+        file_path = '%s' % obj.file.file
+        filename = os.path.basename(file_path)
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse(fh.read(),
+                                        content_type=mimetypes.guess_type(filename)[0])
+                response['Content-Disposition'] = 'attachment; filename=%s' % filename
+                return response
+        raise Http404
+    download.short_description = 'Download'
+
+    def delete(self, request, obj, parent_obj=None):
+        """Remove selected inline instance if permission is sufficient"""
+        if self.has_delete_permission(request):
+            obj.delete()
+            messages.info(request, "`{}` deleted.".format(obj))
+
+    delete.short_description = "Delete"
 
 
 class StudentFormAdmin(ModelForm):
@@ -18,7 +102,7 @@ class StudentFormAdmin(ModelForm):
         return self.cleaned_data['student_group']
 
 
-class StudentAdmin(admin.ModelAdmin):
+class StudentAdmin(InlineActionsModelAdminMixin, admin.ModelAdmin):
     list_display = ['last_name', 'first_name', 'ticket', 'student_group']
     list_display_links = ['last_name', 'first_name']
     list_editable = ['student_group']
@@ -27,6 +111,7 @@ class StudentAdmin(admin.ModelAdmin):
     list_per_page = 10
     search_fields = ['last_name', 'first_name', 'middle_name', 'ticket']
     form = StudentFormAdmin
+    inlines = (DocumentInline,)
 
     @staticmethod
     def view_on_site(obj):
@@ -90,3 +175,4 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(ExamResults, ExamResultsAdmin)
 admin.site.register(MonthJournal)
+admin.site.register(Type)

@@ -20,7 +20,8 @@ from django.views.static import serve
 from students.views.contact_admin import ContactView
 from students.util import lang
 
-from .settings import MEDIA_ROOT, DEBUG
+from .settings import MEDIA_ROOT
+from django.conf import settings
 
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
@@ -40,8 +41,10 @@ urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
 )
 
-if DEBUG:
+if settings.DEBUG:
+    import debug_toolbar
     # Serve files from media folder
     urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
         url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     ]
