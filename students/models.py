@@ -1,20 +1,24 @@
 import os
 
+from django.core import validators
 from django.db import models
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
-from .validators import validate_file_extension
 
 class Student(models.Model):
     """Student Model"""
 
     first_name = models.CharField(max_length=256, blank=False, verbose_name=_("First name"))
     last_name = models.CharField(max_length=256, blank=False, verbose_name=_("Last name"))
-    middle_name = models.CharField(max_length=256, blank=True, verbose_name=_("Middle name"), default='')
+    middle_name = models.CharField(max_length=256, blank=True,
+                                   verbose_name=_("Middle name"), default='')
     birthday = models.DateField(blank=False, verbose_name=_("Birth date"), null=True)
     photo = models.ImageField(blank=True, verbose_name=_("Photo"), null=True)
-    student_group = models.ForeignKey('Group', verbose_name=_("Group"), blank=False, null=True, on_delete=models.PROTECT)
-    ticket = models.PositiveIntegerField(unique=True, blank=False, verbose_name=_("Ticket"))
+    student_group = models.ForeignKey('Group', verbose_name=_("Group"),
+                                      blank=False, null=True,
+                                      on_delete=models.PROTECT)
+    ticket = models.PositiveIntegerField(unique=True, blank=False,
+                                         verbose_name=_("Ticket"))
     notes = models.TextField(blank=True, verbose_name=_("Additional notes"))
 
     class Meta(object):
@@ -30,7 +34,8 @@ class Group(models.Model):
     """Group Model"""
 
     title = models.CharField(max_length=256, blank=False, verbose_name=_("Title"))
-    leader = models.OneToOneField(Student, verbose_name=_("Leader"), blank=True, null=True, on_delete=models.SET_NULL)
+    leader = models.OneToOneField(Student, verbose_name=_("Leader"), blank=True,
+                                  null=True, on_delete=models.SET_NULL)
     notes = models.TextField(blank=True, verbose_name=_("Additional notes"))
 
     class Meta(object):
@@ -48,7 +53,8 @@ class Group(models.Model):
 class MonthJournal(models.Model):
     """Student Monthly Journal"""
 
-    student = models.ForeignKey(Student, unique_for_month='date', blank=False, verbose_name=_("Student"))
+    student = models.ForeignKey(Student, unique_for_month='date', blank=False,
+                                verbose_name=_("Student"))
     date = models.DateField(verbose_name=_('Date'), blank=False)
 
     class Meta:
@@ -98,8 +104,9 @@ class ExamResults(models.Model):
 
 
 class Type(models.Model):
-
-    title = models.CharField(max_length=255, blank=False, null=False, unique=True, verbose_name="Title", error_messages={'unique': 'This type already exist'})
+    title = models.CharField(max_length=255, blank=False, null=False,
+                             unique=True, verbose_name="Title", error_messages={
+            'unique': 'This type already exist'})
 
     class Meta(object):
         verbose_name = _("The type of Document")
@@ -108,13 +115,19 @@ class Type(models.Model):
     def __str__(self):
         return self.title
 
-upload_to = "files/"
 
 class Document(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=False, null=False, verbose_name="Name")
-    type = models.ForeignKey(Type, blank=False, null=False, verbose_name="Type")
-    file = models.FileField(upload_to=upload_to, blank=False, null=False, validators=[validate_file_extension], verbose_name="File")
+    type = models.ForeignKey(Type, on_delete=models.PROTECT, blank=False,
+                             null=False, verbose_name="Type")
+    file = models.FileField(upload_to="files/", blank=False, null=False,
+                            validators=[validators.FileExtensionValidator(
+                                allowed_extensions=(
+                                'pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png'))],
+                            error_messages={
+                                'invalid_extension': 'Unsupported file extension'},
+                            verbose_name="File")
 
     class Meta(object):
         verbose_name = _("Document")

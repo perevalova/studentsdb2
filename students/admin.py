@@ -47,14 +47,21 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
     def print(self, request, obj, parent_obj=None):
         """Print selected file"""
         if obj.file:
+            keyboard = Controller()
+            browser = request.META.get('HTTP_USER_AGENT', '').lower()
             import time
             time.sleep(1.5)
-            keyboard = Controller()
-            with keyboard.pressed(Key.shift):
-                keyboard.press(Key.ctrl)
-                keyboard.press('p')
-                keyboard.release(Key.ctrl)
-                keyboard.release('p')
+            if browser.find("chrome") > 0:
+                with keyboard.pressed(Key.shift):
+                    keyboard.press(Key.ctrl)
+                    keyboard.press('p')
+                    keyboard.release(Key.ctrl)
+                    keyboard.release('p')
+            elif browser.find("firefox") > 0:
+                with keyboard.pressed(Key.ctrl):
+                    keyboard.press('p')
+                    keyboard.release(Key.ctrl)
+                    keyboard.release('p')
             return redirect(obj.file.url)
         else:
             return "No attachment"
