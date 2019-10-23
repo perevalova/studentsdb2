@@ -1,5 +1,5 @@
 import mimetypes
-import os
+import os, platform, subprocess
 
 from pynput.keyboard import Key, Controller
 from django.contrib import admin, messages
@@ -21,7 +21,7 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
     model = Document
     template = "admin/students/student/tabular.html"
     fields = ['name', 'type', 'file']
-    inline_actions = ['view', 'download', 'print', 'delete']
+    inline_actions = ['view', 'download', 'printf', 'delete']
     extra = 1
 
     def get_view_css(self, obj):
@@ -79,6 +79,21 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
                 return response
         raise Http404
     download.short_description = 'Download'
+
+    def printf(self, request, obj, parent_obj=None):
+        """Download selected file"""
+        file_path = '%s' % obj.file.file
+        filename = os.path.basename(file_path)
+        # opener = "open" if sys.platform == "darwin" else "xdg-open"
+        if os.path.exists(file_path):
+            if platform.system() == "Windows":
+                os.startfile(file_path, "print")
+            else:
+                try:
+                    subprocess.call(["lpr", file_path])
+                except Exception as e:
+                    print(e)
+    printf.short_description = 'Print F'
 
     def delete(self, request, obj, parent_obj=None):
         """Remove selected inline instance if permission is sufficient"""
