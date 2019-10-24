@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # 3rd party
     'social_django',
     'django_extensions',
-    'debug_toolbar',
     'inline_actions',
 
     # Local
