@@ -21,7 +21,7 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
     model = Document
     template = "admin/students/student/tabular.html"
     fields = ['name', 'type', 'file']
-    inline_actions = ['view', 'download', 'printf', 'delete']
+    inline_actions = ['view', 'download', 'print', 'delete']
     extra = 1
 
     def get_view_css(self, obj):
@@ -44,28 +44,28 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
             return "No attachment"
     view.short_description = "View"
 
-    def print(self, request, obj, parent_obj=None):
-        """Print selected file"""
-        if obj.file:
-            keyboard = Controller()
-            browser = request.META.get('HTTP_USER_AGENT', '').lower()
-            import time
-            time.sleep(1.5)
-            if browser.find("chrome") > 0:
-                with keyboard.pressed(Key.shift):
-                    keyboard.press(Key.ctrl)
-                    keyboard.press('p')
-                    keyboard.release(Key.ctrl)
-                    keyboard.release('p')
-            elif browser.find("firefox") > 0:
-                with keyboard.pressed(Key.ctrl):
-                    keyboard.press('p')
-                    keyboard.release(Key.ctrl)
-                    keyboard.release('p')
-            return redirect(obj.file.url)
-        else:
-            return "No attachment"
-    print.short_description = 'Print'
+    # def print(self, request, obj, parent_obj=None):
+    #     """Print selected file"""
+    #     if obj.file:
+    #         keyboard = Controller()
+    #         browser = request.META.get('HTTP_USER_AGENT', '').lower()
+    #         import time
+    #         time.sleep(1.5)
+    #         if browser.find("chrome") > 0:
+    #             with keyboard.pressed(Key.shift):
+    #                 keyboard.press(Key.ctrl)
+    #                 keyboard.press('p')
+    #                 keyboard.release(Key.ctrl)
+    #                 keyboard.release('p')
+    #         elif browser.find("firefox") > 0:
+    #             with keyboard.pressed(Key.ctrl):
+    #                 keyboard.press('p')
+    #                 keyboard.release(Key.ctrl)
+    #                 keyboard.release('p')
+    #         return redirect(obj.file.url)
+    #     else:
+    #         return "No attachment"
+    # print.short_description = 'Print'
 
     def download(self, request, obj, parent_obj=None):
         """Download selected file"""
@@ -80,10 +80,9 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
         raise Http404
     download.short_description = 'Download'
 
-    def printf(self, request, obj, parent_obj=None):
+    def print(self, request, obj, parent_obj=None):
         """Download selected file"""
         file_path = '%s' % obj.file.file
-        filename = os.path.basename(file_path)
         # opener = "open" if sys.platform == "darwin" else "xdg-open"
         if os.path.exists(file_path):
             if platform.system() == "Windows":
@@ -93,7 +92,7 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
                     subprocess.call(["lpr", file_path])
                 except Exception as e:
                     print(e)
-    printf.short_description = 'Print F'
+    print.short_description = 'Print'
 
     def delete(self, request, obj, parent_obj=None):
         """Remove selected inline instance if permission is sufficient"""
