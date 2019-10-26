@@ -1,7 +1,6 @@
 import mimetypes
 import os, platform, subprocess
 
-from pynput.keyboard import Key, Controller
 from django.contrib import admin, messages
 from django.http import HttpResponse
 from django.http.response import Http404
@@ -44,28 +43,21 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
             return "No attachment"
     view.short_description = "View"
 
-    # def print(self, request, obj, parent_obj=None):
-    #     """Print selected file"""
-    #     if obj.file:
-    #         keyboard = Controller()
-    #         browser = request.META.get('HTTP_USER_AGENT', '').lower()
-    #         import time
-    #         time.sleep(1.5)
-    #         if browser.find("chrome") > 0:
-    #             with keyboard.pressed(Key.shift):
-    #                 keyboard.press(Key.ctrl)
-    #                 keyboard.press('p')
-    #                 keyboard.release(Key.ctrl)
-    #                 keyboard.release('p')
-    #         elif browser.find("firefox") > 0:
-    #             with keyboard.pressed(Key.ctrl):
-    #                 keyboard.press('p')
-    #                 keyboard.release(Key.ctrl)
-    #                 keyboard.release('p')
-    #         return redirect(obj.file.url)
-    #     else:
-    #         return "No attachment"
-    # print.short_description = 'Print'
+    def print(self, request, obj, parent_obj=None):
+        """Download selected file"""
+        file_path = '%s' % obj.file.file
+        filename = os.path.basename(file_path)
+        if os.path.exists(file_path):
+            if platform.system() == "Windows":
+                os.startfile(file_path, "print")
+            elif platform.system() == "Darwin":
+                subprocess.call(["open", file_path])
+            else:
+                if filename.endswith((".doc", ".docx")):
+                    subprocess.call(["xdg-open", file_path])
+                else:
+                    subprocess.call(["lpr", file_path])
+    print.short_description = "Print"
 
     def download(self, request, obj, parent_obj=None):
         """Download selected file"""
@@ -80,27 +72,28 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
         raise Http404
     download.short_description = 'Download'
 
-    def print(self, request, obj, parent_obj=None):
-        """Download selected file"""
-        file_path = '%s' % obj.file.file
-        # opener = "open" if sys.platform == "darwin" else "xdg-open"
-        if os.path.exists(file_path):
-            if platform.system() == "Windows":
-                os.startfile(file_path, "print")
-            else:
-                try:
-                    subprocess.call(["lpr", file_path])
-                except Exception as e:
-                    print(e)
-    print.short_description = 'Print'
-
     def delete(self, request, obj, parent_obj=None):
-        """Remove selected inline instance if permission is sufficient"""
-        if self.has_delete_permission(request):
-            obj.delete()
-            messages.info(request, "`{}` deleted.".format(obj))
+        """Redirect to delete confirmation of selected inline instance"""
+        if request.user.is_superuser:
+            url = reverse(
+                'admin:{}_{}_delete'.format(
+                    obj._meta.app_label,
+                    obj._meta.model_name,
+                ),
+                args=(obj.pk,)
+            )
+            return redirect(url)
+        else:
+            messages.error(request, "You don't have permission to delete it.")
+    delete.short_description = _("Delete")
 
-    delete.short_description = "Delete"
+    # def delete(self, request, obj, parent_obj=None):
+    #     """Remove selected inline instance if permission is sufficient"""
+    #     if self.has_delete_permission(request):
+    #         obj.delete()
+    #         messages.info(request, "`{}` deleted.".format(obj))
+    #     else:
+            # messages.error(request, "You don't have permission to delete it.")
 
 
 class StudentFormAdmin(ModelForm):
@@ -190,3 +183,4 @@ admin.site.register(Exam, ExamAdmin)
 admin.site.register(ExamResults, ExamResultsAdmin)
 admin.site.register(MonthJournal)
 admin.site.register(Type)
+admin.site.register(Document)
