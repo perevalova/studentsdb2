@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'inline_actions',
+    'debug_toolbar',
 
     # Local
     'stud_auth',
@@ -179,6 +180,11 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': LOG_FILE,
             'formatter': 'verbose'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
         },
     },
     'loggers': {
