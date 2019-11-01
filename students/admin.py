@@ -1,19 +1,18 @@
 import mimetypes
-import os, platform, subprocess
+import os
 
 from django.contrib import admin, messages
+from django.core.urlresolvers import reverse
+from django.forms import ModelForm, ValidationError
 from django.http import HttpResponse
 from django.http.response import Http404
 from django.shortcuts import redirect
+from django.utils.translation import ugettext as _
+from inline_actions.admin import InlineActionsMixin
+from inline_actions.admin import InlineActionsModelAdminMixin
 
 from .models import Student, Group, Exam, ExamResults, MonthJournal, Document, \
     Type
-from django.core.urlresolvers import reverse
-from django.forms import ModelForm, ValidationError
-from django.utils.translation import ugettext as _
-
-from inline_actions.admin import InlineActionsMixin
-from inline_actions.admin import InlineActionsModelAdminMixin
 
 
 class DocumentInline(InlineActionsMixin, admin.TabularInline):
@@ -44,20 +43,24 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
     view.short_description = "View"
 
     def print(self, request, obj, parent_obj=None):
-        """Download selected file"""
-        file_path = '%s' % obj.file.file
-        filename = os.path.basename(file_path)
-        if os.path.exists(file_path):
-            if platform.system() == "Windows":
-                os.startfile(file_path, "print")
-            elif platform.system() == "Darwin":
-                subprocess.call(["open", file_path])
-            else:
-                if filename.endswith((".doc", ".docx")):
-                    subprocess.call(["xdg-open", file_path])
-                else:
-                    subprocess.call(["lpr", file_path])
+        """Print selected file"""
     print.short_description = "Print"
+
+    # def print(self, request, obj, parent_obj=None):
+    #     """Download selected file"""
+    #     file_path = '%s' % obj.file.file
+    #     filename = os.path.basename(file_path)
+    #     if os.path.exists(file_path):
+    #         if platform.system() == "Windows":
+    #             os.startfile(file_path, "print")
+    #         elif platform.system() == "Darwin":
+    #             subprocess.call(["open", file_path])
+    #         else:
+    #             if filename.endswith((".doc", ".docx")):
+    #                 subprocess.call(["xdg-open", file_path])
+    #             else:
+    #                 subprocess.call(["lpr", file_path])
+    # print.short_description = "Print"
 
     def download(self, request, obj, parent_obj=None):
         """Download selected file"""
@@ -94,6 +97,9 @@ class DocumentInline(InlineActionsMixin, admin.TabularInline):
     #         messages.info(request, "`{}` deleted.".format(obj))
     #     else:
             # messages.error(request, "You don't have permission to delete it.")
+
+    class Media:
+        js = ("js/print.js",)
 
 
 class StudentFormAdmin(ModelForm):
