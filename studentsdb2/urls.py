@@ -33,6 +33,8 @@ urlpatterns = i18n_patterns(
     url(r'^', include('students.urls')),
     url(r'^', include('stud_auth.urls')),
 
+    url(r'^api/v1/', include('api.urls')),
+
     url('', include('social_django.urls', namespace='social')),
 
     # Contact Admin Form

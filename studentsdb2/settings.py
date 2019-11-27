@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     # 3rd party
+    'rest_framework',
     'social_django',
     'django_extensions',
     'inline_actions',
@@ -250,3 +251,18 @@ SOCIAL_AUTH_FACEBOOK_SECRET = config('FACEBOOK_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET')
 
+# Rest API
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
