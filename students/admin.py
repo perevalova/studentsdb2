@@ -2,7 +2,7 @@ import mimetypes
 import os
 
 from django.contrib import admin, messages
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.forms import ModelForm, ValidationError
 from django.http import HttpResponse
 from django.http.response import Http404

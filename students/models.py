@@ -54,7 +54,7 @@ class MonthJournal(models.Model):
     """Student Monthly Journal"""
 
     student = models.ForeignKey(Student, unique_for_month='date', blank=False,
-                                verbose_name=_("Student"))
+                                verbose_name=_("Student"), on_delete=models.CASCADE)
     date = models.DateField(verbose_name=_('Date'), blank=False)
 
     class Meta:
@@ -91,8 +91,8 @@ class Exam(models.Model):
 class ExamResults(models.Model):
     """Exam Results Model"""
 
-    subject_exam = models.ForeignKey(Exam, verbose_name=_("Subject"), max_length=256, blank=False)
-    student = models.ForeignKey(Student, verbose_name=_("Student"), blank=True, null=True)
+    subject_exam = models.ForeignKey(Exam, verbose_name=_("Subject"), max_length=256, blank=False, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, verbose_name=_("Student"), blank=True, null=True, on_delete=models.CASCADE)
     grade = models.CharField(max_length=256,  blank=False, verbose_name=_("Grade"), null=True)
 
     class Meta(object):

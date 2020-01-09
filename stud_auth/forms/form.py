@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.forms import ModelForm
 
 from crispy_forms.helper import FormHelper
