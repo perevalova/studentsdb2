@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse, request
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin

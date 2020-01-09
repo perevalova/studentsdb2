@@ -1,5 +1,5 @@
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.forms import ModelForm, ValidationError
 
 from students.models import Exam, ExamResults
