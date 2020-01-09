@@ -1,5 +1,4 @@
 """studentsdb2 URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
 Examples:
@@ -41,9 +40,10 @@ urlpatterns = i18n_patterns(
 
     path('admin/', admin.site.urls),
 
-    # url(r'^api/v1/', include('api.urls', namespace='api')),
+    path('api/v1/', include('api.urls', namespace='api')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/rest-auth/', include('rest_auth.urls')),
+    path('api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
 )
 
 if settings.DEBUG:
