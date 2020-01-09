@@ -1,45 +1,25 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from students.models import Student, Group, Exam, MonthJournal
 from .serializers import StudentSerializer, GroupSerializer, ExamSerializer, \
     MonthJournalSerializer, ContactAdminSerializer
 
 
-class StudentList(generics.ListCreateAPIView):
+class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
 
-class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
-
-
-class GroupList(generics.ListCreateAPIView):
+class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 
-class GroupDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-
-
-class JournalList(generics.ListCreateAPIView):
+class JournalViewSet(viewsets.ModelViewSet):
     queryset = MonthJournal.objects.all()
     serializer_class = MonthJournalSerializer
 
 
-class JournalDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = MonthJournal.objects.all()
-    serializer_class = MonthJournalSerializer
-
-
-class ExamList(generics.ListCreateAPIView):
-    queryset = Exam.objects.all()
-    serializer_class = ExamSerializer
-
-
-class ExamDetail(generics.RetrieveUpdateDestroyAPIView):
+class ExamViewSet(viewsets.ModelViewSet):
     queryset = Exam.objects.all()
     serializer_class = ExamSerializer
 

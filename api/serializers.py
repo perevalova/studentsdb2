@@ -9,6 +9,7 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = ('id', 'first_name', 'last_name', 'middle_name', 'birthday', 'photo',
                   'student_group', 'ticket', 'notes',)
         model = Student
+        depth = 1
 
 
 class GroupSerializer(serializers.ModelSerializer):
