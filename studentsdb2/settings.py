@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 3rd party
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_swagger',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -284,3 +285,8 @@ SITE_ID = 1
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000'
 )
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': 'rest_framework:login',
+    'LOGOUT_URL': 'rest_framework:logout',
+}

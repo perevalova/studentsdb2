@@ -27,11 +27,12 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
 from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view
+from rest_framework_swagger.views import get_swagger_view
 
 
 API_TITLE = 'Students API'
 API_DESCRIPTION = 'A Web API for creating and editing students, groups and exams.'
-schema_view = get_schema_view(title=API_TITLE)
+schema_view = get_swagger_view(title=API_TITLE)
 
 urlpatterns = i18n_patterns(
     url(r'^lang/(?P<lang_code>[a-z]{2})/$', lang, name='lang'),
@@ -51,7 +52,8 @@ urlpatterns = i18n_patterns(
     path('api/v1/rest-auth/', include('rest_auth.urls')),
     path('api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
     path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
-    path('schema/', schema_view),
+    # path('schema/', schema_view),
+    path('swagger-docs/', schema_view),
 )
 
 if settings.DEBUG:
