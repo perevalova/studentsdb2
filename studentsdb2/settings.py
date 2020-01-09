@@ -34,25 +34,32 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INSTALLED_APPS = [
     # 'django.contrib.sites',
-    'registration',
+    # 'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    'django.contrib.sites',
 
     # 3rd party
     'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rest_auth',
+    'rest_auth.registration',
     'social_django',
     'django_extensions',
     'inline_actions',
+    'crispy_forms',
     'debug_toolbar',
 
     # Local
-    'stud_auth',
-    'students',
+    'stud_auth.apps.StudAuthConfig',
+    'students.apps.StudentsAppConfig',
     'modeltranslation',
 ]
 
@@ -266,3 +273,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1

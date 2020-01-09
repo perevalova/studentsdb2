@@ -6,6 +6,9 @@ from rest_framework.routers import SimpleRouter
 from api.views import StudentViewSet, GroupViewSet, JournalViewSet, ExamViewSet, \
     ContactView
 
+
+app_name = 'api'
+
 router = SimpleRouter()
 router.register('students', StudentViewSet, base_name='students')
 router.register('groups', GroupViewSet, base_name='groups')
