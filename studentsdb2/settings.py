@@ -33,8 +33,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.sites',
-    # 'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,25 +42,28 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # 3rd party
+    'social_django',
+    'registration',
+    'crispy_forms',
+    'modeltranslation',
+    'django_extensions',
+    'inline_actions',
+    'debug_toolbar',
+    # DRF
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     'rest_auth',
-    'rest_auth.registration',
+    # 'rest_auth.registration',
     'corsheaders',
-    'social_django',
-    'django_extensions',
-    'inline_actions',
-    'crispy_forms',
-    'debug_toolbar',
 
     # Local
     'stud_auth.apps.StudAuthConfig',
     'students.apps.StudentsAppConfig',
-    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -276,9 +277,18 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
+    },
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
 

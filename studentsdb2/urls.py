@@ -1,38 +1,16 @@
-"""studentsdb2 URL Configuration
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import include, url
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.decorators import permission_required
 from django.urls import path
 from django.views.static import serve
-from students.views.contact_admin import ContactView
-from students.util import lang
-
-from .settings import MEDIA_ROOT
-from django.conf import settings
-
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import JavaScriptCatalog
-from rest_framework.documentation import include_docs_urls
-from rest_framework.schemas import get_schema_view
-from rest_framework_swagger.views import get_swagger_view
 
+from students.views.contact_admin import ContactView
+from students.util import lang
+from .settings import MEDIA_ROOT
 
-API_TITLE = 'Students API'
-API_DESCRIPTION = 'A Web API for creating and editing students, groups and exams.'
-schema_view = get_swagger_view(title=API_TITLE)
 
 urlpatterns = i18n_patterns(
     url(r'^lang/(?P<lang_code>[a-z]{2})/$', lang, name='lang'),
@@ -47,13 +25,9 @@ urlpatterns = i18n_patterns(
 
     path('admin/', admin.site.urls),
 
+    # API
     path('api/v1/', include('api.urls', namespace='api')),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/rest-auth/', include('rest_auth.urls')),
-    path('api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
-    path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
-    # path('schema/', schema_view),
-    path('swagger-docs/', schema_view),
 )
 
 if settings.DEBUG:

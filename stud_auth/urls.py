@@ -12,8 +12,8 @@ urlpatterns = [
     path('accounts/profile/<int:pk>/', login_required(UserView.as_view()), name='user'),
     path('accounts/profile/edit/', login_required(UserEditView.as_view()), name='profile_edit'),
     path('accounts/profile/edit/extra', login_required(UserExtraEditView.as_view()), name='profile_extra_edit'),
-    path('accounts/logout/', auth_views.LogoutView, kwargs={'next_page': 'home'}, name='auth_logout'),
-    # path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/logout/', auth_views.LogoutView.as_view(next_page='home'), name='auth_logout'),
+    path('accounts/', include('registration.backends.default.urls')),
 
     path('users/', login_required(UserList.as_view()), name='users'),
 ]
